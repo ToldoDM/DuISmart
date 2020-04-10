@@ -24,11 +24,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
-        duismart.cpp
+        Views/mainwindow.cpp \
+        main.cpp
 
 HEADERS += \
-        duismart.h
+        Views/mainwindow.h
 
 FORMS += \
         duismart.ui
