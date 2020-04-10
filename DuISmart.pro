@@ -30,5 +30,4 @@ SOURCES += \
 HEADERS += \
         Views/mainwindow.h
 
-FORMS += \
-        duismart.ui
+FORMS +=
