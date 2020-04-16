@@ -1,6 +1,7 @@
 #include "controller.h"
 
-controller::controller()
-{
+Controller::Controller(){
 
 }
+
+//in questa classe gestisco tutte le viste e i model

@@ -1,11 +1,16 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
+#include<QObject>
 
-class controller
-{
+class Controller : public QObject {
+    Q_OBJECT
+
 public:
-    controller();
+    /**
+     * @brief Controller	costruttore del controller
+     */
+    Controller();
 };
 
-#endif // CONTROLLER_H
+#endif
