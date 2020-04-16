@@ -25,9 +25,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         Views/mainwindow.cpp \
+        controller.cpp \
         main.cpp
 
 HEADERS += \
-        Views/mainwindow.h
+        Views/mainwindow.h \
+        controller.h
 
 FORMS +=
