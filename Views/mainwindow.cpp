@@ -1,7 +1,9 @@
 #include "mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
+MainWindow::MainWindow(MainViewModel* model, QWidget *parent) : QWidget(parent)
 {
+    this->model = model;
+
     setWindowTitle ("DuISmartMainWindow");
     button = new QPushButton("bottone prova",this);
     button->show();

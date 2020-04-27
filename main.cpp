@@ -7,6 +7,7 @@ int main(int argc, char *argv[])
     //MainWindow w;
     //w.show();
     Controller c;
+    c.ShowMainWindow();
 
     return a.exec();
 }
