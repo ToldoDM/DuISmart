@@ -14,8 +14,11 @@ public:
     explicit MainWindow(MainViewModel* model, QWidget *parent = nullptr);
 
 signals:
+    void notifyController();
 
 public slots:
+    void clieckedHandler();
+    void refresh();
 
 private:
     MainViewModel* model;

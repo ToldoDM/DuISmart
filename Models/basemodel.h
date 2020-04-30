@@ -7,6 +7,9 @@ class BaseModel : public QObject
 {
     Q_OBJECT
 
+signals:
+    void refreshView();
+
 public:
     /**
      * @brief BaseModel Costruttore di default

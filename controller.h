@@ -7,6 +7,13 @@
 
 class Controller : public QObject {
     Q_OBJECT
+
+
+signals:
+
+public slots:
+    void notifyHandler();
+
 private:
 
     //Main Window
