@@ -2,7 +2,6 @@
 #define MAINVIEWMODEL_H
 
 #include "basemodel.h"
-
 class MainViewModel : public BaseModel
 {
 public:

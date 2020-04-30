@@ -1,5 +1,5 @@
 #include "basemodel.h"
 
-BaseModel::BaseModel() {}
+BaseModel::BaseModel(QObject* parent) : QObject(parent){}
 
 BaseModel::~BaseModel() = default;

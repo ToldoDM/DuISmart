@@ -1,11 +1,18 @@
 #ifndef BASEMODEL_H
 #define BASEMODEL_H
 
+#include<QObject>
 
-class BaseModel
+class BaseModel : public QObject
 {
+    Q_OBJECT
+
 public:
-    BaseModel();
+    /**
+     * @brief BaseModel Costruttore di default
+     * @param parent    widget genitore
+     */
+    BaseModel(QObject *parent = nullptr);
     virtual ~BaseModel() = 0;
 };
 
