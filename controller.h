@@ -12,7 +12,6 @@ class Controller : public QObject {
 signals:
 
 public slots:
-    void notifyHandler();
 
 private:
 

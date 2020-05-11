@@ -3,8 +3,10 @@
 
 #include <QWidget>
 #include <QPushButton>
+#include <QLabel>
 #include <QTabBar>
-#include <QSizePolicy>
+#include <QBoxLayout>
+#include <QListWidget>
 #include <Models/mainviewmodel.h>
 
 class MainWindow : public QWidget
@@ -14,17 +16,17 @@ public:
     explicit MainWindow(MainViewModel* model, QWidget *parent = nullptr);
 
 signals:
-    void notifyController();
 
 public slots:
     void clieckedHandler();
-    void refresh();
 
 private:
     MainViewModel* model;
 
-    QPushButton* button;
-    QTabBar* tab;
+    QPushButton *button;
+    QTabBar *tab;
+    QBoxLayout *layout;
+    QListWidget *listW;
 };
 
 #endif // MAINWINDOW_H
