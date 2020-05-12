@@ -14,6 +14,14 @@ MainWindow::MainWindow(MainViewModel* model, QWidget *parent) : QWidget(parent)
     listW = new QListWidget(wid1);
     wid1Lay->addWidget(listW);
 
+    QListWidgetItem *item = new QListWidgetItem(listW);
+    listW->addItem(item);
+
+    DeviceListItem *dli = new DeviceListItem();
+    item->setSizeHint(dli->minimumSizeHint());
+
+    listW->setItemWidget(item, dli);
+
 
     // Here some second widget
     QWidget *wid2 = new QWidget(this);

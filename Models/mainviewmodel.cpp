@@ -1,6 +1,6 @@
 #include "mainviewmodel.h"
 
-MainViewModel::MainViewModel(){
+MainViewModel::MainViewModel(QObject *parent) : BaseModel(parent) {
 
 
 }

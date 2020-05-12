@@ -1,13 +1,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QWidget>
 #include <QPushButton>
 #include <QLabel>
 #include <QTabBar>
 #include <QBoxLayout>
 #include <QListWidget>
-#include <Models/mainviewmodel.h>
+#include "Models/mainviewmodel.h"
+#include "CustomItems/devicelistitem.h"
 
 class MainWindow : public QWidget
 {
@@ -25,7 +25,6 @@ private:
 
     QPushButton *button;
     QTabBar *tab;
-    QBoxLayout *layout;
     QListWidget *listW;
 };
 

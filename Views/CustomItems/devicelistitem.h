@@ -1,11 +1,20 @@
 #ifndef DEVICELISTITEM_H
 #define DEVICELISTITEM_H
 
+#include <QPushButton>
+#include <QBoxLayout>
+#include <QLabel>
 
-class devicelistitem
+class DeviceListItem : public QWidget
 {
+
 public:
-    devicelistitem();
+    DeviceListItem(QWidget *parent = nullptr);
+
+private:
+    QPushButton *button;
+    QLabel *label;
+    QHBoxLayout *hlay;
 };
 
 #endif // DEVICELISTITEM_H

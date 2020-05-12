@@ -6,7 +6,7 @@ class MainViewModel : public BaseModel
 {
 
 public:
-    MainViewModel();
+    MainViewModel(QObject *parent = nullptr);
 };
 
 #endif // MAINVIEWMODEL_H
