@@ -13,8 +13,10 @@ public:
 
 private:
     QPushButton *button;
-    QLabel *label;
+    QLabel *deviceName, *friendlyName, *ico;
+    QWidget *center;
     QHBoxLayout *hlay;
+    QVBoxLayout *vlay;
 };
 
 #endif // DEVICELISTITEM_H

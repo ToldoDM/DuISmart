@@ -7,7 +7,6 @@ MainWindow::MainWindow(MainViewModel* model, QWidget *parent) : QWidget(parent)
     setWindowTitle ("DuISmartMainWindow");
     setFixedSize(640,480);
 
-
     // Here some first widget
     QWidget *wid1 = new QWidget(this);
     QHBoxLayout *wid1Lay = new QHBoxLayout(wid1);

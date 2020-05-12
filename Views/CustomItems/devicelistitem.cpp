@@ -3,8 +3,20 @@
 DeviceListItem::DeviceListItem(QWidget *parent) : QWidget(parent) {
 
     hlay = new QHBoxLayout(this);
-    label = new QLabel(("testo prova"));
-    button = new QPushButton(("bottone"));
-    hlay->addWidget(label);
+    button = new QPushButton(tr("bottone"), this);
+    ico = new QLabel(this);
+    ico->setPixmap(QPixmap("image.jpg").scaled(120,80));
+    ico->show();
+
+
+    center = new QWidget(this);
+    vlay = new QVBoxLayout(center);
+    deviceName = new QLabel(("Interruttore"));
+    friendlyName = new QLabel(("Luce cucina"));
+    vlay->addWidget(deviceName);
+    vlay->addWidget(friendlyName);
+
+    hlay->addWidget(ico);
+    hlay->addWidget(center);
     hlay->addWidget(button);
 }
