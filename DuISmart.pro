@@ -39,3 +39,8 @@ HEADERS += \
         controller.h
 
 FORMS +=
+
+DISTFILES +=
+
+RESOURCES += \
+    resources.qrc

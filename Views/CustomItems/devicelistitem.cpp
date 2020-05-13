@@ -5,7 +5,7 @@ DeviceListItem::DeviceListItem(QWidget *parent) : QWidget(parent) {
     hlay = new QHBoxLayout(this);
     button = new QPushButton(tr("bottone"), this);
     ico = new QLabel(this);
-    ico->setPixmap(QPixmap("image.jpg").scaled(120,80));
+    ico->setPixmap(QPixmap(":Images/image.jpg").scaled(120,80));
     ico->show();
 
 
