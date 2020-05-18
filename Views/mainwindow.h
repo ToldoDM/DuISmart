@@ -3,9 +3,10 @@
 
 #include <QPushButton>
 #include <QLabel>
-#include <QTabBar>
 #include <QBoxLayout>
 #include <QListWidget>
+#include <QTabWidget>
+#include <QFile>
 #include "Models/mainviewmodel.h"
 #include "CustomItems/devicelistitem.h"
 
@@ -13,19 +14,48 @@ class MainWindow : public QWidget
 {
     Q_OBJECT
 public:
+    /**
+     * @brief MainWindow: Costruttore di default
+     * @param model: Model della vista
+     * @param parent: Widget genitore
+     */
     explicit MainWindow(MainViewModel* model, QWidget *parent = nullptr);
+
+    /**
+     * @brief setWindowStyle: Imposta lo stile dei vari componenti tramite il file style.css
+     */
+    void setWindowStyle();
+
+    /**
+     * @brief addToAllList: Aggiunge l'oggetto alla lista di tutti i dispositivi
+     */
+    void addToAllList() const;
 
 signals:
 
 public slots:
-    void clieckedHandler();
+    /**
+     * @brief clieckedHandler: Slot utilizzato per catturare il segnale bottone premuto di addDevice
+     */
+    void addClieckedHandler();
 
 private:
+    /**
+     * @brief model: Utilizzato per prendere i valori da visualizzare
+     */
     MainViewModel* model;
 
-    QPushButton *button;
-    QTabBar *tab;
-    QListWidget *listW;
+    /**
+     * @brief defaultTab: Rappresenta il tab di default contenente la lista di tutti i device
+     */
+    QListWidget *defaultTab;
+
+    /**
+     * @brief addDevice: Pulsante per l'aggiunta di un nuovo device
+     */
+    QPushButton *addDevice;
+
+    QTabWidget *tab;
 };
 
 #endif // MAINWINDOW_H

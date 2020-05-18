@@ -1,5 +1,6 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
     <file>Images/image.jpg</file>
+    <file>Resources/style.css</file>
 </qresource>
 </RCC>

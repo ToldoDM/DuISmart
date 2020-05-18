@@ -3,11 +3,10 @@
 DeviceListItem::DeviceListItem(QWidget *parent) : QWidget(parent) {
 
     hlay = new QHBoxLayout(this);
-    button = new QPushButton(tr("bottone"), this);
+    cbox = new QCheckBox(tr("bottone"), this);
     ico = new QLabel(this);
     ico->setPixmap(QPixmap(":Images/image.jpg").scaled(120,80));
     ico->show();
-
 
     center = new QWidget(this);
     vlay = new QVBoxLayout(center);
@@ -18,5 +17,5 @@ DeviceListItem::DeviceListItem(QWidget *parent) : QWidget(parent) {
 
     hlay->addWidget(ico);
     hlay->addWidget(center);
-    hlay->addWidget(button);
+    hlay->addWidget(cbox);
 }

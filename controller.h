@@ -15,8 +15,13 @@ public slots:
 
 private:
 
-    //Main Window
+    /**
+     * @brief MainVM: model della MainWindow
+     */
     MainViewModel* MainVM;
+    /**
+     * @brief MainW: Finestra principale
+     */
     MainWindow* MainW;
 
 public:
@@ -27,7 +32,7 @@ public:
     Controller(QObject* parent = nullptr);
 
     /**
-     * @brief ShowMainWindow	Comando che rende visibile la mainWindow
+     * @brief ShowMainWindow: Comando che chiama show della mainWindow
      */
     void ShowMainWindow() const;
 };

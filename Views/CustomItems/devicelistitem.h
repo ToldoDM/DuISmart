@@ -1,7 +1,7 @@
 #ifndef DEVICELISTITEM_H
 #define DEVICELISTITEM_H
 
-#include <QPushButton>
+#include <QCheckBox>
 #include <QBoxLayout>
 #include <QLabel>
 
@@ -12,7 +12,7 @@ public:
     DeviceListItem(QWidget *parent = nullptr);
 
 private:
-    QPushButton *button;
+    QCheckBox *cbox;
     QLabel *deviceName, *friendlyName, *ico;
     QWidget *center;
     QHBoxLayout *hlay;
