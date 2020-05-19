@@ -53,7 +53,7 @@ private:
     /**
      * @brief addDevice: Pulsante per l'aggiunta di un nuovo device
      */
-    QPushButton *addDevice;
+    QPushButton *addDeviceBt;
 
     QTabWidget *tab;
 };

@@ -10,17 +10,17 @@ MainWindow::MainWindow(MainViewModel* model, QWidget *parent) : QWidget(parent)
     //Creazione della visualizzazione di default
     defaultTab = new QListWidget(this);
     tab = new QTabWidget(this);
-    addDevice = new QPushButton(tr("Aggiungi"), this);
+    addDeviceBt = new QPushButton(tr("Aggiungi"), this);
 
     tab->addTab(defaultTab, tr("All"));
 
     //Main layout finestra
     QVBoxLayout *vLay = new QVBoxLayout(this);
     vLay->addWidget(tab);
-    vLay->addWidget(addDevice);
+    vLay->addWidget(addDeviceBt);
 
     //Colleggo segnali e slot
-    connect(addDevice, SIGNAL(clicked()), this, SLOT(addClieckedHandler()));
+    connect(addDeviceBt, SIGNAL(clicked()), this, SLOT(addClieckedHandler()));
 
     //Imposto lo stile
     setWindowStyle();
@@ -41,6 +41,7 @@ void MainWindow::addToAllList() const{
 }
 
 void MainWindow::addClieckedHandler(){
+    addToAllList();
     //Qui verra' gestita la nuova finestra per l'inserimento del nuovo device
 }
 

@@ -9,6 +9,10 @@ class DeviceListItem : public QWidget
 {
 
 public:
+    /**
+     * @brief DeviceListItem: Costruttore di default
+     * @param parent: Oggetto padre
+     */
     DeviceListItem(QWidget *parent = nullptr);
 
 private:
