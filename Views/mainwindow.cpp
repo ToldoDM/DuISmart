@@ -51,6 +51,8 @@ void MainWindow::addClieckedHandler(){
     QVBoxLayout *Vlayout=new QVBoxLayout(wind);
     QHBoxLayout *Hlayout=new QHBoxLayout();
     QFormLayout *formLayout=new QFormLayout();
+    combo=new QComboBox(this);
+
 
     //dichiarazione campi
     name=new QLineEdit("Device name");
@@ -65,17 +67,29 @@ void MainWindow::addClieckedHandler(){
     //inserimento campi in formlayout
     formLayout->addRow("Nome Smart Device",name);
     formLayout->addRow("Description",description);
+    formLayout->addRow("Stanza",combo);
+
+    //popolamento stanza:
+    combo->addItem("Inserire stanza");
+    combo->addItem("Cucina");
+    combo->addItem("Salotto");
+    combo->addItem("Bagno");
+    combo->addItem("Camera da letto");
 
 
     QPushButton *reset=new QPushButton("reset");
     QPushButton *submit=new QPushButton("submit");
+
 
     // il layout orizzontale contiene due bottoni e si trova sotto il qformlayout
     Hlayout->addWidget(reset);
     Hlayout->addWidget(submit);
 
     Vlayout->addLayout(formLayout);
+
+
     Vlayout->addLayout(Hlayout);
+
 
     //connessione bottoni-azioni
     connect(reset, SIGNAL(clicked()),this, SLOT(CancField()));
@@ -86,24 +100,40 @@ void MainWindow::addClieckedHandler(){
 
 void MainWindow::Accept(){
 
-    QDialog *dialog= new QDialog(this);
-    QVBoxLayout *t= new QVBoxLayout(dialog);
+    if(combo->currentText()=="Inserire stanza")
+    {
+        QDialog *dialog= new QDialog(this);
+        QVBoxLayout *t= new QVBoxLayout(dialog);
 
-    t->addWidget(new QLabel(name->displayText(),dialog));
-    t->addWidget(new QLabel(description->toPlainText(),dialog)); /* <- toPlainText() ottiene e imposta i contenuti
+        t->addWidget(new QLabel("E' necessario inserire una stanza",dialog));
+        dialog->show();
+    }
+
+    else
+    {
+        QDialog *dialog= new QDialog(this);
+        QVBoxLayout *t= new QVBoxLayout(dialog);
+
+        t->addWidget(new QLabel(name->displayText(),dialog));
+        t->addWidget(new QLabel(description->toPlainText(),dialog)); /* <- toPlainText() ottiene e imposta i contenuti
                                                                     dell'editor di testo come testo normale */
-    dialog->show();
-    emit CancField();
+        t->addWidget(new QLabel(combo->currentText()));
+
+        dialog->show();
+        emit CancField();
+    }
 }
 
 void MainWindow::CancField(){
     name->clear();
+    name->insert("Device Name");
     description->clear();
+    description->insertPlainText("Device description");
 }
 
 
 
-void MainWindow::setWindowStyle(){
+void MainWindow::setWindowStyle() {
     // Imposto le dimensioni
     setMinimumSize(QSize(400,400));
     setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
