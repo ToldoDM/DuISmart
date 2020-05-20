@@ -24,18 +24,28 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+        Entities/bulb.cpp \
+        Entities/display.cpp \
         Entities/listdevice.cpp \
+        Entities/smartdevice.cpp \
+        Exceptions/notimplexception.cpp \
         Models/basemodel.cpp \
         Models/mainviewmodel.cpp \
+        Views/CustomItems/bulblistitem.cpp \
         Views/CustomItems/devicelistitem.cpp \
         Views/mainwindow.cpp \
         controller.cpp \
         main.cpp
 
 HEADERS += \
+        Entities/bulb.h \
+        Entities/display.h \
         Entities/listdevice.h \
+        Entities/smartdevice.h \
+        Exceptions/notimplexception.h \
         Models/basemodel.h \
         Models/mainviewmodel.h \
+        Views/CustomItems/bulblistitem.h \
         Views/CustomItems/devicelistitem.h \
         Views/mainwindow.h \
         controller.h

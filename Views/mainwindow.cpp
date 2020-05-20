@@ -82,6 +82,7 @@ void MainWindow::addClieckedHandler(){
     connect(submit, SIGNAL(clicked()),this, SLOT(Accept()));
 
     wind->show();
+    addToAllList();
 }
 
 void MainWindow::Accept(){
