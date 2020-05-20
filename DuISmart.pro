@@ -24,7 +24,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        Entities/listdevice.cpp \
         Models/basemodel.cpp \
         Models/mainviewmodel.cpp \
         Views/CustomItems/devicelistitem.cpp \
@@ -33,7 +32,6 @@ SOURCES += \
         main.cpp
 
 HEADERS += \
-        Entities/listdevice.h \
         Models/basemodel.h \
         Models/mainviewmodel.h \
         Views/CustomItems/devicelistitem.h \

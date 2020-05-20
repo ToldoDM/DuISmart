@@ -17,7 +17,6 @@
 #include <QHBoxLayout>
 #include <QLineEdit>
 #include <QTextEdit>
-#include <QComboBox>
 
 
 class MainWindow : public QWidget
@@ -49,7 +48,6 @@ public slots:
      */
     void addClieckedHandler();
     // inserimento slot accettazione-rifiuto della finestra
-
     void Accept();
     void CancField();
 private:
@@ -73,7 +71,6 @@ private:
     //campi per l'uente
     QLineEdit *name;
     QTextEdit *description;
-    QComboBox *combo;
 };
 
 #endif // MAINWINDOW_H
