@@ -10,14 +10,6 @@
 #include "Models/mainviewmodel.h"
 #include "CustomItems/devicelistitem.h"
 
-//aggiunte per finestra
-#include <QFormLayout>
-#include <QDialog>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QLineEdit>
-#include <QTextEdit>
-
 
 class MainWindow : public QWidget
 {
@@ -47,9 +39,7 @@ public slots:
      * @brief clieckedHandler: Slot utilizzato per catturare il segnale bottone premuto di addDevice
      */
     void addClieckedHandler();
-    // inserimento slot accettazione-rifiuto della finestra
-    void Accept();
-    void CancField();
+
 private:
     /**
      * @brief model: Utilizzato per prendere i valori da visualizzare
@@ -68,9 +58,8 @@ private:
 
     QTabWidget *tab;
 
-    //campi per l'uente
-    QLineEdit *name;
-    QTextEdit *description;
+
+
 };
 
 #endif // MAINWINDOW_H

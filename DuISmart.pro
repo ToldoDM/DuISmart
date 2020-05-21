@@ -29,14 +29,16 @@ SOURCES += \
         Views/CustomItems/devicelistitem.cpp \
         Views/mainwindow.cpp \
         controller.cpp \
-        main.cpp
+        main.cpp \
+    Views/additem.cpp
 
 HEADERS += \
         Models/basemodel.h \
         Models/mainviewmodel.h \
         Views/CustomItems/devicelistitem.h \
         Views/mainwindow.h \
-        controller.h
+        controller.h \
+    Views/additem.h
 
 FORMS +=
 

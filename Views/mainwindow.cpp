@@ -1,8 +1,8 @@
 #include "mainwindow.h"
+#include "additem.h"
 
 
-
-MainWindow::MainWindow(MainViewModel* model, QWidget *parent) : QWidget(parent)
+MainWindow::MainWindow(MainViewModel* m,QWidget *parent) : model(m), QWidget(parent)
 {
     this->model = model;
 
@@ -42,66 +42,11 @@ void MainWindow::addToAllList() const{
     defaultTab->setItemWidget(item, dli);
 }
 
-void MainWindow::addClieckedHandler(){
-
-    //Qui verra' gestita la nuova finestra per l'inserimento del nuovo device
-
-    //dichiarazione dei layout
-    QDialog *wind=new QDialog(this);
-    QVBoxLayout *Vlayout=new QVBoxLayout(wind);
-    QHBoxLayout *Hlayout=new QHBoxLayout();
-    QFormLayout *formLayout=new QFormLayout();
-
-    //dichiarazione campi
-    name=new QLineEdit("Device name");
-    description =new QTextEdit("Device description");
-
-    //ridimensionamenti random
-    formLayout->setRowWrapPolicy(QFormLayout::DontWrapRows);
-    formLayout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
-    formLayout->setFormAlignment(Qt::AlignHCenter | Qt::AlignTop);
-    formLayout->setLabelAlignment(Qt::AlignLeft);
-
-    //inserimento campi in formlayout
-    formLayout->addRow("Nome Smart Device",name);
-    formLayout->addRow("Description",description);
-
-
-    QPushButton *reset=new QPushButton("reset");
-    QPushButton *submit=new QPushButton("submit");
-
-    // il layout orizzontale contiene due bottoni e si trova sotto il qformlayout
-    Hlayout->addWidget(reset);
-    Hlayout->addWidget(submit);
-
-    Vlayout->addLayout(formLayout);
-    Vlayout->addLayout(Hlayout);
-
-    //connessione bottoni-azioni
-    connect(reset, SIGNAL(clicked()),this, SLOT(CancField()));
-    connect(submit, SIGNAL(clicked()),this, SLOT(Accept()));
-
-    wind->show();
+void MainWindow::addClieckedHandler()
+{
+    AddItem *AddI=new AddItem;
+    AddI->show();
 }
-
-void MainWindow::Accept(){
-
-    QDialog *dialog= new QDialog(this);
-    QVBoxLayout *t= new QVBoxLayout(dialog);
-
-    t->addWidget(new QLabel(name->displayText(),dialog));
-    t->addWidget(new QLabel(description->toPlainText(),dialog)); /* <- toPlainText() ottiene e imposta i contenuti
-                                                                    dell'editor di testo come testo normale */
-    dialog->show();
-    emit CancField();
-}
-
-void MainWindow::CancField(){
-    name->clear();
-    description->clear();
-}
-
-
 
 void MainWindow::setWindowStyle(){
     // Imposto le dimensioni
