@@ -24,7 +24,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-
         Entities/bulb.cpp \
         Entities/display.cpp \
         Entities/listdevice.cpp \
