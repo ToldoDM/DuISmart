@@ -33,11 +33,13 @@ SOURCES += \
         Models/mainviewmodel.cpp \
         Views/CustomItems/bulblistitem.cpp \
         Views/CustomItems/devicelistitem.cpp \
+        Views/CustomItems/onoffbutton.cpp \
         Views/mainwindow.cpp \
         controller.cpp \
         main.cpp
 
 HEADERS += \
+        Entities/CustomEnum.h \
         Entities/bulb.h \
         Entities/display.h \
         Entities/listdevice.h \
@@ -47,6 +49,7 @@ HEADERS += \
         Models/mainviewmodel.h \
         Views/CustomItems/bulblistitem.h \
         Views/CustomItems/devicelistitem.h \
+        Views/CustomItems/onoffbutton.h \
         Views/mainwindow.h \
         controller.h
 

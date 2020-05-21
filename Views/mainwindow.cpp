@@ -36,7 +36,7 @@ void MainWindow::addToAllList() const{
     QListWidgetItem *item = new QListWidgetItem();
     defaultTab->addItem(item);
     //Creo la custom view dell'oggetto della lista
-    DeviceListItem *dli = new DeviceListItem();
+    BulbListItem *dli = new BulbListItem();
     item->setSizeHint(QSize(0, 100));
     //Associo la custom view all'oggetto della lista
     defaultTab->setItemWidget(item, dli);

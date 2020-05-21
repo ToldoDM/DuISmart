@@ -2,7 +2,7 @@
 #define BULBLISTITEM_H
 
 #include "devicelistitem.h"
-#include <QPushButton>
+#include "onoffbutton.h"
 
 class BulbListItem : public DeviceListItem
 {
@@ -18,7 +18,7 @@ private:
     /**
      * @brief interr: Bottone con funzione di interruttore per la lampadina
      */
-    QPushButton *interr;
+    OnOffButton *interr;
 };
 
 #endif // BULBLISTITEM_H
