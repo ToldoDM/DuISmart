@@ -2,8 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QPushButton>
-#include <QLabel>
-#include <QBoxLayout>
 #include <QListWidget>
 #include <QTabWidget>
 #include <QFile>

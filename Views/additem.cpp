@@ -11,7 +11,6 @@ AddItem::AddItem(QWidget *parent) : QWidget(parent)
 //dichiarazione dei layout
     QBoxLayout * layout=new QBoxLayout(QBoxLayout::TopToBottom,this);
     QVBoxLayout *Vlayout=new QVBoxLayout();
-    QHBoxLayout *Hlayout=new QHBoxLayout();
     QFormLayout *formLayout=new QFormLayout();
 
 //dichiarazione campi
@@ -45,30 +44,19 @@ AddItem::AddItem(QWidget *parent) : QWidget(parent)
     formLayout->addRow("Description",description);
     formLayout->addRow("Room",combo);
 
-
-/*
-*
-*
-*   Sarebbe da aggiungere un'ulteriore bottone detto reset, la cui funzione è quella di eliminare le modifiche ai campi
-*
-*
-*/
-
+//inserimento bottoni conferma e cancella + connessione
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 
     connect(buttonBox,SIGNAL(accepted()),this,SLOT(accept()));
     connect(buttonBox,SIGNAL(rejected()),this,SLOT(cancel()));
 
-
-    Hlayout->addWidget(buttonBox);
-
+//inserimento corretto layout
     Vlayout->addLayout(formLayout);
-    Vlayout->addLayout(Hlayout);
-
+    Vlayout->addWidget(buttonBox);
 
 }
 
-
+//slot accetta: return dati solo se modificati dall'utente
 void AddItem::accept(){
 
 //se i campi non sono midificati -> "errore"
@@ -97,7 +85,7 @@ void AddItem::accept(){
     }
 }
 
-
+// slot cancel: distruzione layout
 void AddItem::cancel(){
     this->destroy();
 }

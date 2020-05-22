@@ -5,12 +5,10 @@
 #include <QFormLayout>
 #include <QDialog>
 #include <QVBoxLayout>
-#include <QHBoxLayout>
 #include <QLineEdit>
 #include <QTextEdit>
 #include <QWidget>
-
-//aggiunte per far girare il programma, controllare che non vengano chiamate anche in altre classi
+//assicurarsi di rimuovere le classi "prova" a completamento del return
 #include <QPushButton>
 #include <QLabel>
 #include <QBoxLayout>
