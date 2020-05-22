@@ -44,7 +44,7 @@ void MainWindow::addToAllList() const{
 
 void MainWindow::addClieckedHandler()
 {
-    AddItem *AddI=new AddItem;
+    AddItem *AddI=new AddItem();
     AddI->show();
 }
 

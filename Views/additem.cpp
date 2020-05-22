@@ -1,6 +1,7 @@
 #include "additem.h"
 #include <QDialogButtonBox>
 
+#include <QAbstractButton>
 
 AddItem::AddItem(QWidget *parent) : QWidget(parent)
 {
@@ -44,13 +45,6 @@ AddItem::AddItem(QWidget *parent) : QWidget(parent)
     formLayout->addRow("Description",description);
     formLayout->addRow("Room",combo);
 
-    //bottoni rifatti più sotto (da vedere quale mantenere, di base sono uguali)
-    //QPushButton *reset=new QPushButton("reset");
-    //QPushButton *submit=new QPushButton("submit");
-
-    // il layout orizzontale contiene due bottoni e si trova sotto il qformlayout, messi a commento per motivo sopra
-    //Hlayout->addWidget(reset);
-    //Hlayout->addWidget(submit);
 
 /*
 *
@@ -62,16 +56,16 @@ AddItem::AddItem(QWidget *parent) : QWidget(parent)
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(CancField()));
+    connect(buttonBox,SIGNAL(accepted()),this,SLOT(accept()));
+    connect(buttonBox,SIGNAL(rejected()),this,SLOT(cancel()));
+
 
     Hlayout->addWidget(buttonBox);
 
     Vlayout->addLayout(formLayout);
     Vlayout->addLayout(Hlayout);
 
-    //connessione bottoni-azioni
-    //presente bug-arresto
+
 }
 
 
@@ -99,18 +93,13 @@ void AddItem::accept(){
 
         dialog->show();
 
-        emit CancField();
+        emit cancel();
     }
 }
 
-void AddItem::CancField(){
-    name->clear();
-    name->setText("Device name");
-    description->clear();
-    description->insertPlainText("Device description");
 
-    //Con la cancellazione dei campi bisogna riportare combo all'index iniziale
-    combo->setCurrentIndex(0);
-
-
+void AddItem::cancel(){
+    this->destroy();
 }
+
+

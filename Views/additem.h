@@ -31,9 +31,10 @@ public slots:
     void accept();
 
     /**
-     * @brief CancField: Eliminazione modifiche campi
+     * @brief cancel: Chiusura finestra
      */
-    void CancField();
+    void cancel();
+
 
 private:
     //campi per l'uente
