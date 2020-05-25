@@ -6,7 +6,7 @@
 #include <QTabWidget>
 #include <QFile>
 #include "Models/mainviewmodel.h"
-#include "CustomItems/devicelistitem.h"
+#include "CustomItems/bulblistitem.h"
 
 
 class MainWindow : public QWidget
