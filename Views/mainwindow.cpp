@@ -50,23 +50,6 @@ void MainWindow::addClieckedHandler()
     addToAllList();
 }
 
-void MainWindow::Accept(){
-
-    QDialog *dialog= new QDialog(this);
-    QVBoxLayout *t= new QVBoxLayout(dialog);
-
-    t->addWidget(new QLabel(name->displayText(),dialog));
-    t->addWidget(new QLabel(description->toPlainText(),dialog)); /* <- toPlainText() ottiene e imposta i contenuti
-                                                                    dell'editor di testo come testo normale */
-    dialog->show();
-    emit CancField();
-}
-
-void MainWindow::CancField(){
-    name->clear();
-    description->clear();
-}
-
 void MainWindow::setWindowStyle(){
     // Imposto le dimensioni
     setMinimumSize(QSize(400,400));
