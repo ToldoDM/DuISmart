@@ -30,12 +30,44 @@ protected:
      */
     virtual void mousePressEvent(QMouseEvent *mEvent) override;
 
+    /**
+     * @brief enterEvent: Metodo chiamato quando il mouse entra dentro il widget
+     * @param event: Evento generato
+     */
+    virtual void enterEvent(QEvent *event) override;
+
+    /**
+     * @brief leaveEvent: Metodo chiamato quando il mouse entra dentro il widget
+     * @param event: Evento generato
+     */
+    virtual void leaveEvent(QEvent *event) override;
+
 private:
 
     /**
      * @brief state: Stato del device
      */
     DeviceState state;
+
+    /**
+     * @brief onIco: Icona pulsante on
+     */
+    QIcon onIco;
+
+    /**
+     * @brief offIco: Icona pulsante off
+     */
+    QIcon offIco;
+
+    /**
+     * @brief onOver: Icona pulsante on mouse over
+     */
+    QIcon onOver;
+
+    /**
+     * @brief offOver: Icona pulsante off mouse over
+     */
+    QIcon offOver;
 };
 
 #endif // ONOFFBUTTON_H

@@ -13,7 +13,7 @@ DeviceListItem::DeviceListItem(QWidget *parent) : QWidget(parent) {
     friendlyName = new QLabel(("Luce cucina"));
 
     //Impostazione icona default
-    ico->setPixmap(QPixmap(":Images/image.jpg").scaled(120,80));
+    ico->setPixmap(QPixmap(":/Images/noImage.png").scaled(120,80));
     ico->show();
 
     vlay->addWidget(deviceName);
