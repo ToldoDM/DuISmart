@@ -2,6 +2,6 @@
 
 Bulb::Bulb(){}
 
-BulbListItem* Bulb::getListType() const {
-    BulbListItem* device = new BulbListItem();
+DeviceListItem* Bulb::getListType() const {
+    return new BulbListItem();
 }

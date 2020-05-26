@@ -32,8 +32,10 @@ SOURCES += \
         Models/basemodel.cpp \
         Models/mainviewmodel.cpp \
         Views/CustomItems/bulblistitem.cpp \
+    Views/CustomItems/custombutton.cpp \
         Views/CustomItems/devicelistitem.cpp \
         Views/CustomItems/onoffbutton.cpp \
+    Views/CustomItems/settingsbutton.cpp \
         Views/mainwindow.cpp \
         controller.cpp \
         main.cpp \
@@ -49,8 +51,10 @@ HEADERS += \
         Models/basemodel.h \
         Models/mainviewmodel.h \
         Views/CustomItems/bulblistitem.h \
+    Views/CustomItems/custombutton.h \
         Views/CustomItems/devicelistitem.h \
         Views/CustomItems/onoffbutton.h \
+    Views/CustomItems/settingsbutton.h \
         Views/mainwindow.h \
         controller.h \
     Views/additem.h

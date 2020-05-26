@@ -1,15 +1,15 @@
 #include "onoffbutton.h"
 
-OnOffButton::OnOffButton(DeviceState actualState, QWidget *parent) : QToolButton(parent), state(actualState) {
+OnOffButton::OnOffButton(DeviceState actualState, QWidget *parent) : CustomButton(parent), state(actualState) {
     onIco = QIcon(QPixmap(":Images/on.png"));
     offIco = QIcon(QPixmap(":Images/off.png"));
     onOver = QIcon(QPixmap(":Images/on_clicked.png"));
     offOver = QIcon(QPixmap(":Images/off_clicked.png"));
     setIcon(state == DeviceState::Off ? offIco : onIco);
     setIconSize(QSize(100,100));
-    setToolButtonStyle(Qt::ToolButtonIconOnly);
-    setStyleSheet("border: none");
 }
+
+OnOffButton::~OnOffButton() = default;
 
 void OnOffButton::mousePressEvent(QMouseEvent *mEvent){
     if(mEvent->buttons() == Qt::LeftButton){
@@ -21,12 +21,12 @@ void OnOffButton::mousePressEvent(QMouseEvent *mEvent){
 }
 
 void OnOffButton::enterEvent(QEvent *event){
-    QToolButton::enterEvent(event);
+    CustomButton::enterEvent(event);
     setIcon(state == DeviceState::Off ? offOver : onOver);
 }
 
 void OnOffButton::leaveEvent(QEvent *event){
-    QToolButton::leaveEvent(event);
+    CustomButton::leaveEvent(event);
     setIcon(state == DeviceState::Off ? offIco : onIco);
 }
 

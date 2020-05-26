@@ -2,10 +2,7 @@
 #include "additem.h"
 
 
-MainWindow::MainWindow(MainViewModel* m,QWidget *parent) : model(m), QWidget(parent)
-{
-    this->model = model;
-
+MainWindow::MainWindow(MainViewModel* m,QWidget *parent) : QWidget(parent), model(m){
     setWindowTitle ("DuISmartMainWindow");
     setFixedSize(640,480);
 

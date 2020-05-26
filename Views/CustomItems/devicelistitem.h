@@ -14,13 +14,26 @@ public:
      */
     DeviceListItem(QWidget *parent = nullptr);
 
+    /**
+     * @brief ~DeviceListItem: Distruttore
+     */
+    virtual ~DeviceListItem() override;
+
 protected:
     /**
      * @brief deviceName: Nome device (Lampada, TV, Termostato etc.)
+     */
+    QLabel *deviceName;
+
+    /**
      * @brief friendlyName: Nome assegnato dall'utente
+     */
+    QLabel *friendlyName;
+
+    /**
      * @brief ico: Label utilizzata per l'icona
      */
-    QLabel *deviceName, *friendlyName, *ico;
+    QLabel *ico;
 
     /**
      * @brief center: Widget utilizzato per arragiare le due label centrali

@@ -1,6 +1,11 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
-    <file>Images/noImage.png</file>
+    <file>Images/image.png</file>
+    <file>Images/settings.png</file>
+    <file>Images/settings_over.png</file>
+    <file>Images/tv.png</file>
+    <file>Images/bulb.png</file>
+    <file>Images/thermostat.png</file>
     <file>Images/on.png</file>
     <file>Images/on_clicked.png</file>
     <file>Images/off.png</file>

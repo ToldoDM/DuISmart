@@ -18,7 +18,7 @@ public:
      * @brief getListType: Metodo utilizzato per creare l'oggetto che verra' visualizzato nella lista dei device.
      * @return Oggetto visivo della lista
      */
-    virtual BulbListItem* getListType() const;
+    virtual DeviceListItem * getListType() const override;
 };
 
 #endif // BULB_H

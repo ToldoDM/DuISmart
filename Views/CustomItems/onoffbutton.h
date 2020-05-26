@@ -3,10 +3,11 @@
 
 #include <QToolButton>
 #include "Entities/CustomEnum.h"
+#include "Views/CustomItems/custombutton.h"
 #include <QLabel>
 #include <QMouseEvent>
 
-class OnOffButton : public QToolButton
+class OnOffButton : public CustomButton
 {
     Q_OBJECT
 public:
@@ -15,6 +16,11 @@ public:
      * @param parent: Widget padre
      */
     OnOffButton(DeviceState actualState = DeviceState::Off, QWidget *parent = nullptr);
+
+    /**
+     * @brief ~OnOffButton: Distruttore
+     */
+    virtual ~OnOffButton() override;
 
 signals:
     /**

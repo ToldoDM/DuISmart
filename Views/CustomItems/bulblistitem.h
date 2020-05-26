@@ -14,6 +14,11 @@ public:
      */
     BulbListItem(QWidget *parent = nullptr);
 
+    /**
+     * @brief ~BulbListItem: Distruttore
+     */
+    virtual ~BulbListItem() override;
+
 private:
     /**
      * @brief interr: Bottone con funzione di interruttore per la lampadina
