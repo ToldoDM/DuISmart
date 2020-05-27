@@ -26,6 +26,7 @@ MainWindow::MainWindow(MainViewModel* m,QWidget *parent) : model(m), QWidget(par
 
     //Imposto lo stile
     setWindowStyle();
+    secondaFinestra=new QDialog();
 }
 
 void MainWindow::addToAllList() const{
@@ -45,9 +46,15 @@ void MainWindow::addToAllList() const{
 
 void MainWindow::addClieckedHandler()
 {
-    AddItem *AddI=new AddItem();
-    AddI->show();
+    //secondaFinestra ha l'unica funzione di permettere ad exec di bloccare la prima finestra
+    AddItem *AddI=new AddItem(secondaFinestra);
+    AddI->exec();
     addToAllList();
+/*
+        PROBLEMA RISCONTRATO: con exec, se dalla finestra figlia si chiude tramite il bottone cancel impedisce
+                              la creazione dell'oggetto che viene creato in automatico al click di "Aggiungi" della finestra principale,
+                              mentre se la si chiude dalla tab in alto a dx la crea normalmente -->??
+*/
 }
 
 void MainWindow::setWindowStyle(){

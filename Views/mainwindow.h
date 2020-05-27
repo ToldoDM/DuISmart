@@ -56,6 +56,7 @@ private:
 
     QTabWidget *tab;
 
+    QDialog *secondaFinestra;
 
 
 };

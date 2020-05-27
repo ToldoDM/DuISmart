@@ -14,11 +14,15 @@
 #include <QBoxLayout>
 #include <QComboBox>
 
-class AddItem : public QWidget
+//prova
+#include <QMenu>
+#include <QToolButton>
+
+class AddItem : public QDialog
 {
     Q_OBJECT
 public:
-    explicit AddItem(QWidget *parent=nullptr);
+    explicit AddItem(QDialog *parent=nullptr);
 
 signals:
 
@@ -33,12 +37,20 @@ public slots:
      */
     void cancel();
 
+    /**
+     * @brief insert: utilizzato per inserire la nuova stanza
+     */
+    void insert();
 
 private:
     //campi per l'uente
     QLineEdit *name;
+    QLineEdit *add;
     QTextEdit *description;
-    QComboBox *combo;
+    QComboBox *room;
+    QComboBox *device;
+    QToolButton *TButton;
+    QLineEdit *aggiungiStanza;
 };
 
 #endif // ADDITEM_H

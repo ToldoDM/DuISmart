@@ -3,14 +3,14 @@
 
 #include <QAbstractButton>
 
-AddItem::AddItem(QWidget *parent) : QWidget(parent)
+AddItem::AddItem(QDialog *parent) : QDialog(parent)
 {
 
 //Qui verra' gestita la nuova finestra per l'inserimento del nuovo device
 
 //dichiarazione dei layout
-    QBoxLayout * layout=new QBoxLayout(QBoxLayout::TopToBottom,this);
-    QVBoxLayout *Vlayout=new QVBoxLayout();
+    //QBoxLayout * layout=new QBoxLayout(QBoxLayout::TopToBottom,this);
+    QVBoxLayout *Vlayout=new QVBoxLayout(this);
     QFormLayout *formLayout=new QFormLayout();
 
 //dichiarazione campi
@@ -18,17 +18,23 @@ AddItem::AddItem(QWidget *parent) : QWidget(parent)
     description =new QTextEdit("Device description");
 
 
-    //Dichiarazione qcombobox e popolamento
-    combo=new QComboBox();
-    combo->addItem("inserire stanza");
-    combo->addItem("Cucina");
-    combo->addItem("Salotto");
-    combo->addItem("Bagno");
-    combo->addItem("Camrea da letto");
+    //Dichiarazione qcombobox stanza e popolamento
+    room=new QComboBox(this);
+    room->addItem("inserire stanza");
+    room->addItem("Cucina");
+    room->addItem("Salotto");
+    room->addItem("Bagno");
+    room->addItem("Camrea da letto");
+    room->addItem("+");
     //il primo indice è quello "inserire la stanza"
     //ATTENZIONE A QUESTA PARTE SE SI FA CUSTOM
-    combo->setCurrentIndex(0);
+    room->setCurrentIndex(0);
 
+    //Dichiarazione qcombobox dispositivo e popolamento
+    device=new QComboBox(this);
+    device->addItem("inserire dispositivo");
+    device->addItem("Lampadina");
+    device->setCurrentIndex(0);
 
     //ridimensionamenti random
     formLayout->setRowWrapPolicy(QFormLayout::DontWrapRows);
@@ -37,12 +43,28 @@ AddItem::AddItem(QWidget *parent) : QWidget(parent)
     formLayout->setLabelAlignment(Qt::AlignLeft);
 
 //aggiunta layout verticale al layout della finestra
-    layout->addLayout(Vlayout);
+    //layout->addLayout(Vlayout);
 
 //inserimento campi in formlayout
     formLayout->addRow("Smart Device Name",name);
     formLayout->addRow("Description",description);
-    formLayout->addRow("Room",combo);
+    formLayout->addRow("Room",room);
+    formLayout->addRow("Device",device);
+
+
+/***********************************************************************************/
+       //DA RIFARE TUTTO IL LAYOUT (METTERE GRIGLIA O ALTRO)
+    //aggiunta feature inserimento nuova stanza
+       QPushButton *addRoom=new QPushButton("Add Room");
+       QHBoxLayout *racchiudiStanza=new QHBoxLayout();
+
+       aggiungiStanza=new QLineEdit("Inserire nuova stanza",this);
+       racchiudiStanza->addWidget(aggiungiStanza);
+       racchiudiStanza->addWidget(addRoom);
+
+
+/***********************************************************************************/
+
 
 //inserimento bottoni conferma e cancella + connessione
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
@@ -50,9 +72,17 @@ AddItem::AddItem(QWidget *parent) : QWidget(parent)
     connect(buttonBox,SIGNAL(accepted()),this,SLOT(accept()));
     connect(buttonBox,SIGNAL(rejected()),this,SLOT(cancel()));
 
+    //connessione bottone addRoom con insert (slot per aggiungere stanza)
+    connect(addRoom,SIGNAL(clicked()),this,SLOT(insert()));
+
 //inserimento corretto layout
     Vlayout->addLayout(formLayout);
+    //da modificare
+    Vlayout->addLayout(racchiudiStanza);
     Vlayout->addWidget(buttonBox);
+
+
+
 
 }
 
@@ -60,15 +90,16 @@ AddItem::AddItem(QWidget *parent) : QWidget(parent)
 void AddItem::accept(){
 
 //se i campi non sono midificati -> "errore"
-    if(combo->currentText()=="inserire stanza" || name->displayText()=="Device name" || description->toPlainText()=="Device description")
+    if(room->currentText()=="inserire stanza" || name->displayText()=="Device name" || description->toPlainText()=="Device description" || room->currentText()=="inserire dispositivo")
         {
             QDialog *Problem= new QDialog(this);
             QVBoxLayout *LProblem= new QVBoxLayout(Problem);
             LProblem->addWidget(new QLabel("E' necessario modificare i campi di default",Problem));
             Problem->show();
-
         }
-//se invece i campi sono modificati -> prosegui
+
+//se invece i campi sono modificati -> prosegui7
+    //da modificare e mettere creazione oggetto da aggiungere alla lista
     else
     {
         QDialog *dialog= new QDialog(this);
@@ -77,17 +108,24 @@ void AddItem::accept(){
         t->addWidget(new QLabel(name->displayText(),dialog));
         t->addWidget(new QLabel(description->toPlainText(),dialog)); /* <- toPlainText() ottiene e imposta i contenuti
                                                                 dell'editor di testo come testo normale */
-        t->addWidget(new QLabel(combo->currentText(),dialog));
+        t->addWidget(new QLabel(room->currentText(),dialog));
+        t->addWidget(new QLabel(device->currentText(),dialog));
 
         dialog->show();
 
-        emit cancel();
+
+// invokeMethod permette di chiamare lo slot cancel() senza connessione diretta
+        QMetaObject::invokeMethod(this,"cancel",Qt::QueuedConnection);
+        //emit cancel();
     }
 }
 
-// slot cancel: distruzione layout
+
+// slot cancel: distruzione widget
 void AddItem::cancel(){
     this->destroy();
 }
 
-
+void AddItem::insert(){
+    room->addItem(AddItem::aggiungiStanza->displayText());
+}
