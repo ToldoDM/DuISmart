@@ -12,7 +12,7 @@ public:
     /**
      * @brief Bulb: Costruttore di default
      */
-    Bulb();
+    explicit Bulb();
 
     /**
      * @brief getListType: Metodo utilizzato per creare l'oggetto che verra' visualizzato nella lista dei device.

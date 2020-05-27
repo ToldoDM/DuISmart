@@ -15,7 +15,7 @@ public:
      * @brief OnOffButton: Costruttore di default
      * @param parent: Widget padre
      */
-    OnOffButton(DeviceState actualState = DeviceState::Off, QWidget *parent = nullptr);
+    explicit OnOffButton(DeviceState actualState = DeviceState::Off, QWidget *parent = nullptr);
 
     /**
      * @brief ~OnOffButton: Distruttore

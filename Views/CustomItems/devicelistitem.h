@@ -14,7 +14,7 @@ public:
      * @param devId: Identificativo dello smart device
      * @param parent: Widget genitore
      */
-    DeviceListItem(int devId, QWidget *parent = nullptr);
+    explicit DeviceListItem(int devId, QWidget *parent = nullptr);
 
     /**
      * @brief ~DeviceListItem: Distruttore

@@ -10,7 +10,7 @@ public:
      * @brief SettingsButton: Costruttore di default
      * @param parent: Widget genitore
      */
-    SettingsButton(QWidget *parent = nullptr);
+    explicit SettingsButton(QWidget *parent = nullptr);
 
     /**
      * @brief ~SettingsButton: Distruttore

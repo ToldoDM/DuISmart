@@ -14,7 +14,7 @@ public:
      * @brief CustomButton: Costruttore di default
      * @param parent: Widget genitore
      */
-    CustomButton(QWidget *parent = nullptr);
+    explicit CustomButton(QWidget *parent = nullptr);
 
     /**
      * @brief ~CustomButton: Distruttore
