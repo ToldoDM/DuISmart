@@ -1,6 +1,6 @@
 #include "bulblistitem.h"
 
-BulbListItem::BulbListItem(QWidget *parent) : DeviceListItem(parent){
+BulbListItem::BulbListItem(int devId, QWidget *parent) : DeviceListItem(devId, parent){
 
     //Impostazione icona bulb
     ico->setPixmap(QPixmap(":Images/bulb.png").scaled(80,80));

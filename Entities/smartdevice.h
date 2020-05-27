@@ -1,9 +1,7 @@
 #ifndef SMARTDEVICE_H
 #define SMARTDEVICE_H
 
-
-class SmartDevice
-{
+class SmartDevice{
 
 public:
     /**
@@ -15,6 +13,12 @@ public:
      * @brief ~SmartDevice: Distruttore virtuale puro
      */
     virtual ~SmartDevice() = 0;
+
+private:
+    /**
+     * @brief deviceId: Identificativo del device
+     */
+    int deviceId;
 };
 
 #endif // SMARTDEVICE_H

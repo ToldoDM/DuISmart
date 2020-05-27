@@ -2,11 +2,13 @@
 #define MAINVIEWMODEL_H
 
 #include "basemodel.h"
-class MainViewModel : public BaseModel
-{
+class MainViewModel : public BaseModel{
 
 public:
-    MainViewModel(QObject *parent = nullptr);
+    /**
+     * @brief MainViewModel: Costruttore di default
+     */
+    MainViewModel();
 };
 
 #endif // MAINVIEWMODEL_H

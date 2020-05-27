@@ -10,9 +10,10 @@ public:
 
     /**
      * @brief BulbListItem: Costruttore di default
+     * @param devId: Identificativo dello smart device
      * @param parent: Widget genitore
      */
-    BulbListItem(QWidget *parent = nullptr);
+    BulbListItem(int devId, QWidget *parent = nullptr);
 
     /**
      * @brief ~BulbListItem: Distruttore
@@ -24,6 +25,7 @@ private:
      * @brief interr: Bottone con funzione di interruttore per la lampadina
      */
     OnOffButton *interr;
+
 };
 
 #endif // BULBLISTITEM_H

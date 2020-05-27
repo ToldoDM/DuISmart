@@ -1,9 +1,10 @@
 #include "settingsbutton.h"
 
 SettingsButton::SettingsButton(QWidget *parent) : CustomButton(parent){
-    ico = QIcon(":Images/setting.png");
-    icoOver = QIcon(":Images/setting_over.png");
-    setIconSize(QSize(30,30));
+    ico = QIcon(":/Images/settings.png");
+    icoOver = QIcon(":Images/settings_over.png");
+    setIcon(ico);
+    setIconSize(QSize(20,20));
 }
 
 SettingsButton::~SettingsButton() = default;

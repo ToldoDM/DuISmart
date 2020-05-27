@@ -21,9 +21,10 @@ public:
     /**
      * @brief getListType: Metodo utilizzato per creare l'oggetto che verra' visualizzato nella lista dei device.
      * ATTENZIONE!!! THROWABLE!!!
+     * @param devId: Id device di riferimento
      * @return Oggetto visivo della lista
      */
-    virtual DeviceListItem* getListType() const = 0;
+    virtual DeviceListItem* getListType(int devId) const = 0;
 
 };
 
