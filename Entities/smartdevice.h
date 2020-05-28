@@ -14,11 +14,12 @@ public:
      */
     virtual ~SmartDevice() = 0;
 
-private:
     /**
      * @brief deviceId: Identificativo del device
      */
     int deviceId;
+
+private:
 };
 
 #endif // SMARTDEVICE_H

@@ -2,8 +2,9 @@
 #define MAINVIEWMODEL_H
 
 #include "basemodel.h"
-#include "Entities/listdevice.h"
-#include <list>
+#include "Entities/smartdevice.h"
+#include <vector>
+
 
 class MainViewModel : public BaseModel{
 
@@ -18,20 +19,20 @@ public:
      * @param deviceId: id device di cui si vuole l'oggetto
      * @return
      */
-    ListDevice getDevice(int deviceId) const;
+    const SmartDevice* getDevice(int deviceId) const;
 
     /**
      * @brief addDevice: Metodo per aggiungere un nuovo device alla lista
      * @param newDevice: Nuovo device da aggiungere
      */
-    void addDevice(ListDevice newDevice) const;
+    void addDevice(SmartDevice* newDevice);
 
 
 private:
     /**
      * @brief deviceList: Lista device
      */
-    std::list<ListDevice> deviceList;
+    std::vector<const SmartDevice*> deviceList;
 };
 
 #endif // MAINVIEWMODEL_H
