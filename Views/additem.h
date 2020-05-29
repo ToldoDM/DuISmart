@@ -18,11 +18,16 @@
 #include <QMenu>
 #include <QToolButton>
 
+//aggiunta model Additem
+#include "Models/additemmodel.h"
+
+
+
 class AddItem : public QDialog
 {
     Q_OBJECT
 public:
-    explicit AddItem(QDialog *parent=nullptr);
+    explicit AddItem(QDialog *parent);
 
 signals:
 
@@ -37,12 +42,11 @@ public slots:
      */
     void cancel();
 
-    /**
-     * @brief insert: utilizzato per inserire la nuova stanza
-     */
-    void insert();
+
 
 private:
+    //model per gestione fati finestra
+    //additemmodel *model;
     //campi per l'uente
     QLineEdit *name;
     QLineEdit *add;

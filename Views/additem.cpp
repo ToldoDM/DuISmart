@@ -1,15 +1,16 @@
 #include "additem.h"
 #include <QDialogButtonBox>
 
-#include <QAbstractButton>
+
 
 AddItem::AddItem(QDialog *parent) : QDialog(parent)
 {
+//creazione oggetto model
+    additemmodel *model=new additemmodel();
 
 //Qui verra' gestita la nuova finestra per l'inserimento del nuovo device
 
 //dichiarazione dei layout
-    //QBoxLayout * layout=new QBoxLayout(QBoxLayout::TopToBottom,this);
     QVBoxLayout *Vlayout=new QVBoxLayout(this);
     QFormLayout *formLayout=new QFormLayout();
 
@@ -18,23 +19,28 @@ AddItem::AddItem(QDialog *parent) : QDialog(parent)
     description =new QTextEdit("Device description");
 
 
-    //Dichiarazione qcombobox stanza e popolamento
+//Dichiarazione qcombobox stanza e popolamento
     room=new QComboBox(this);
-    room->addItem("inserire stanza");
-    room->addItem("Cucina");
-    room->addItem("Salotto");
-    room->addItem("Bagno");
-    room->addItem("Camrea da letto");
-    room->addItem("+");
+    int i=0;
+    for(i=0;model->camere->count()>i;i++)
+    {
+        room->addItem(model->camere->operator[](i));
+    }
     //il primo indice è quello "inserire la stanza"
     //ATTENZIONE A QUESTA PARTE SE SI FA CUSTOM
     room->setCurrentIndex(0);
 
-    //Dichiarazione qcombobox dispositivo e popolamento
+//Dichiarazione qcombobox dispositivo e popolamento
     device=new QComboBox(this);
     device->addItem("inserire dispositivo");
-    device->addItem("Lampadina");
-    device->setCurrentIndex(0);
+
+    i=0;
+    for(i;model->lampadina->size()>i;i)
+    {
+        device->addItem((QString("Dispositivo %1").arg(i)));
+        i++;
+    }
+    //device->setCurrentIndex(0);
 
     //ridimensionamenti random
     formLayout->setRowWrapPolicy(QFormLayout::DontWrapRows);
@@ -73,7 +79,8 @@ AddItem::AddItem(QDialog *parent) : QDialog(parent)
     connect(buttonBox,SIGNAL(rejected()),this,SLOT(cancel()));
 
     //connessione bottone addRoom con insert (slot per aggiungere stanza)
-    connect(addRoom,SIGNAL(clicked()),this,SLOT(insert()));
+    //ATTENZIONE RICHIESTA INVIATA DIRETTAMENTE AL MODEL
+    //connect(addRoom,SIGNAL(clicked()),model,SLOT(insert(aggiungiStanza->displayText())));
 
 //inserimento corretto layout
     Vlayout->addLayout(formLayout);
@@ -126,6 +133,3 @@ void AddItem::cancel(){
     this->destroy();
 }
 
-void AddItem::insert(){
-    room->addItem(AddItem::aggiungiStanza->displayText());
-}
