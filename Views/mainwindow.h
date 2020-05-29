@@ -26,9 +26,9 @@ public:
     void setWindowStyle();
 
     /**
-     * @brief addToAllList: Aggiunge l'oggetto alla lista di tutti i dispositivi
+     * @brief addToAllTab: Aggiunge l'oggetto nel tab di tutti i dispositivi
      */
-    void addToAllList() const;
+    void addToAllTab(DeviceListItem* dli) const;
 
 signals:
 

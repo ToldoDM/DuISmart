@@ -24,6 +24,11 @@ private:
      */
     MainWindow* MainW;
 
+    /**
+     * @brief addSmartDeviceToList: aggiunge lo smartDevice alla lista della main window
+     */
+    void addSmartDeviceToList(SmartDevice* device) const;
+
 public:
     /**
      * @brief Controller	costruttore del controller

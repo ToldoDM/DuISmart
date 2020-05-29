@@ -7,4 +7,9 @@ Controller::Controller(QObject* parent) : QObject(parent){
 
 void Controller::ShowMainWindow() const { MainW->show(); }
 
+void Controller::addSmartDeviceToList(SmartDevice *device) const{
+    DeviceListItem* dli = MainVM->addDevice(device);
+    MainW->addToAllTab(dli);
+}
+
 //in questa classe gestisco tutte le viste e i model

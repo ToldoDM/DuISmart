@@ -3,6 +3,7 @@
 
 #include "basemodel.h"
 #include "Entities/smartdevice.h"
+#include "Entities/listdevice.h"
 #include <vector>
 
 
@@ -25,7 +26,7 @@ public:
      * @brief addDevice: Metodo per aggiungere un nuovo device alla lista
      * @param newDevice: Nuovo device da aggiungere
      */
-    void addDevice(SmartDevice* newDevice);
+    DeviceListItem* addDevice(SmartDevice* newDevice);
 
 
 private:

@@ -3,8 +3,10 @@
 MainViewModel::MainViewModel() : BaseModel() {
 }
 
-void MainViewModel::addDevice(SmartDevice* newDevice){
+DeviceListItem* MainViewModel::addDevice(SmartDevice* newDevice){
     deviceList.insert(deviceList.end(), newDevice);
+    ListDevice* ld = dynamic_cast<ListDevice*>(newDevice);
+    return ld ? ld->getListType(newDevice->deviceId) : nullptr;
 }
 
 const SmartDevice* MainViewModel::getDevice(int deviceId) const{
