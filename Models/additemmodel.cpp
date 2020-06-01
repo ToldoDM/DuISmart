@@ -30,5 +30,5 @@ QString additemmodel::ExtractData(int a){
 }
 
 int additemmodel::NumEl(){
-    return camera->camere->count();
+    return camere->count();
 }
