@@ -13,20 +13,22 @@ class additemmodel: public QObject
 public:
     explicit additemmodel(QObject *parent=nullptr);
 
-    QList<QString> *camere;
-    QList<Bulb> *lampadina;
-
+    QList<Bulb> *lampadina;//test
 
     /**
      * @brief ExtractData: estrazione dati di un particolare indice
      * @return : Qstring dato presente nell'indice passato come parametro
      */
-    QString ExtractData(int);
+    QString ExtractData(int) const;
+
     /**
      * @brief NumEl: numero elementi in
      * @return
      */
-    int NumEl();
+    int NumEl() const;
+
+private:
+    QList<QString> *camere;
 
 public slots:
     /**

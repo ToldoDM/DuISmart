@@ -25,10 +25,10 @@ void additemmodel::insert(const QString s){
 }
 
 //da fare funzione che ritorna stringa per view
-QString additemmodel::ExtractData(int a){
+QString additemmodel::ExtractData(int a) const{
     return camere->operator [](a);
 }
 
-int additemmodel::NumEl(){
+int additemmodel::NumEl() const{
     return camere->count();
 }

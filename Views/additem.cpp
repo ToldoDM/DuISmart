@@ -29,9 +29,9 @@ AddItem::AddItem(QDialog *parent) : QDialog(parent)
 //Dichiarazione qcombobox stanza e popolamento
     room=new QComboBox(this);
 
-    for(int i=0;model->camere->count()>i;i++)
+    for(int i=0;model->NumEl()>i;i++)
     {
-        room->addItem(model->camere->operator [](i));
+        room->addItem(model->ExtractData(i));
     }
     //il primo indice è quello "inserire la stanza"
     //ATTENZIONE A QUESTA PARTE SE SI FA CUSTOM
@@ -133,5 +133,5 @@ void AddItem::cancel(){
 void AddItem::sendData(){
     //if(aggiungiStanza->displayText() != "Inserire nuova stanza") <- manca inserire controllo
     emit model->insert(aggiungiStanza->displayText());
-    room->addItem(model->camere->operator [](model->camere->count()-1));
+    room->addItem(model->ExtractData(model->NumEl()-1));
 }
