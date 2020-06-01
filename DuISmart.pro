@@ -28,6 +28,7 @@ SOURCES += \
         Entities/display.cpp \
         Entities/listdevice.cpp \
         Entities/smartdevice.cpp \
+    Exceptions/argumentexception.cpp \
         Exceptions/notimplexception.cpp \
         Models/basemodel.cpp \
         Models/mainviewmodel.cpp \
@@ -47,7 +48,7 @@ HEADERS += \
         Entities/display.h \
         Entities/listdevice.h \
         Entities/smartdevice.h \
-        Exceptions/notimplexception.h \
+    Exceptions/argumentexception.h \
         Models/basemodel.h \
         Models/mainviewmodel.h \
         Views/CustomItems/bulblistitem.h \
