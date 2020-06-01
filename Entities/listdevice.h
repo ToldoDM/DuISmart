@@ -2,7 +2,7 @@
 #define LISTDEVICE_H
 
 #include "Views/CustomItems/devicelistitem.h"
-#include "Exceptions/notimplexception.h"
+#include "Exceptions/argumentexception.h"
 
 class ListDevice
 {

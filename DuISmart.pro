@@ -29,7 +29,6 @@ SOURCES += \
         Entities/listdevice.cpp \
         Entities/smartdevice.cpp \
     Exceptions/argumentexception.cpp \
-        Exceptions/notimplexception.cpp \
         Models/basemodel.cpp \
         Models/mainviewmodel.cpp \
         Views/CustomItems/bulblistitem.cpp \
