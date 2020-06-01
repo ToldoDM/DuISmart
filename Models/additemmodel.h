@@ -7,10 +7,11 @@
 
 #include "Entities/bulb.h"
 
-class additemmodel
+class additemmodel: public QObject
 {
+    Q_OBJECT
 public:
-    additemmodel();
+    explicit additemmodel(QObject *parent=nullptr);
 
     QList<QString> *camere;
     QList<Bulb> *lampadina;
@@ -19,7 +20,8 @@ public slots:
     /**
      * @brief insert: utilizzato per inserire la nuova stanza
      */
-    void insert(QString*);
+    void insert(const QString s);
+
 };
 
 #endif // ADDITEMMODEL_H

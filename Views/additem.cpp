@@ -6,13 +6,20 @@
 AddItem::AddItem(QDialog *parent) : QDialog(parent)
 {
 //creazione oggetto model
-    additemmodel *model=new additemmodel();
+    model=new additemmodel();
 
 //Qui verra' gestita la nuova finestra per l'inserimento del nuovo device
 
 //dichiarazione dei layout
     QVBoxLayout *Vlayout=new QVBoxLayout(this);
     QFormLayout *formLayout=new QFormLayout();
+
+    //ridimensionamenti random
+    formLayout->setRowWrapPolicy(QFormLayout::DontWrapRows);
+    formLayout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+    formLayout->setFormAlignment(Qt::AlignHCenter | Qt::AlignTop);
+    formLayout->setLabelAlignment(Qt::AlignLeft);
+
 
 //dichiarazione campi
     name=new QLineEdit("Device name");
@@ -21,32 +28,28 @@ AddItem::AddItem(QDialog *parent) : QDialog(parent)
 
 //Dichiarazione qcombobox stanza e popolamento
     room=new QComboBox(this);
-    int i=0;
-    for(i=0;model->camere->count()>i;i++)
+
+    for(int i=0;model->camere->count()>i;i++)
     {
-        room->addItem(model->camere->operator[](i));
+        room->addItem(model->camere->operator [](i));
     }
     //il primo indice è quello "inserire la stanza"
     //ATTENZIONE A QUESTA PARTE SE SI FA CUSTOM
     room->setCurrentIndex(0);
 
+
 //Dichiarazione qcombobox dispositivo e popolamento
     device=new QComboBox(this);
     device->addItem("inserire dispositivo");
 
-    i=0;
-    for(i;model->lampadina->size()>i;i)
+    for(int i=0;model->lampadina->size()>i;i++)
     {
+        //dà warning ma è una prova
         device->addItem((QString("Dispositivo %1").arg(i)));
-        i++;
     }
-    //device->setCurrentIndex(0);
+    device->setCurrentIndex(0);
 
-    //ridimensionamenti random
-    formLayout->setRowWrapPolicy(QFormLayout::DontWrapRows);
-    formLayout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
-    formLayout->setFormAlignment(Qt::AlignHCenter | Qt::AlignTop);
-    formLayout->setLabelAlignment(Qt::AlignLeft);
+
 
 //aggiunta layout verticale al layout della finestra
     //layout->addLayout(Vlayout);
@@ -72,24 +75,20 @@ AddItem::AddItem(QDialog *parent) : QDialog(parent)
 /***********************************************************************************/
 
 
-//inserimento bottoni conferma e cancella + connessione
+//inserimento bottoni conferma e cancella + connessioni
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 
     connect(buttonBox,SIGNAL(accepted()),this,SLOT(accept()));
     connect(buttonBox,SIGNAL(rejected()),this,SLOT(cancel()));
 
-    //connessione bottone addRoom con insert (slot per aggiungere stanza)
-    //ATTENZIONE RICHIESTA INVIATA DIRETTAMENTE AL MODEL
-    //connect(addRoom,SIGNAL(clicked()),model,SLOT(insert(aggiungiStanza->displayText())));
+//connessione bottone addRoom con insert (slot per aggiungere stanza)
+    connect(addRoom,SIGNAL(clicked(bool)),this,SLOT(sendData()));
 
 //inserimento corretto layout
     Vlayout->addLayout(formLayout);
     //da modificare
     Vlayout->addLayout(racchiudiStanza);
     Vlayout->addWidget(buttonBox);
-
-
-
 
 }
 
@@ -122,8 +121,8 @@ void AddItem::accept(){
 
 
 // invokeMethod permette di chiamare lo slot cancel() senza connessione diretta
-        QMetaObject::invokeMethod(this,"cancel",Qt::QueuedConnection);
-        //emit cancel();
+        //QMetaObject::invokeMethod(this,"cancel",Qt::QueuedConnection);
+        emit cancel();
     }
 }
 
@@ -133,3 +132,9 @@ void AddItem::cancel(){
     this->destroy();
 }
 
+//aggiunta stringa alle camere e aggiornamento lista room
+void AddItem::sendData(){
+    //if(aggiungiStanza->displayText() != "Inserire nuova stanza") <- manca inserire controllo
+    emit model->insert(aggiungiStanza->displayText());
+    room->addItem(model->camere->operator [](model->camere->count()-1));
+}

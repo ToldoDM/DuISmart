@@ -1,9 +1,10 @@
 #include "additemmodel.h"
 
+#include <QDialog>
+#include <QVBoxLayout>
 
 
-
-additemmodel::additemmodel()
+additemmodel::additemmodel(QObject *parent): QObject(parent)
 {
 /*PROVA BULB, da utilizzare per gli oggetti*/
     lampadina = new  QList<Bulb>;
@@ -21,7 +22,7 @@ additemmodel::additemmodel()
 
 }
 
-//void additemmodel::insert(QString *testo){
-//    //mettere controllo di stanza già presenti nella possibile lista
-//    camere->append(testo);
-//}
+void additemmodel::insert(const QString s){
+    //mettere controllo di stanza già presenti nella possibile lista
+    camere->append(s);
+}

@@ -31,7 +31,9 @@ public:
 
 signals:
 
-public slots:
+
+
+private slots:
     /**
      * @brief accept: Accettazione campi nuovo elemento
      */
@@ -42,11 +44,14 @@ public slots:
      */
     void cancel();
 
-
+    /**
+     * @brief sendData: segnale che permette invio di qstring per creazione di una nuova stanza
+     */
+    void sendData();
 
 private:
     //model per gestione fati finestra
-    //additemmodel *model;
+    additemmodel *model;
     //campi per l'uente
     QLineEdit *name;
     QLineEdit *add;
