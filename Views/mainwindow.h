@@ -56,6 +56,10 @@ private:
 
     QTabWidget *tab;
 
+    /**
+     * @brief secondaFinestra: Puntatore creato per passare la finestra parent alla finestra additem
+     */
+    QDialog *secondaFinestra;
 
 
 };

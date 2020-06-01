@@ -14,15 +14,26 @@
 #include <QBoxLayout>
 #include <QComboBox>
 
-class AddItem : public QWidget
+//prova
+#include <QMenu>
+#include <QToolButton>
+
+//aggiunta model Additem
+#include "Models/additemmodel.h"
+
+
+
+class AddItem : public QDialog
 {
     Q_OBJECT
 public:
-    explicit AddItem(QWidget *parent=nullptr);
+    explicit AddItem(QDialog *parent);
 
 signals:
 
-public slots:
+
+
+private slots:
     /**
      * @brief accept: Accettazione campi nuovo elemento
      */
@@ -33,12 +44,22 @@ public slots:
      */
     void cancel();
 
+    /**
+     * @brief sendData: segnale che permette invio di qstring per creazione di una nuova stanza
+     */
+    void sendData();
 
 private:
+    //model per gestione fati finestra
+    additemmodel *model;
     //campi per l'uente
     QLineEdit *name;
+    QLineEdit *add;
     QTextEdit *description;
-    QComboBox *combo;
+    QComboBox *room;
+    QComboBox *device;
+    QToolButton *TButton;
+    QLineEdit *aggiungiStanza;
 };
 
 #endif // ADDITEM_H

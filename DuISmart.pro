@@ -40,7 +40,8 @@ SOURCES += \
         Views/mainwindow.cpp \
         controller.cpp \
         main.cpp \
-    Views/additem.cpp
+    Views/additem.cpp \
+    Models/additemmodel.cpp
 
 HEADERS += \
         Entities/CustomEnum.h \
@@ -58,7 +59,8 @@ HEADERS += \
     Views/CustomItems/settingsbutton.h \
         Views/mainwindow.h \
         controller.h \
-    Views/additem.h
+    Views/additem.h \
+    Models/additemmodel.h
 
 FORMS +=
 
