@@ -4,13 +4,12 @@
 #include <QVBoxLayout>
 
 
-additemmodel::additemmodel(QObject *parent): QObject(parent)
+AddItemModel::AddItemModel()
 {
 /*PROVA BULB, da utilizzare per gli oggetti*/
-    lampadina = new  QList<Bulb>;
-    Bulb b,c;
-    lampadina->append(b);
-    lampadina->append(c);
+    devList = new  QList<SmartDevice*>;
+    devList->append(new Bulb(0));
+    devList->append(new Bulb(1));
 
 // lista camere da aggiungere
     camere=new QList<QString>;
@@ -22,7 +21,7 @@ additemmodel::additemmodel(QObject *parent): QObject(parent)
 
 }
 
-void additemmodel::insert(const QString s){
+void AddItemModel::insert(const QString s){
     //mettere controllo di stanza già presenti nella possibile lista
     camere->append(s);
 }

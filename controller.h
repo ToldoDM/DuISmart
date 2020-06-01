@@ -11,7 +11,7 @@ class Controller : public QObject {
 
 signals:
 
-public slots:
+private slots:
 
 private:
 

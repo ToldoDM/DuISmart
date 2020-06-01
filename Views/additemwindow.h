@@ -1,5 +1,5 @@
-#ifndef ADDITEM_H
-#define ADDITEM_H
+#ifndef ADDITEMWINDOW_H
+#define ADDITEMWINDOW_H
 
 //aggiunte per finestra
 #include <QFormLayout>
@@ -13,24 +13,30 @@
 #include <QLabel>
 #include <QBoxLayout>
 #include <QComboBox>
+#include <QDialogButtonBox>
 
 //prova
 #include <QMenu>
 #include <QToolButton>
+#include "Enums/devicetype.h"
 
 //aggiunta model Additem
 #include "Models/additemmodel.h"
 
 
 
-class AddItem : public QDialog
+class AddItemWindow : public QDialog
 {
     Q_OBJECT
 public:
-    explicit AddItem(QDialog *parent);
+    explicit AddItemWindow(QDialog *parent);
 
 signals:
-
+    /**
+     * @brief onNewDevice: Evento lanciato quando viene richiesto l'inserimento di un nuovo device
+     * @param device: Nuovo device da aggiungere
+     */
+    void onNewDevice(SmartDevice* device);
 
 
 private slots:
@@ -51,7 +57,7 @@ private slots:
 
 private:
     //model per gestione fati finestra
-    additemmodel *model;
+    AddItemModel *model;
     //campi per l'uente
     QLineEdit *name;
     QLineEdit *add;
@@ -62,4 +68,4 @@ private:
     QLineEdit *aggiungiStanza;
 };
 
-#endif // ADDITEM_H
+#endif // ADDITEMWINDOW_H

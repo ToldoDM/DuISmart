@@ -9,7 +9,7 @@ public:
     /**
      * @brief BaseModel Costruttore di default
      */
-    BaseModel();
+    explicit BaseModel();
 
     /**
      * @brief ~BaseModel: Distruttore

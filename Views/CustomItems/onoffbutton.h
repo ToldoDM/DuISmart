@@ -2,7 +2,7 @@
 #define ONOFFBUTTON_H
 
 #include <QToolButton>
-#include "Entities/CustomEnum.h"
+#include "Enums/devicestate.h"
 #include "Views/CustomItems/custombutton.h"
 #include <QLabel>
 #include <QMouseEvent>

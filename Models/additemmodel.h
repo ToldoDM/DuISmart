@@ -4,17 +4,17 @@
 
 #include <QList>
 #include <QString>
-
+#include "basemodel.h"
 #include "Entities/bulb.h"
 
-class additemmodel: public QObject
+class AddItemModel: public BaseModel
 {
     Q_OBJECT
 public:
-    explicit additemmodel(QObject *parent=nullptr);
+    explicit AddItemModel();
 
     QList<QString> *camere;
-    QList<Bulb> *lampadina;
+    QList<SmartDevice*> *devList;
 
 public slots:
     /**

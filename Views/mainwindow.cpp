@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "additem.h"
+#include "additemwindow.h"
 
 
 MainWindow::MainWindow(MainViewModel* m,QWidget *parent) : QWidget(parent), model(m){
@@ -38,12 +38,12 @@ void MainWindow::addToAllTab(DeviceListItem *dli) const{
 }
 
 
-void MainWindow::addClieckedHandler()
-{
+void MainWindow::addClieckedHandler() const{
+
     //ATTENZIONE!!! inserimento per testing
     addToAllTab(new BulbListItem(0));
     //secondaFinestra ha l'unica funzione di permettere ad exec di bloccare la prima finestra
-    AddItem *AddI=new AddItem(secondaFinestra);
+    AddItemWindow *AddI= new AddItemWindow(secondaFinestra);
     AddI->exec();
 /*
         PROBLEMA RISCONTRATO: con exec, se dalla finestra figlia si chiude tramite il bottone cancel impedisce

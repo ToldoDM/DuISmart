@@ -6,8 +6,9 @@ class SmartDevice{
 public:
     /**
      * @brief SmartDevice: Costruttore di default
+     * @param devID: Id device
      */
-    SmartDevice();
+    explicit SmartDevice(const int& devID);
 
     /**
      * @brief ~SmartDevice: Distruttore virtuale puro

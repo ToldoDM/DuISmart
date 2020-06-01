@@ -13,7 +13,7 @@ public:
     /**
      * @brief MainViewModel: Costruttore di default
      */
-    MainViewModel();
+    explicit MainViewModel();
 
     /**
      * @brief getDevice: Ritorna l'oggetto device richiesto

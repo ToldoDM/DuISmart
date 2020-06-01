@@ -9,7 +9,7 @@ public:
     /**
      * @brief Display: Costruttore di default
      */
-    Display();
+    explicit Display();
 
     /**
      * @brief ~Display: Distruttore virtuale puro

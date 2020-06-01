@@ -11,8 +11,9 @@ class Bulb : public SmartDevice, public ListDevice
 public:
     /**
      * @brief Bulb: Costruttore di default
+     * @param devID: Id device
      */
-    explicit Bulb();
+    explicit Bulb(const int& devID);
 
     /**
      * @brief getListType: Metodo utilizzato per creare l'oggetto che verra' visualizzato nella lista dei device.

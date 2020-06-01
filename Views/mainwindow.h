@@ -36,7 +36,7 @@ public slots:
     /**
      * @brief clieckedHandler: Slot utilizzato per catturare il segnale bottone premuto di addDevice
      */
-    void addClieckedHandler();
+    void addClieckedHandler() const;
 
 private:
     /**

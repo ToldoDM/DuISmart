@@ -1,12 +1,11 @@
-#include "additem.h"
-#include <QDialogButtonBox>
+#include "additemwindow.h"
 
 
 
-AddItem::AddItem(QDialog *parent) : QDialog(parent)
+AddItemWindow::AddItemWindow(QDialog *parent) : QDialog(parent)
 {
 //creazione oggetto model
-    model=new additemmodel();
+    model=new AddItemModel();
 
 //Qui verra' gestita la nuova finestra per l'inserimento del nuovo device
 
@@ -42,11 +41,8 @@ AddItem::AddItem(QDialog *parent) : QDialog(parent)
     device=new QComboBox(this);
     device->addItem("inserire dispositivo");
 
-    for(int i=0;model->lampadina->size()>i;i++)
-    {
-        //dà warning ma è una prova
-        device->addItem((QString("Dispositivo %1").arg(i)));
-    }
+    device->addItem(tr("Lampadina"), DeviceType::BULB);
+
     device->setCurrentIndex(0);
 
 
@@ -93,7 +89,7 @@ AddItem::AddItem(QDialog *parent) : QDialog(parent)
 }
 
 //slot accetta: return dati solo se modificati dall'utente
-void AddItem::accept(){
+void AddItemWindow::accept(){
 
 //se i campi non sono midificati -> "errore"
     if(room->currentText()=="inserire stanza" || name->displayText()=="Device name" || description->toPlainText()=="Device description" || room->currentText()=="inserire dispositivo")
@@ -108,6 +104,14 @@ void AddItem::accept(){
     //da modificare e mettere creazione oggetto da aggiungere alla lista
     else
     {
+        switch (device->currentData()) {
+        case DeviceType::BULB:
+            break;
+        default:
+            break;
+
+        }
+
         QDialog *dialog= new QDialog(this);
         QVBoxLayout *t= new QVBoxLayout(dialog);
 
@@ -128,12 +132,12 @@ void AddItem::accept(){
 
 
 // slot cancel: distruzione widget
-void AddItem::cancel(){
+void AddItemWindow::cancel(){
     this->destroy();
 }
 
 //aggiunta stringa alle camere e aggiornamento lista room
-void AddItem::sendData(){
+void AddItemWindow::sendData(){
     //if(aggiungiStanza->displayText() != "Inserire nuova stanza") <- manca inserire controllo
     emit model->insert(aggiungiStanza->displayText());
     room->addItem(model->camere->operator [](model->camere->count()-1));
