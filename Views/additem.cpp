@@ -119,9 +119,6 @@ void AddItem::accept(){
 
         dialog->show();
 
-
-// invokeMethod permette di chiamare lo slot cancel() senza connessione diretta
-        //QMetaObject::invokeMethod(this,"cancel",Qt::QueuedConnection);
         emit cancel();
     }
 }

@@ -16,6 +16,18 @@ public:
     QList<QString> *camere;
     QList<Bulb> *lampadina;
 
+
+    /**
+     * @brief ExtractData: estrazione dati di un particolare indice
+     * @return : Qstring dato presente nell'indice passato come parametro
+     */
+    QString ExtractData(int);
+    /**
+     * @brief NumEl: numero elementi in
+     * @return
+     */
+    int NumEl();
+
 public slots:
     /**
      * @brief insert: utilizzato per inserire la nuova stanza

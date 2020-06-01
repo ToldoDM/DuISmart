@@ -1,8 +1,5 @@
 #include "additemmodel.h"
 
-#include <QDialog>
-#include <QVBoxLayout>
-
 
 additemmodel::additemmodel(QObject *parent): QObject(parent)
 {
@@ -25,4 +22,13 @@ additemmodel::additemmodel(QObject *parent): QObject(parent)
 void additemmodel::insert(const QString s){
     //mettere controllo di stanza già presenti nella possibile lista
     camere->append(s);
+}
+
+//da fare funzione che ritorna stringa per view
+QString additemmodel::ExtractData(int a){
+    return camere->operator [](a);
+}
+
+int additemmodel::NumEl(){
+    return camera->camere->count();
 }
