@@ -5,7 +5,6 @@
 #include <QListWidget>
 #include <QTabWidget>
 #include <QFile>
-#include "Models/mainviewmodel.h"
 #include "CustomItems/bulblistitem.h"
 
 
@@ -18,7 +17,7 @@ public:
      * @param model: Model della vista
      * @param parent: Widget genitore
      */
-    explicit MainWindow(MainViewModel* model, QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
 
     /**
      * @brief setWindowStyle: Imposta lo stile dei vari componenti tramite il file style.css
@@ -30,19 +29,15 @@ public:
      */
     void addToAllTab(DeviceListItem* dli) const;
 
-signals:
+signals:    
+    /**
+     * @brief addNewDevice: Evento generato quando viene premuto il pulsante aggiungi
+     */
+    void addNewDevice();
 
 public slots:
-    /**
-     * @brief clieckedHandler: Slot utilizzato per catturare il segnale bottone premuto di addDevice
-     */
-    void addClieckedHandler() const;
 
 private:
-    /**
-     * @brief model: Utilizzato per prendere i valori da visualizzare
-     */
-    MainViewModel* model;
 
     /**
      * @brief defaultTab: Rappresenta il tab di default contenente la lista di tutti i device
@@ -55,12 +50,6 @@ private:
     QPushButton *addDevice;
 
     QTabWidget *tab;
-
-    /**
-     * @brief secondaFinestra: Puntatore creato per passare la finestra parent alla finestra additem
-     */
-    QDialog *secondaFinestra;
-
 
 };
 

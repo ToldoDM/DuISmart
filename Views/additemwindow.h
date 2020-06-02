@@ -20,26 +20,45 @@
 #include <QToolButton>
 #include "Enums/devicetype.h"
 
-//aggiunta model Additem
-#include "Models/additemmodel.h"
-
 
 
 class AddItemWindow : public QDialog
 {
     Q_OBJECT
 public:
+
+    /**
+     * @brief AddItemWindow: Costruttore di default
+     * @param parent
+     */
     explicit AddItemWindow(QDialog *parent);
+
+    ~AddItemWindow();
 
 signals:
     /**
-     * @brief onNewDevice: Evento lanciato quando viene richiesto l'inserimento di un nuovo device
-     * @param device: Nuovo device da aggiungere
+     * @brief onDeviceNameChanged: Evento generato quandoil testo del device name viene cambiatoS
      */
-    void onNewDevice(SmartDevice* device);
+    void onDeviceNameChanged(const QString& text);
+
+    /**
+     * @brief onFriendlyNameChanged: Evento generato quandoil testo del friendly name viene cambiatoS
+     */
+    void onFriendlyNameChanged(const QString& text);
+
+    /**
+     * @brief onAddNewDevice: Evento generato quando vengono confemrate le impostazioni del nuovo device
+     */
+    void onAddNewDevice();
 
 
 private slots:
+
+    /**
+     * @brief getChanges: Slot usato per il segnale proveniente dal textChanged di description
+     */
+    void getChanges();
+
     /**
      * @brief accept: Accettazione campi nuovo elemento
      */
@@ -57,14 +76,11 @@ private slots:
 
 private:
     //model per gestione fati finestra
-    AddItemModel *model;
     //campi per l'uente
     QLineEdit *name;
-    QLineEdit *add;
     QTextEdit *description;
     QComboBox *room;
     QComboBox *device;
-    QToolButton *TButton;
     QLineEdit *aggiungiStanza;
 };
 

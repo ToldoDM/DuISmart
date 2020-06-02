@@ -6,6 +6,7 @@
 #include <QString>
 #include "basemodel.h"
 #include "Entities/bulb.h"
+#include "Enums/devicetype.h"
 
 class AddItemModel: public BaseModel
 {
@@ -16,11 +17,21 @@ public:
     QList<QString> *camere;
     QList<SmartDevice*> *devList;
 
+    /**
+     * @brief deviceName: Nome device
+     */
+    QString deviceName;
+
+    /**
+     * @brief friendlyName: Nome friendly
+     */
+    QString friendlyName;
+
 public slots:
     /**
      * @brief insert: utilizzato per inserire la nuova stanza
      */
-    void insert(const QString s);
+    void insert(const QString& s);
 
 };
 

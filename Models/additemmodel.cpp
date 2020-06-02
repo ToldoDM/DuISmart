@@ -19,9 +19,11 @@ AddItemModel::AddItemModel()
     camere->append("Bagno");
     camere->append("Camera da letto");
 
+    deviceName = tr("Device name");
+    friendlyName = tr("Device description");
 }
 
-void AddItemModel::insert(const QString s){
+void AddItemModel::insert(const QString& s){
     //mettere controllo di stanza già presenti nella possibile lista
     camere->append(s);
 }

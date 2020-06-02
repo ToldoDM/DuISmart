@@ -2,7 +2,7 @@
 #include "additemwindow.h"
 
 
-MainWindow::MainWindow(MainViewModel* m,QWidget *parent) : QWidget(parent), model(m){
+MainWindow::MainWindow(QWidget *parent) : QWidget(parent){
     setWindowTitle ("DuISmartMainWindow");
     setFixedSize(640,480);
 
@@ -19,11 +19,10 @@ MainWindow::MainWindow(MainViewModel* m,QWidget *parent) : QWidget(parent), mode
     vLay->addWidget(addDevice);
 
     //Colleggo segnali e slot
-    connect(addDevice, SIGNAL(clicked()), this, SLOT(addClieckedHandler()));
+    connect(addDevice, SIGNAL(clicked()), this, SIGNAL(addNewDevice()));
 
     //Imposto lo stile
     setWindowStyle();
-    secondaFinestra=new QDialog();
 }
 
 void MainWindow::addToAllTab(DeviceListItem *dli) const{
@@ -37,21 +36,6 @@ void MainWindow::addToAllTab(DeviceListItem *dli) const{
     defaultTab->setItemWidget(item, dli);
 }
 
-
-void MainWindow::addClieckedHandler() const{
-
-    //ATTENZIONE!!! inserimento per testing
-    addToAllTab(new BulbListItem(0));
-    //secondaFinestra ha l'unica funzione di permettere ad exec di bloccare la prima finestra
-    AddItemWindow *AddI= new AddItemWindow(secondaFinestra);
-    AddI->exec();
-/*
-        PROBLEMA RISCONTRATO: con exec, se dalla finestra figlia si chiude tramite il bottone cancel impedisce
-                              la creazione dell'oggetto che viene creato in automatico al click di "Aggiungi" della finestra principale,
-                              mentre se la si chiude dalla tab in alto a dx la crea normalmente -->??
-*/
-    //addToAllTab(new BulbListItem(0));
-}
 
 void MainWindow::setWindowStyle(){
     // Imposto le dimensioni
