@@ -38,6 +38,11 @@ public slots:
      */
     void addClieckedHandler();
 
+    /**
+     * @brief sett: prova buttone settings
+     */
+    void sett();
+
 private:
     /**
      * @brief model: Utilizzato per prendere i valori da visualizzare
@@ -61,6 +66,8 @@ private:
      */
     QDialog *secondaFinestra;
 
+    //prova finestra impostazioni
+    QWidget *prova;
 
 };
 

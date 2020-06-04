@@ -38,7 +38,9 @@ SOURCES += \
         controller.cpp \
         main.cpp \
     Views/additem.cpp \
-    Models/additemmodel.cpp
+    Models/additemmodel.cpp \
+    Views/devicesettings.cpp \
+    Views/bulbsettings.cpp
 
 HEADERS += \
         Entities/CustomEnum.h \
@@ -55,7 +57,9 @@ HEADERS += \
         Views/mainwindow.h \
         controller.h \
     Views/additem.h \
-    Models/additemmodel.h
+    Models/additemmodel.h \
+    Views/devicesettings.h \
+    Views/bulbsettings.h
 
 FORMS +=
 

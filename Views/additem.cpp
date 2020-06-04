@@ -92,6 +92,10 @@ AddItem::AddItem(QDialog *parent) : QDialog(parent)
 
 }
 
+
+
+
+
 //slot accetta: return dati solo se modificati dall'utente
 void AddItem::accept(){
 

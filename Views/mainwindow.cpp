@@ -2,6 +2,9 @@
 #include "additem.h"
 
 
+//prova
+#include "devicesettings.h"
+
 MainWindow::MainWindow(MainViewModel* m,QWidget *parent) : model(m), QWidget(parent)
 {
     this->model = model;
@@ -27,6 +30,13 @@ MainWindow::MainWindow(MainViewModel* m,QWidget *parent) : model(m), QWidget(par
     //Imposto lo stile
     setWindowStyle();
     secondaFinestra=new QDialog();
+
+// prova bottone impostazioni
+    QPushButton *b = new QPushButton("impostazioni prova",this);
+    vLay->addWidget(b);
+    connect(b,SIGNAL(clicked(bool)),this,SLOT(sett()));
+    prova=new QWidget();
+
 }
 
 void MainWindow::addToAllList() const{
@@ -55,6 +65,7 @@ void MainWindow::addClieckedHandler()
                               la creazione dell'oggetto che viene creato in automatico al click di "Aggiungi" della finestra principale,
                               mentre se la si chiude dalla tab in alto a dx la crea normalmente -->??
 */
+
 }
 
 void MainWindow::setWindowStyle(){
@@ -69,3 +80,14 @@ void MainWindow::setWindowStyle(){
 
     setStyleSheet(styleSheet);
 }
+
+// prova settings
+void MainWindow::sett(){
+    Settings *settings=new Settings();
+    settings->show();
+}
+
+
+
+
+
