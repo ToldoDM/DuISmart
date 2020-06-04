@@ -25,9 +25,15 @@ public:
     void setWindowStyle();
 
     /**
-     * @brief addToAllTab: Aggiunge l'oggetto nel tab di tutti i dispositivi
+     * @brief addToAllTab: Aggiunge l'oggetto nel tab di tutti i dispositivi e nel tab stanza scelto
      */
-    void addToAllTab(DeviceListItem* dli) const;
+    void addToAllTab(DeviceListItem* dli, const QString& tabName) const;
+
+    /**
+     * @brief addTab: Aggiunge un nuovo tab
+     * @param tabName: Nome tab da aggiungere
+     */
+    void addTab(const QString& tabName, bool isAll = false);
 
 signals:    
     /**
@@ -40,15 +46,13 @@ public slots:
 private:
 
     /**
-     * @brief defaultTab: Rappresenta il tab di default contenente la lista di tutti i device
-     */
-    QListWidget *defaultTab;
-
-    /**
      * @brief addDevice: Pulsante per l'aggiunta di un nuovo device
      */
     QPushButton *addDevice;
 
+    /**
+     * @brief tab: Tab contenente le varie stanze
+     */
     QTabWidget *tab;
 
 };

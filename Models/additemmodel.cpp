@@ -4,20 +4,10 @@
 #include <QVBoxLayout>
 
 
-AddItemModel::AddItemModel()
-{
-/*PROVA BULB, da utilizzare per gli oggetti*/
-    devList = new  QList<SmartDevice*>;
-    devList->append(new Bulb(0));
-    devList->append(new Bulb(1));
+AddItemModel::AddItemModel(QList<const QString*> *list){
 
-// lista camere da aggiungere
-    camere=new QList<QString>;
-    camere->append("inserire stanza");
-    camere->append("Cucina");
-    camere->append("Salotto");
-    camere->append("Bagno");
-    camere->append("Camera da letto");
+    // lista camere che verranno prese/passate dal mainVM
+    camere = list;
 
     deviceName = tr("Device name");
     friendlyName = tr("Device description");
@@ -25,5 +15,10 @@ AddItemModel::AddItemModel()
 
 void AddItemModel::insert(const QString& s){
     //mettere controllo di stanza già presenti nella possibile lista
-    camere->append(s);
+    camere->append(&s);
 }
+
+
+void AddItemModel::setDName(const QString &s){ deviceName = s; }
+
+void AddItemModel::setFName(const QString &s){ friendlyName = s; }

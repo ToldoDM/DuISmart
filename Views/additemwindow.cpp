@@ -44,6 +44,8 @@ AddItemWindow::AddItemWindow(QDialog *parent) : QDialog(parent){
     device->addItem("inserire dispositivo");
 
     device->addItem(tr("Lampadina"), DeviceType::BULB);
+    device->addItem(tr("TV"), DeviceType::TV);
+    device->addItem(tr("Termostato"), DeviceType::THERMOSTAT);
 
     device->setCurrentIndex(0);
 
@@ -65,7 +67,7 @@ AddItemWindow::AddItemWindow(QDialog *parent) : QDialog(parent){
     QPushButton *addRoom=new QPushButton("Add Room");
     QHBoxLayout *racchiudiStanza=new QHBoxLayout();
 
-    aggiungiStanza=new QLineEdit("Inserire nuova stanza",this);
+    aggiungiStanza=new QLineEdit(this);
     racchiudiStanza->addWidget(aggiungiStanza);
     racchiudiStanza->addWidget(addRoom);
 
@@ -86,7 +88,7 @@ AddItemWindow::AddItemWindow(QDialog *parent) : QDialog(parent){
     connect(description, SIGNAL(textChanged()), this, SLOT(getChanges()));
     connect(buttonBox,SIGNAL(accepted()),this,SLOT(accept()));
     connect(buttonBox,SIGNAL(rejected()),this,SLOT(cancel()));
-    connect(addRoom,SIGNAL(clicked(bool)),this,SLOT(sendData()));
+    connect(addRoom,SIGNAL(clicked()),this,SLOT(addNewRoom()));
 
 }
 
@@ -94,20 +96,18 @@ AddItemWindow::AddItemWindow(QDialog *parent) : QDialog(parent){
 void AddItemWindow::accept(){
 
     //se i campi non sono midificati -> "errore"
-    if(room->currentText()=="inserire stanza" || name->displayText()=="Device name" || description->toPlainText()=="Device description" || room->currentText()=="inserire dispositivo")
+    if(room->currentText()=="inserire stanza" || name->displayText()=="Device name" || description->toPlainText()=="Device description" || device->currentText()=="inserire dispositivo")
     {
-        QDialog *Problem= new QDialog(this);
-        QVBoxLayout *LProblem= new QVBoxLayout(Problem);
-        LProblem->addWidget(new QLabel("E' necessario modificare i campi di default",Problem));
-        Problem->show();
+        raiseProblemDialog(tr("E' necessario modificare i campi di default"));
     }
-
-    //se invece i campi sono modificati -> prosegui7
-    //da modificare e mettere creazione oggetto da aggiungere alla lista
     else
     {
         switch (device->currentData().userType()) {
         case DeviceType::BULB:
+            break;
+        case DeviceType::TV:
+            break;
+        case DeviceType::THERMOSTAT:
             break;
         default:
             break;
@@ -117,6 +117,13 @@ void AddItemWindow::accept(){
     }
 }
 
+void AddItemWindow::raiseProblemDialog(const QString &labText){
+    QDialog Problem(this);
+    QVBoxLayout LProblem(&Problem);
+    QLabel labelText(labText, &Problem);
+    LProblem.addWidget(&labelText);
+    Problem.show();
+}
 
 // slot cancel: distruzione widget
 void AddItemWindow::cancel(){
@@ -124,10 +131,14 @@ void AddItemWindow::cancel(){
 }
 
 //aggiunta stringa alle camere e aggiornamento lista room
-void AddItemWindow::sendData(){
-    //if(aggiungiStanza->displayText() != "Inserire nuova stanza") <- manca inserire controllo
-    /*emit model->insert(aggiungiStanza->displayText());
-    room->addItem(model->camere->operator [](model->camere->count()-1));*/
+void AddItemWindow::addNewRoomClicked(){
+    QString roomName = aggiungiStanza->displayText();
+    if(roomName.isNull() || roomName.isEmpty()) {
+        raiseProblemDialog(tr("E' necessario modificare il nome della stanza"));
+    }
+    else{
+        emit onAddNewRoom(roomName);
+    }
 }
 
 void AddItemWindow::getChanges(){

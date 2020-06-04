@@ -63,7 +63,7 @@ private:
     /**
      * @brief addSmartDeviceToList: aggiunge lo smartDevice alla lista della main window
      */
-    void addSmartDeviceToList(SmartDevice* device) const;
+    void addSmartDeviceToList(SmartDevice* device, const QString& targetTab) const;
 
 public:
     /**

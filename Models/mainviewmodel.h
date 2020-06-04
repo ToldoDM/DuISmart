@@ -15,6 +15,8 @@ public:
      */
     explicit MainViewModel();
 
+    ~MainViewModel();
+
     /**
      * @brief getDevice: Ritorna l'oggetto device richiesto
      * @param deviceId: id device di cui si vuole l'oggetto
@@ -28,8 +30,26 @@ public:
      */
     DeviceListItem* addDevice(SmartDevice* newDevice);
 
+    /**
+     * @brief addRoom: Metodo utilizzato per aggiungere una nuova stanza nella lista delle stanze
+     * @param newRoom: Nome nuova stanza
+     * @return Rirerimento costante della stringa appena aggiunta nella lista
+     */
+    const QString& addRoom(QString* newRoom);
+
+    /**
+     * @brief getRoomList: Ritorna il puntatore alla lista contenente le camere
+     * @return lista contenente le camere
+     */
+    QList<const QString*>* getRoomList();
 
 private:
+
+    /**
+     * @brief rooms: Stanze presenti
+     */
+    QList<const QString*> *rooms;
+
     /**
      * @brief deviceList: Lista device
      */

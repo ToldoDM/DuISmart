@@ -51,6 +51,12 @@ signals:
      */
     void onAddNewDevice();
 
+    /**
+     * @brief addNewRoom: Evento generato alla pressione del pulsante aggiungi stanza
+     * @param roomName: nome stanza
+     */
+    void onAddNewRoom(const QString& roomName);
+
 
 private slots:
 
@@ -70,12 +76,18 @@ private slots:
     void cancel();
 
     /**
-     * @brief sendData: segnale che permette invio di qstring per creazione di una nuova stanza
+     * @brief addNewRoomClicked: Slot utilizzato per la gestione dell'aggiunta della nuova stanza
      */
-    void sendData();
+    void addNewRoomClicked();
 
 private:
-    //model per gestione fati finestra
+
+    /**
+     * @brief raiseProblemDialog: Metodo utilizzato per la creazione della finestra dialog per eventiali problemi
+     * @param labText
+     */
+    void raiseProblemDialog(const QString& labText);
+
     //campi per l'uente
     QLineEdit *name;
     QTextEdit *description;
