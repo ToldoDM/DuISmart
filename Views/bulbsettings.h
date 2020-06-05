@@ -4,33 +4,34 @@
 #include "devicesettings.h"
 #include <QLCDNumber>
 #include <QSlider>
-
+#include <QColorDialog>
+#include <QComboBox>
+#include <QGridLayout>
 #include <QVBoxLayout>
-
-enum BulbColor{
-    Red=0,
-    Orange=1,
-    Yellow=2,
-    Green=3,
-    Blue=4,
-    Indigo=5,
-    Violet=6
-};
+#include <QLabel>
+#include <QPushButton>
+#include <QColor>
+#include <QPalette>
 
 class BulbSettings : public Settings
 {
+    Q_OBJECT
 public:
     explicit BulbSettings(Settings *parent=nullptr);
 
 private:
     QLCDNumber *lcdBulb;
     QSlider *sliderBulb;
+    QPushButton *selectColor;
+    QColor *bulbColor;
 
 private slots:
-    void setValue(int value);
+    //void UpdateValue(int);
+    void changeColor(QWidget *button2);
+    void pressedSelectColor();
 
 signals:
-    void ValueChanged(int actualValue);
+    void ValueChanged(int);
 
 };
 
