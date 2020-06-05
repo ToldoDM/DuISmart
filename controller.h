@@ -21,8 +21,10 @@ private slots:
 
     /**
      * @brief addNewDeviceToMainW: Slot utilizzato per aggiungere il device alla mainW
+     * @param dType: Tipo enum DeviceType
+     * @param roomName: Nome stanza in cui inserire il device
      */
-    void addNewDeviceToMainW() const;
+    void addNewDeviceToMainW(int dType, const QString& roomName) const;
 
     /**
      * @brief setDeviceNameChanged: Slot utilizzato per aggironare il valore dalla variabile al model
@@ -35,6 +37,12 @@ private slots:
      * @param text: New Text
      */
     void setFriendlyNameChanged(const QString& text) const;
+
+    /**
+     * @brief addNewRoom: Slot utilizzato per aggiungere una stanza alla lista delle stanze
+     * @param roomName: Nome nuova stanza
+     */
+    void addNewRoom(const QString& roomName) const;
 
 private:
 

@@ -19,6 +19,7 @@
 #include <QMenu>
 #include <QToolButton>
 #include "Enums/devicetype.h"
+#include "Enums/RoomType.h"
 
 
 
@@ -35,6 +36,12 @@ public:
 
     ~AddItemWindow();
 
+    /**
+     * @brief populateRoomsComboBox: Aggiunge alla combo box le camere attualmente presenti
+     * @param list: lista camere
+     */
+    void populateRoomsComboBox(QList<const QString*>* list);
+
 signals:
     /**
      * @brief onDeviceNameChanged: Evento generato quandoil testo del device name viene cambiatoS
@@ -48,8 +55,10 @@ signals:
 
     /**
      * @brief onAddNewDevice: Evento generato quando vengono confemrate le impostazioni del nuovo device
+     * @param dType: Device type scelto
+     * @param roomName: nome stanza
      */
-    void onAddNewDevice();
+    void onAddNewDevice(int dType, const QString& roomNameS);
 
     /**
      * @brief addNewRoom: Evento generato alla pressione del pulsante aggiungi stanza
@@ -94,6 +103,10 @@ private:
     QComboBox *room;
     QComboBox *device;
     QLineEdit *aggiungiStanza;
+
+    QDialog *Problem;
+    QVBoxLayout *LProblem;
+    QLabel *labelText;
 };
 
 #endif // ADDITEMWINDOW_H

@@ -1,6 +1,8 @@
 #include "mainviewmodel.h"
 
-MainViewModel::MainViewModel() : BaseModel() {}
+MainViewModel::MainViewModel() : BaseModel() {
+    rooms = new QList<const QString*>();
+}
 
 MainViewModel::~MainViewModel(){
     for (int i=0; i<rooms->size(); ++i) {
@@ -9,9 +11,8 @@ MainViewModel::~MainViewModel(){
     delete rooms;
 }
 
-const QString& MainViewModel::addRoom(QString *newRoom){
+void MainViewModel::addRoom(const QString *newRoom){
     rooms->append(newRoom);
-    return *newRoom;
 }
 
 QList<const QString*>* MainViewModel::getRoomList(){ return rooms; }

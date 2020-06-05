@@ -6,10 +6,17 @@ AddItemWindow::~AddItemWindow(){
     delete room;
     delete device;
     delete aggiungiStanza;
+
+    delete labelText;
+    delete LProblem;
 }
 
 AddItemWindow::AddItemWindow(QDialog *parent) : QDialog(parent){
     //Qui verra' gestita la nuova finestra per l'inserimento del nuovo device
+    Problem = new QDialog(this);
+    LProblem = new QVBoxLayout(Problem);
+    labelText = new QLabel(Problem);
+    LProblem->addWidget(labelText);
 
     //dichiarazione dei layout
     QVBoxLayout *Vlayout=new QVBoxLayout(this);
@@ -28,7 +35,8 @@ AddItemWindow::AddItemWindow(QDialog *parent) : QDialog(parent){
 
 
     //Dichiarazione qcombobox stanza e popolamento
-    room=new QComboBox(this);
+    room = new QComboBox(this);
+    room->addItem(tr("inserire stanza"));
 
     /*for(int i=0;model->camere->count()>i;i++)
     {
@@ -88,8 +96,13 @@ AddItemWindow::AddItemWindow(QDialog *parent) : QDialog(parent){
     connect(description, SIGNAL(textChanged()), this, SLOT(getChanges()));
     connect(buttonBox,SIGNAL(accepted()),this,SLOT(accept()));
     connect(buttonBox,SIGNAL(rejected()),this,SLOT(cancel()));
-    connect(addRoom,SIGNAL(clicked()),this,SLOT(addNewRoom()));
+    connect(addRoom,SIGNAL(clicked()),this,SLOT(addNewRoomClicked()));
 
+}
+
+void AddItemWindow::populateRoomsComboBox(QList<const QString *> *list){
+    //Aggiungo le stanze alla combo box e segno le stanze gia' presenti con l'enum adeguato
+    for (int i=0; i<list->count(); ++i) room->addItem(*(*list)[i], RoomType::EXIST);
 }
 
 //slot accetta: return dati solo se modificati dall'utente
@@ -102,27 +115,17 @@ void AddItemWindow::accept(){
     }
     else
     {
-        switch (device->currentData().userType()) {
-        case DeviceType::BULB:
-            break;
-        case DeviceType::TV:
-            break;
-        case DeviceType::THERMOSTAT:
-            break;
-        default:
-            break;
-        }
+        //controllo se la stanza selezionata e' una nuova stanza
+        if(room->currentData().userType() == RoomType::NEW) emit onAddNewRoom(room->currentText());
 
-        emit onAddNewDevice();
+        //In base al tipo di device scelto, creo l'oggetto corrispondente
+        emit onAddNewDevice(device->currentData().userType(), room->currentText());
     }
 }
 
 void AddItemWindow::raiseProblemDialog(const QString &labText){
-    QDialog Problem(this);
-    QVBoxLayout LProblem(&Problem);
-    QLabel labelText(labText, &Problem);
-    LProblem.addWidget(&labelText);
-    Problem.show();
+    labelText->setText(labText);
+    Problem->show();
 }
 
 // slot cancel: distruzione widget
@@ -137,7 +140,10 @@ void AddItemWindow::addNewRoomClicked(){
         raiseProblemDialog(tr("E' necessario modificare il nome della stanza"));
     }
     else{
-        emit onAddNewRoom(roomName);
+        //Aggiungo la stanza alla combo box e segno le stanze gia' nuove con l'enum adeguato
+        int index = room->findText(roomName);
+        if(index<0) room->addItem(roomName, RoomType::NEW);
+        aggiungiStanza->setText("");
     }
 }
 

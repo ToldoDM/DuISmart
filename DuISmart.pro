@@ -43,6 +43,7 @@ SOURCES += \
     Models/additemmodel.cpp
 
 HEADERS += \
+    Enums/RoomType.h \
         Enums/devicestate.h \
         Entities/bulb.h \
         Entities/display.h \

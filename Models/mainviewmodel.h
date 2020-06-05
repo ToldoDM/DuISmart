@@ -35,7 +35,7 @@ public:
      * @param newRoom: Nome nuova stanza
      * @return Rirerimento costante della stringa appena aggiunta nella lista
      */
-    const QString& addRoom(QString* newRoom);
+    void addRoom(const QString* newRoom);
 
     /**
      * @brief getRoomList: Ritorna il puntatore alla lista contenente le camere
