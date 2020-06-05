@@ -5,17 +5,14 @@
 Settings::Settings(QWidget *parent): QWidget(parent)
 {
 // layout verticale finestra impostazioni
-    vLayout = new QVBoxLayout(this);
+    gLayout = new QGridLayout(this);
 
-    QPushButton *e=new QPushButton("exit");
-    vLayout->addWidget(e);
 
 // dichiarazione bottoni accatta/cancella
     QDialogButtonBox *settingsBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-    vLayout->addWidget(settingsBox,Qt::AlignRight,Qt::AlignBottom);
+    gLayout->addWidget(settingsBox,2,1);
     connect(settingsBox,SIGNAL(accepted()),this,SLOT(accept()));
     connect(settingsBox,SIGNAL(rejected()),this,SLOT(cancel()));
-    connect(e,SIGNAL(clicked(bool)),this,SLOT(cancel()));
 
 
     this->show();

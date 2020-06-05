@@ -3,24 +3,29 @@
 
 
 #include <QDialog>
-#include <QVBoxLayout>
 #include <QDialogButtonBox>
 #include <QWidget>
+
+#include <QGridLayout>
+
 
 class Settings: public QWidget
 {
     Q_OBJECT
+
 public:
-    Settings(QWidget *parent=nullptr);
+    explicit Settings(QWidget *parent=nullptr);
+    QGridLayout * gLayout;
 
 public slots:
-    void accept();
+    virtual void accept();
     void cancel();
 
 
 private:
-    QVBoxLayout * vLayout;
+
     QDialogButtonBox * settingsBox;
+
 };
 
 #endif // SETTINGS_H

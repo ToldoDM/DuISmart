@@ -3,7 +3,7 @@
 
 
 //prova
-#include "devicesettings.h"
+#include "bulbsettings.h"
 
 MainWindow::MainWindow(MainViewModel* m,QWidget *parent) : model(m), QWidget(parent)
 {
@@ -17,7 +17,8 @@ MainWindow::MainWindow(MainViewModel* m,QWidget *parent) : model(m), QWidget(par
     tab = new QTabWidget(this);
     addDevice = new QPushButton(tr("Aggiungi"), this);
 
-    tab->addTab(defaultTab, tr("All"));
+    //tab->addDevicedTab(defaultTab, tr("All"));
+    tab->addTab(defaultTab,tr("All"));
 
     //Main layout finestra
     QVBoxLayout *vLay = new QVBoxLayout(this);
@@ -83,7 +84,7 @@ void MainWindow::setWindowStyle(){
 
 // prova settings
 void MainWindow::sett(){
-    Settings *settings=new Settings();
+    BulbSettings *settings=new BulbSettings();
     settings->show();
 }
 
