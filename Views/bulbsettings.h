@@ -5,13 +5,12 @@
 #include <QLCDNumber>
 #include <QSlider>
 #include <QColorDialog>
-#include <QComboBox>
 #include <QGridLayout>
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
 #include <QColor>
-#include <QPalette>
+
 
 class BulbSettings : public Settings
 {
