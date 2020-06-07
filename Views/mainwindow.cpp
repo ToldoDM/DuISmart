@@ -32,12 +32,10 @@ MainWindow::MainWindow(MainViewModel* m,QWidget *parent) : model(m), QWidget(par
     setWindowStyle();
     secondaFinestra=new QDialog();
 
-// prova bottone impostazioni
+// prova bottone impostazioni (da sostituire)
     QPushButton *b = new QPushButton("impostazioni prova",this);
     vLay->addWidget(b);
-    connect(b,SIGNAL(clicked(bool)),this,SLOT(sett()));
-    prova=new QWidget();
-
+    connect(b,SIGNAL(clicked(bool)),this,SIGNAL(AccSettings()));
 }
 
 void MainWindow::addToAllList() const{
@@ -82,13 +80,14 @@ void MainWindow::setWindowStyle(){
     setStyleSheet(styleSheet);
 }
 
-// prova settings
+/*  spostato nel controller
+ * // prova settings
 void MainWindow::sett(){
     BulbSettings *settings=new BulbSettings();
     settings->show();
 }
 
-
+*/
 
 
 

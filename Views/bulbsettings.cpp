@@ -2,6 +2,8 @@
 
 BulbSettings::BulbSettings(Settings *parent): Settings(parent)
 {
+    cDialog= new QColorDialog();
+
 // creazione layout di bulbsettings e inserimento nela prima riga di gLayout
     QGridLayout *setBulb=new QGridLayout();
     gLayout->addLayout(setBulb,1,1);
@@ -33,30 +35,30 @@ BulbSettings::BulbSettings(Settings *parent): Settings(parent)
     //setBulb->addWidget(cDialog,2,2);
 
 
-    connect(sliderBulb,SIGNAL(valueChanged(int)),lcdBulb,SLOT(display(int)));
+    //connessione qslider -> controller -> display
+    connect(sliderBulb,SIGNAL(valueChanged(int)),this,SIGNAL(ChangeDisplayInt(int)));
     //connect(sliderBulb,SIGNAL(valueChanged(int)),controller,SLOT(qualcosa));
     //connect value changed a possibile dispositivo
 
     //setLayout(gLayout);
-
     setMinimumSize(300,200);
 
+    //alla pressione del bottone selectColor si apre la finestra della scelta del colore
+    connect(selectColor,SIGNAL(clicked(bool)),this,SIGNAL(pressedSelectColor()));
 
-    //prova colore bottone select color
-    connect(selectColor,SIGNAL(clicked(bool)),this,SLOT(pressedSelectColor()));
+    //connessione segnale conferma di cDialog -> cambio colore del bottone selectColor
+    connect(cDialog,SIGNAL(colorSelected(QColor)),this,SIGNAL(selectedColor(const QColor)));
 
 
+//connessione segnale conferma di cDialog -> cambio colore del bottone selectColor
+   // connect(BulbS->cDialog,SIGNAL(colorSelected(QColor)),this,SLOT(ChangeToSelectedColor(QColor)));
 }
 
-void BulbSettings::pressedSelectColor(){
-    emit changeColor(selectColor);
+
+
+void BulbSettings::accept(){
+    emit extractedData(cDialog->selectedColor(),sliderBulb->value());
+    emit Settings::cancel();
 }
 
 
-void BulbSettings::changeColor(QWidget *button2){
-
-
-    QColorDialog *cDialog = new QColorDialog(button2);
-    QColor colorChoosen = cDialog->getColor();
-    button2->setPalette(colorChoosen);
-}

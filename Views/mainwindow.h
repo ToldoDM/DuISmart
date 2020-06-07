@@ -31,6 +31,10 @@ public:
     void addToAllList() const;
 
 signals:
+    /**
+     * @brief AccSettings: evento generato quando si preme il bottone "ingranaggio"
+     */
+    void AccSettings();
 
 public slots:
     /**
@@ -38,10 +42,7 @@ public slots:
      */
     void addClieckedHandler();
 
-    /**
-     * @brief sett: prova buttone settings
-     */
-    void sett();
+
 
 private:
     /**
@@ -66,8 +67,6 @@ private:
      */
     QDialog *secondaFinestra;
 
-    //prova finestra impostazioni
-    QWidget *prova;
 
 };
 

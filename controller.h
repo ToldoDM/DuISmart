@@ -5,13 +5,35 @@
 #include<Models/mainviewmodel.h>
 #include<Views/mainwindow.h>
 
+#include "Views/bulbsettings.h"
+
+
 class Controller : public QObject {
     Q_OBJECT
 
 
 signals:
 
-public slots:
+private slots:
+    /**
+     * @brief riseSettingsWindow: slot utilizzato per catturare segnale inviato per accedere alle impostazioni del device bulb
+     */
+    void riseBulbSettingsWindow();
+
+    /**
+     * @brief BulbSelectColor: mostra impostazioni cambio colore/luminosità
+     */
+    void BulbSelectColor() const;
+
+    /**
+     * @brief ChangeToSelectedColor: applica modifiche al bottone
+     */
+    void ChangeToSelectedColor(const QColor) const;
+
+    /**
+     * @brief getBulbSettings: prende modifiche lampadina
+     */
+    void getBulbSettings(const QColor, const int);
 
 private:
 
@@ -23,6 +45,8 @@ private:
      * @brief MainW: Finestra principale
      */
     MainWindow* MainW;
+
+    BulbSettings *BulbS;
 
 public:
     /**

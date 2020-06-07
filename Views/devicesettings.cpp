@@ -10,7 +10,7 @@ Settings::Settings(QWidget *parent): QWidget(parent)
 
 // dichiarazione bottoni accatta/cancella
     QDialogButtonBox *settingsBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-    gLayout->addWidget(settingsBox,2,1);
+    gLayout->addWidget(settingsBox,2,1);// inserito in questa posizione per permettere alle classi derivate di mettere widget in (1,1)
     connect(settingsBox,SIGNAL(accepted()),this,SLOT(accept()));
     connect(settingsBox,SIGNAL(rejected()),this,SLOT(cancel()));
 

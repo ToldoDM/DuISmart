@@ -16,22 +16,49 @@ class BulbSettings : public Settings
 {
     Q_OBJECT
 public:
+
     explicit BulbSettings(Settings *parent=nullptr);
 
-private:
-    QLCDNumber *lcdBulb;
-    QSlider *sliderBulb;
     QPushButton *selectColor;
+
+    QLCDNumber *lcdBulb;
+
+    QColorDialog *cDialog;
+
+private:
+
+    QSlider *sliderBulb;
     QColor *bulbColor;
 
+
+
 private slots:
-    //void UpdateValue(int);
-    void changeColor(QWidget *button2);
-    void pressedSelectColor();
+    //ridefinizione metodo virtuale di devicesettings?
+    virtual void accept();
 
 signals:
+    /**
+     * @brief ValueChanged: valore slider modificato
+     */
     void ValueChanged(int);
 
+    /**
+     * @brief pressedSelectColor: segnale per aprire dialogo selezione colore
+     */
+    void pressedSelectColor() const;
+
+    /**
+     * @brief ChangeDisplayInt: segnale modifica posizione slider
+     */
+    void ChangeDisplayInt(int);
+
+
+    /**
+     * @brief SelectedColor: segnale colore selezionato per bulb
+     */
+    void selectedColor(const QColor) const;
+
+    void extractedData(const QColor ,const int );
 };
 
 #endif // BULBSETTINGS_H
