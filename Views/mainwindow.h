@@ -2,21 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QPushButton>
-#include <QLabel>
-#include <QBoxLayout>
 #include <QListWidget>
 #include <QTabWidget>
 #include <QFile>
-#include "Models/mainviewmodel.h"
-#include "CustomItems/devicelistitem.h"
-
-//aggiunte per finestra
-#include <QFormLayout>
-#include <QDialog>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QLineEdit>
-#include <QTextEdit>
+#include "CustomItems/bulblistitem.h"
 
 
 class MainWindow : public QWidget
@@ -28,7 +17,7 @@ public:
      * @param model: Model della vista
      * @param parent: Widget genitore
      */
-    explicit MainWindow(MainViewModel* model, QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
 
     /**
      * @brief setWindowStyle: Imposta lo stile dei vari componenti tramite il file style.css
@@ -36,41 +25,36 @@ public:
     void setWindowStyle();
 
     /**
-     * @brief addToAllList: Aggiunge l'oggetto alla lista di tutti i dispositivi
+     * @brief addToAllTab: Aggiunge l'oggetto nel tab di tutti i dispositivi e nel tab stanza scelto
      */
-    void addToAllList() const;
+    void addToAllTab(DeviceListItem* dli, const QString& tabName) const;
 
-signals:
+    /**
+     * @brief addTab: Aggiunge un nuovo tab
+     * @param tabName: Nome tab da aggiungere
+     */
+    void addTab(const QString& tabName);
+
+signals:    
+    /**
+     * @brief addNewDevice: Evento generato quando viene premuto il pulsante aggiungi
+     */
+    void addNewDevice();
 
 public slots:
-    /**
-     * @brief clieckedHandler: Slot utilizzato per catturare il segnale bottone premuto di addDevice
-     */
-    void addClieckedHandler();
-    // inserimento slot accettazione-rifiuto della finestra
-    void Accept();
-    void CancField();
-private:
-    /**
-     * @brief model: Utilizzato per prendere i valori da visualizzare
-     */
-    MainViewModel* model;
 
-    /**
-     * @brief defaultTab: Rappresenta il tab di default contenente la lista di tutti i device
-     */
-    QListWidget *defaultTab;
+private:
 
     /**
      * @brief addDevice: Pulsante per l'aggiunta di un nuovo device
      */
     QPushButton *addDevice;
 
+    /**
+     * @brief tab: Tab contenente le varie stanze
+     */
     QTabWidget *tab;
 
-    //campi per l'uente
-    QLineEdit *name;
-    QTextEdit *description;
 };
 
 #endif // MAINWINDOW_H

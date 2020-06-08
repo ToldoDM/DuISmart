@@ -24,21 +24,44 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+        Entities/bulb.cpp \
+        Entities/display.cpp \
         Entities/listdevice.cpp \
+        Entities/smartdevice.cpp \
+    Exceptions/argumentexception.cpp \
         Models/basemodel.cpp \
         Models/mainviewmodel.cpp \
+        Views/CustomItems/bulblistitem.cpp \
+    Views/CustomItems/custombutton.cpp \
         Views/CustomItems/devicelistitem.cpp \
+        Views/CustomItems/onoffbutton.cpp \
+    Views/CustomItems/settingsbutton.cpp \
+    Views/additemwindow.cpp \
         Views/mainwindow.cpp \
         controller.cpp \
-        main.cpp
+        main.cpp \
+    Models/additemmodel.cpp
 
 HEADERS += \
+    Enums/RoomType.h \
+        Enums/devicestate.h \
+        Entities/bulb.h \
+        Entities/display.h \
         Entities/listdevice.h \
+        Entities/smartdevice.h \
+    Enums/devicetype.h \
+    Exceptions/argumentexception.h \
         Models/basemodel.h \
         Models/mainviewmodel.h \
+        Views/CustomItems/bulblistitem.h \
+    Views/CustomItems/custombutton.h \
         Views/CustomItems/devicelistitem.h \
+        Views/CustomItems/onoffbutton.h \
+    Views/CustomItems/settingsbutton.h \
+    Views/additemwindow.h \
         Views/mainwindow.h \
-        controller.h
+        controller.h \
+    Models/additemmodel.h
 
 FORMS +=
 

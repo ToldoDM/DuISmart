@@ -1,22 +1,81 @@
 #ifndef DEVICELISTITEM_H
 #define DEVICELISTITEM_H
 
-#include <QCheckBox>
 #include <QBoxLayout>
 #include <QLabel>
+#include "settingsbutton.h"
 
 class DeviceListItem : public QWidget
 {
-
+    Q_OBJECT
 public:
-    DeviceListItem(QWidget *parent = nullptr);
+    /**
+     * @brief DeviceListItem: Costruttore di default
+     * @param devId: Identificativo dello smart device
+     * @param parent: Widget genitore
+     */
+    explicit DeviceListItem(int devId, const QString& fName, QWidget *parent = nullptr);
+
+    /**
+     * @brief ~DeviceListItem: Distruttore
+     */
+    virtual ~DeviceListItem() override;
+
+signals:
+    /**
+     * @brief SettingPressed: Evento generato quando viene premuto il pulsante settings
+     * @param devId: Id device di riferimento a cui e' stata chiesta la visualizzazione delle impostazioni
+     */
+    void SettingPressed(int devId);
+
+private slots:
+    /**
+     * @brief onSettingClicked: Cattura evento setting cliecked
+     */
+    void onSettingClicked();
+
+protected:
+    /**
+     * @brief settButton: Bottone settings
+     */
+    SettingsButton *settButton;
+
+    /**
+     * @brief deviceName: Nome device (Lampada, TV, Termostato etc.)
+     */
+    QLabel *deviceName;
+
+    /**
+     * @brief friendlyName: Nome assegnato dall'utente
+     */
+    QLabel *friendlyName;
+
+    /**
+     * @brief ico: Label utilizzata per l'icona
+     */
+    QLabel *ico;
+
+    /**
+     * @brief center: Widget utilizzato per arragiare le due label centrali
+     */
+    QWidget *center;
+
+    /**
+     * @brief hlay: Layout principale orizzontale
+     */
+    QHBoxLayout *hlay;
+
+    /**
+     * @brief vlay: Layout verticale utilizzato per il Widget centrale
+     */
+    QVBoxLayout *vlay;
 
 private:
-    QCheckBox *cbox;
-    QLabel *deviceName, *friendlyName, *ico;
-    QWidget *center;
-    QHBoxLayout *hlay;
-    QVBoxLayout *vlay;
+
+    /**
+     * @brief deviceId: Identificativo del device
+     */
+    int deviceId;
 };
 
 #endif // DEVICELISTITEM_H
