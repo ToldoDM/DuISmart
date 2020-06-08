@@ -13,7 +13,7 @@ public:
      * @param devId: Identificativo dello smart device
      * @param parent: Widget genitore
      */
-    explicit BulbListItem(int devId, QWidget *parent = nullptr);
+    explicit BulbListItem(int devId, const QString& fName, QWidget *parent = nullptr);
 
     /**
      * @brief ~BulbListItem: Distruttore

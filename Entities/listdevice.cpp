@@ -5,6 +5,6 @@ ListDevice::ListDevice(){
 
 ListDevice::~ListDevice() = default;
 
-DeviceListItem* ListDevice::getListType(int devId) const{
+DeviceListItem* ListDevice::getListType() const{
     throw ArgumentException("Questa funzione non e' stata implementata");
 }

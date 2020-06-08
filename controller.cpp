@@ -52,7 +52,8 @@ void Controller::setFriendlyNameChanged(const QString& text) const{ AddItemVM->s
 void Controller::addNewDeviceToMainW(DeviceType dType, const QString& roomName){
     switch (dType) {
     case DeviceType::BULB:
-        addSmartDeviceToList(new Bulb(0), roomName);
+        //ATTENZIONE!!! da rendere l'id del device univoco
+        addSmartDeviceToList(new Bulb(0, AddItemVM->getFName()), roomName);
         break;
     case DeviceType::TV:
         //addSmartDeviceToList(new Bulb(0), roomName);

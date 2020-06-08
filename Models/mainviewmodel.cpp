@@ -20,7 +20,7 @@ QList<const QString*>* MainViewModel::getRoomList(){ return rooms; }
 DeviceListItem* MainViewModel::addDevice(SmartDevice* newDevice){
     deviceList.insert(deviceList.end(), newDevice);
     ListDevice* ld = dynamic_cast<ListDevice*>(newDevice);
-    return ld ? ld->getListType(newDevice->deviceId) : nullptr;
+    return ld ? ld->getListType() : nullptr;
 }
 
 const SmartDevice* MainViewModel::getDevice(int deviceId) const{

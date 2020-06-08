@@ -13,14 +13,14 @@ public:
      * @brief Bulb: Costruttore di default
      * @param devID: Id device
      */
-    explicit Bulb(const int& devID);
+    explicit Bulb(const int& devID, const QString& fName);
 
     /**
      * @brief getListType: Metodo utilizzato per creare l'oggetto che verra' visualizzato nella lista dei device.
      * @param devId: Id device di riferimento
      * @return Oggetto visivo della lista
      */
-    virtual DeviceListItem * getListType(int devId) const override;
+    virtual DeviceListItem * getListType() const override;
 };
 
 #endif // BULB_H

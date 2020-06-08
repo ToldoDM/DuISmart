@@ -24,7 +24,7 @@ public:
      * @param devId: Id device di riferimento
      * @return Oggetto visivo della lista
      */
-    virtual DeviceListItem* getListType(int devId) const = 0;
+    virtual DeviceListItem* getListType() const = 0;
 
 };
 

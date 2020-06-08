@@ -33,6 +33,11 @@ public:
      */
     void setFName(const QString& s);
 
+    /**
+     * @brief setFName: utilizzato per avere il valore friendlyName
+     */
+    const QString& getFName() const;
+
 private:
     /**
      * @brief camere: Lista camere presenti

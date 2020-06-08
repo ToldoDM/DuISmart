@@ -22,3 +22,7 @@ void AddItemModel::insert(const QString& s){
 void AddItemModel::setDName(const QString &s){ deviceName = s; }
 
 void AddItemModel::setFName(const QString &s){ friendlyName = s; }
+
+const QString& AddItemModel::getFName() const{ return friendlyName; }
+
+
