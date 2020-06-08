@@ -9,9 +9,14 @@ AddItemWindow::~AddItemWindow(){
 
     delete labelText;
     delete LProblem;
+
+    delete racchiudiStanza;
+    delete addRoom;
+    delete formLayout;
+    delete Vlayout;
 }
 
-AddItemWindow::AddItemWindow(QDialog *parent) : QDialog(parent){
+AddItemWindow::AddItemWindow(){
     //Qui verra' gestita la nuova finestra per l'inserimento del nuovo device
     Problem = new QDialog(this);
     LProblem = new QVBoxLayout(Problem);
@@ -19,8 +24,8 @@ AddItemWindow::AddItemWindow(QDialog *parent) : QDialog(parent){
     LProblem->addWidget(labelText);
 
     //dichiarazione dei layout
-    QVBoxLayout *Vlayout=new QVBoxLayout(this);
-    QFormLayout *formLayout=new QFormLayout();
+    Vlayout=new QVBoxLayout(this);
+    formLayout=new QFormLayout();
 
     //ridimensionamenti random
     formLayout->setRowWrapPolicy(QFormLayout::DontWrapRows);
@@ -38,14 +43,6 @@ AddItemWindow::AddItemWindow(QDialog *parent) : QDialog(parent){
     room = new QComboBox(this);
     room->addItem(tr("inserire stanza"));
 
-    /*for(int i=0;model->camere->count()>i;i++)
-    {
-        room->addItem(model->camere->operator [](i));
-    }
-    //il primo indice è quello "inserire la stanza"
-    //ATTENZIONE A QUESTA PARTE SE SI FA CUSTOM
-    room->setCurrentIndex(0);*/
-
 
     //Dichiarazione qcombobox dispositivo e popolamento
     device=new QComboBox(this);
@@ -57,11 +54,6 @@ AddItemWindow::AddItemWindow(QDialog *parent) : QDialog(parent){
 
     device->setCurrentIndex(0);
 
-
-
-    //aggiunta layout verticale al layout della finestra
-    //layout->addLayout(Vlayout);
-
     //inserimento campi in formlayout
     formLayout->addRow("Smart Device Name",name);
     formLayout->addRow("Description",description);
@@ -70,16 +62,14 @@ AddItemWindow::AddItemWindow(QDialog *parent) : QDialog(parent){
 
 
     /***********************************************************************************/
-    //DA RIFARE TUTTO IL LAYOUT (METTERE GRIGLIA O ALTRO)
     //aggiunta feature inserimento nuova stanza
-    QPushButton *addRoom=new QPushButton("Add Room");
-    QHBoxLayout *racchiudiStanza=new QHBoxLayout();
-
+    addRoom=new QPushButton("Add Room");
+    racchiudiStanza=new QHBoxLayout();
     aggiungiStanza=new QLineEdit(this);
+
+    addRoom->setEnabled(false);
     racchiudiStanza->addWidget(aggiungiStanza);
     racchiudiStanza->addWidget(addRoom);
-
-
     /***********************************************************************************/
 
 
@@ -97,12 +87,20 @@ AddItemWindow::AddItemWindow(QDialog *parent) : QDialog(parent){
     connect(buttonBox,SIGNAL(accepted()),this,SLOT(accept()));
     connect(buttonBox,SIGNAL(rejected()),this,SLOT(cancel()));
     connect(addRoom,SIGNAL(clicked()),this,SLOT(addNewRoomClicked()));
+    connect(aggiungiStanza,SIGNAL(textChanged(const QString&)),this,SLOT(addRoomTextChanged(const QString&)));
 
+}
+
+void AddItemWindow::addRoomTextChanged(const QString& text){
+    addRoom->setEnabled(!(text.isNull() || text.isEmpty()));
 }
 
 void AddItemWindow::populateRoomsComboBox(QList<const QString *> *list){
     //Aggiungo le stanze alla combo box e segno le stanze gia' presenti con l'enum adeguato
-    for (int i=0; i<list->count(); ++i) room->addItem(*(*list)[i], RoomType::EXIST);
+    for (int i=0; i<list->count(); ++i){
+        room->addItem(*(*list)[i], RoomType::EXIST);
+    }
+
 }
 
 //slot accetta: return dati solo se modificati dall'utente
@@ -116,21 +114,21 @@ void AddItemWindow::accept(){
     else
     {
         //controllo se la stanza selezionata e' una nuova stanza
-        if(room->currentData().userType() == RoomType::NEW) emit onAddNewRoom(room->currentText());
+        if(room->currentData().canConvert<RoomType>() && room->currentData().value<RoomType>() == RoomType::NEW) emit onAddNewRoom(room->currentText());
 
         //In base al tipo di device scelto, creo l'oggetto corrispondente
-        emit onAddNewDevice(device->currentData().userType(), room->currentText());
+        emit onAddNewDevice(device->currentData().value<DeviceType>(), room->currentText());
     }
 }
 
 void AddItemWindow::raiseProblemDialog(const QString &labText){
     labelText->setText(labText);
-    Problem->show();
+    Problem->exec();
 }
 
 // slot cancel: distruzione widget
 void AddItemWindow::cancel(){
-    this->destroy();
+    this->close();
 }
 
 //aggiunta stringa alle camere e aggiornamento lista room
@@ -144,6 +142,7 @@ void AddItemWindow::addNewRoomClicked(){
         int index = room->findText(roomName);
         if(index<0) room->addItem(roomName, RoomType::NEW);
         aggiungiStanza->setText("");
+        room->setCurrentIndex(index<0 ? room->count()-1 : index);
     }
 }
 

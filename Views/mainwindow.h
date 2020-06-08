@@ -33,7 +33,7 @@ public:
      * @brief addTab: Aggiunge un nuovo tab
      * @param tabName: Nome tab da aggiungere
      */
-    void addTab(const QString& tabName, bool isAll = false);
+    void addTab(const QString& tabName);
 
 signals:    
     /**

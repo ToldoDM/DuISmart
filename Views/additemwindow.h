@@ -32,7 +32,7 @@ public:
      * @brief AddItemWindow: Costruttore di default
      * @param parent
      */
-    explicit AddItemWindow(QDialog *parent);
+    explicit AddItemWindow();
 
     ~AddItemWindow();
 
@@ -43,6 +43,7 @@ public:
     void populateRoomsComboBox(QList<const QString*>* list);
 
 signals:
+
     /**
      * @brief onDeviceNameChanged: Evento generato quandoil testo del device name viene cambiatoS
      */
@@ -58,7 +59,7 @@ signals:
      * @param dType: Device type scelto
      * @param roomName: nome stanza
      */
-    void onAddNewDevice(int dType, const QString& roomNameS);
+    void onAddNewDevice(DeviceType dType, const QString& roomNameS);
 
     /**
      * @brief addNewRoom: Evento generato alla pressione del pulsante aggiungi stanza
@@ -89,6 +90,12 @@ private slots:
      */
     void addNewRoomClicked();
 
+    /**
+     * @brief addRoomTextChanged: Slot utilizzato per la gestione dell'abilitazione del pulsante aggiungi stanza
+     * @param text: testo di aggiungiStanza
+     */
+    void addRoomTextChanged(const QString& text);
+
 private:
 
     /**
@@ -107,6 +114,12 @@ private:
     QDialog *Problem;
     QVBoxLayout *LProblem;
     QLabel *labelText;
+
+    QVBoxLayout *Vlayout;
+    QFormLayout *formLayout;
+
+    QPushButton *addRoom;
+    QHBoxLayout *racchiudiStanza;
 };
 
 #endif // ADDITEMWINDOW_H

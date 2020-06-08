@@ -14,6 +14,13 @@ class Controller : public QObject {
 signals:
 
 private slots:
+
+    /**
+     * @brief addWinClosed: Slot utilizzato per la distruzione dell'oggetto AddItemWindow
+     * @param result: Risultato dialog
+     */
+    void addWinClosed(int result);
+
     /**
      * @brief clieckedHandler: Slot utilizzato per catturare il segnale bottone premuto di addDevice
      */
@@ -24,7 +31,7 @@ private slots:
      * @param dType: Tipo enum DeviceType
      * @param roomName: Nome stanza in cui inserire il device
      */
-    void addNewDeviceToMainW(int dType, const QString& roomName) const;
+    void addNewDeviceToMainW(DeviceType dType, const QString& roomName);
 
     /**
      * @brief setDeviceNameChanged: Slot utilizzato per aggironare il valore dalla variabile al model
@@ -45,28 +52,23 @@ private slots:
     void addNewRoom(const QString& roomName) const;
 
 private:
-
-    /**
-     * @brief secondaFinestra: Puntatore creato per passare la finestra parent alla finestra additem
-     */
-    QDialog* secondaFinestra;
     /**
      * @brief AddItemW: Finestra aggiunta nuovo device
      */
-    AddItemWindow* AddItemW;
+    AddItemWindow* AddItemW = nullptr;
     /**
      * @brief AddItemVM: Model Finestra aggiunta nuovo device
      */
-    AddItemModel* AddItemVM;
+    AddItemModel* AddItemVM = nullptr;
 
     /**
      * @brief MainVM: model della MainWindow
      */
-    MainViewModel* MainVM;
+    MainViewModel* MainVM = nullptr;
     /**
      * @brief MainW: Finestra principale
      */
-    MainWindow* MainW;
+    MainWindow* MainW = nullptr;
 
     /**
      * @brief addSmartDeviceToList: aggiunge lo smartDevice alla lista della main window

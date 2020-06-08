@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent){
 
     //Creazione della visualizzazione di default
     tab = new QTabWidget(this);
-    addDevice = new QPushButton(tr("Aggiungi"), this);
+    addDevice = new QPushButton(tr("Aggiungi un dispositivo"), this);
 
     //Main layout finestra
     QVBoxLayout *vLay = new QVBoxLayout(this);
@@ -20,11 +20,15 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent){
 
     //Imposto lo stile
     setWindowStyle();
+
+    //Rendo invisibile QTabWidget perche' non contiene nessun tab
+    tab->setVisible(false);
 }
 
-void MainWindow::addTab(const QString& tabName, bool isAll){
+void MainWindow::addTab(const QString& tabName){
     //Viene aggiunto unn nuovo tab con il nome indicato
-    isAll ? tab->insertTab(0, new QListWidget(this), tabName) : tab->addTab(new QListWidget(this), tabName);
+    tab->addTab(new QListWidget(this), tabName);
+    tab->setVisible(true);
 }
 
 void MainWindow::addToAllTab(DeviceListItem *dli, const QString& tabName) const{
@@ -43,11 +47,6 @@ void MainWindow::addToAllTab(DeviceListItem *dli, const QString& tabName) const{
         item->setSizeHint(QSize(0, 100));
         //Associo la custom view all'oggetto della lista
         found->setItemWidget(item, dli);
-
-        //Aggiungo il device nel tab "All" (che e' sempre il tab index 0)
-        QListWidget* allTab = dynamic_cast<QListWidget*>(tab->widget(0));
-        allTab->addItem(item);
-        allTab->setItemWidget(item, dli);
     }
 }
 
