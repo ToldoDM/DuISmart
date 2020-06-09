@@ -16,7 +16,6 @@ void Controller::addSmartDeviceToList(SmartDevice *device, const QString& target
 }
 
 void Controller::riseAddWindow(){
-    //secondaFinestra ha l'unica funzione di permettere ad exec di bloccare la prima finestra
     auto list = MainVM->getRoomList();
     AddItemVM = new AddItemModel(list);
     AddItemW = new AddItemWindow();
@@ -52,14 +51,13 @@ void Controller::setFriendlyNameChanged(const QString& text) const{ AddItemVM->s
 void Controller::addNewDeviceToMainW(DeviceType dType, const QString& roomName){
     switch (dType) {
     case DeviceType::BULB:
-        //ATTENZIONE!!! da rendere l'id del device univoco
-        addSmartDeviceToList(new Bulb(0, AddItemVM->getFName()), roomName);
+        addSmartDeviceToList(new Bulb(idCount++, AddItemVM->getFName()), roomName);
         break;
     case DeviceType::TV:
-        //addSmartDeviceToList(new Bulb(0), roomName);
+        addSmartDeviceToList(new Tv(idCount++, AddItemVM->getFName()), roomName);
         break;
     case DeviceType::THERMOSTAT:
-        //addSmartDeviceToList(new Bulb(0), roomName);
+        addSmartDeviceToList(new Thermostat(idCount++, AddItemVM->getFName()), roomName);
         break;
     }
 

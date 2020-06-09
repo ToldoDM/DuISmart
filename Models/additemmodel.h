@@ -5,7 +5,6 @@
 #include <QList>
 #include <QString>
 #include "basemodel.h"
-#include "Entities/bulb.h"
 #include "Enums/devicetype.h"
 
 class AddItemModel: public BaseModel

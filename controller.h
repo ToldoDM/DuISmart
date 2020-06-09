@@ -6,12 +6,12 @@
 #include "Models/additemmodel.h"
 #include "Views/mainwindow.h"
 #include "Views/additemwindow.h"
+#include "Entities/bulb.h"
+#include "Entities/tv.h"
+#include "Entities/thermostat.h"
 
 class Controller : public QObject {
     Q_OBJECT
-
-
-signals:
 
 private slots:
 
@@ -52,6 +52,12 @@ private slots:
     void addNewRoom(const QString& roomName) const;
 
 private:
+
+    /**
+     * @brief idCount: Id count utilizzato per gli id univoci dei device
+     */
+    int idCount = 0;
+
     /**
      * @brief AddItemW: Finestra aggiunta nuovo device
      */

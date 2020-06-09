@@ -10,7 +10,7 @@ DeviceListItem::DeviceListItem(int devId, const QString& fName, QWidget *parent)
     settButton = new SettingsButton(this);
 
     //Impostazione nomi label
-    deviceName = new QLabel(("Interruttore"));
+    deviceName = new QLabel();
     friendlyName = new QLabel(fName);
 
     //Impostazione icona default

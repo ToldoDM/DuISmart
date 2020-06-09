@@ -116,7 +116,7 @@ void AddItemWindow::accept(){
         //controllo se la stanza selezionata e' una nuova stanza
         if(room->currentData().canConvert<RoomType>() && room->currentData().value<RoomType>() == RoomType::NEW) emit onAddNewRoom(room->currentText());
 
-        //In base al tipo di device scelto, creo l'oggetto corrispondente
+        //lancio l'eventi addDevice specificando quale device e' stato scelto
         emit onAddNewDevice(device->currentData().value<DeviceType>(), room->currentText());
     }
 }

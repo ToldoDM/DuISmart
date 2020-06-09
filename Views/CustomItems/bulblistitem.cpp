@@ -4,6 +4,7 @@ BulbListItem::BulbListItem(int devId, const QString& fName, QWidget *parent) : D
 
     //Impostazione icona bulb
     ico->setPixmap(QPixmap(":Images/bulb.png").scaled(80,80));
+    deviceName->setText(tr("Interruttore"));
 
     interr = new OnOffButton();
 

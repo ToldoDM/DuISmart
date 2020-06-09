@@ -13,11 +13,7 @@ AddItemModel::AddItemModel(QList<const QString*> *list){
     friendlyName = tr("Device description");
 }
 
-void AddItemModel::insert(const QString& s){
-    //mettere controllo di stanza già presenti nella possibile lista
-    camere->append(&s);
-}
-
+void AddItemModel::insert(const QString& s){ camere->append(&s); }
 
 void AddItemModel::setDName(const QString &s){ deviceName = s; }
 

@@ -19,7 +19,7 @@ public:
     /**
      * @brief ~DeviceListItem: Distruttore
      */
-    virtual ~DeviceListItem() override;
+    virtual ~DeviceListItem();
 
 signals:
     /**
