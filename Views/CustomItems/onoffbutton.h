@@ -22,6 +22,15 @@ public:
      */
     virtual ~OnOffButton() override;
 
+    /**
+     * @brief setOnOffIcons: Imposta le icone del bottone
+     * @param onIco: Icona bottone on
+     * @param offIco: Icona bottone off
+     * @param onOver: Icona bottone on mouse over
+     * @param offOver: Icona bottone off mouse over
+     */
+    void setOnOffIcons(const QString& onIco, const QString& offIco, const QString& onOver, const QString& offOver);
+
 signals:
     /**
      * @brief onChangeState: Evento creato alla pressione del pulsante

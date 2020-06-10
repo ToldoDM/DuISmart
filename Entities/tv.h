@@ -21,6 +21,16 @@ public:
      * @return Oggetto visivo della lista
      */
     virtual DeviceListItem * getListType() const override;
+
+    /**
+     * @brief switchOnDevice: Metodo usato per avviare la procedura di accensione del device
+     */
+    virtual void switchOnDevice() const override;
+
+    /**
+     * @brief switchOffDevice: Metodo usato per avviare la procedura di spegnimento del device
+     */
+    virtual void switchOffDevice() const override;
 };
 
 #endif // TV_H

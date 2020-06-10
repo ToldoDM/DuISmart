@@ -6,4 +6,12 @@ DeviceListItem* Tv::getListType() const {
     return new TvListItem(deviceId, friendlyName);
 }
 
+void Tv::switchOnDevice() const {
+    //Logica per accensione
+}
+
+void Tv::switchOffDevice() const {
+    //Logica per spegnimento
+}
+
 

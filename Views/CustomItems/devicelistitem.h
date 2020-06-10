@@ -70,6 +70,11 @@ protected:
      */
     QVBoxLayout *vlay;
 
+    /**
+     * @brief centerHlay: Layout orizzontale utilizzato per il Widget centrale
+     */
+    QHBoxLayout *centerHlay;
+
 private:
 
     /**

@@ -10,6 +10,10 @@
     <file>Images/on_clicked.png</file>
     <file>Images/off.png</file>
     <file>Images/off_clicked.png</file>
+    <file>Images/day_over.png</file>
+    <file>Images/night_over.png</file>
+    <file>Images/day.png</file>
+    <file>Images/night.png</file>
     <file>Resources/style.css</file>
 </qresource>
 </RCC>

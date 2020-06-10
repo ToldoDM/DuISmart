@@ -1,9 +1,8 @@
 #ifndef THERMOLISTITEM_H
 #define THERMOLISTITEM_H
 
-#include<QString>
-#include<QWidget>
 #include "devicelistitem.h"
+#include "onoffbutton.h"
 
 class ThermoListItem : public DeviceListItem
 {
@@ -19,6 +18,17 @@ public:
      * @brief ~BulbListItem: Distruttore
      */
     virtual ~ThermoListItem();
+
+private:
+    /**
+     * @brief interr: Bottone con funzione di interruttore per la lampadina
+     */
+    OnOffButton *interr;
+
+    /**
+     * @brief temperature: Indica lo stato con la temperatura attuale
+     */
+    QLabel *temperature;
 };
 
 #endif // THERMOLISTITEM_H

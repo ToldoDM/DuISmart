@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent){
 
 void MainWindow::addTab(const QString& tabName){
     //Viene aggiunto unn nuovo tab con il nome indicato
-    tab->addTab(new QListWidget(this), tabName);
+    tab->setCurrentIndex(tab->addTab(new QListWidget(this), tabName));
     tab->setVisible(true);
 }
 
@@ -42,6 +42,9 @@ void MainWindow::addToAllTab(DeviceListItem *dli, const QString& tabName) const{
     if(found){
         //Creo l'oggetto da inserire nella lista
         QListWidgetItem *item = new QListWidgetItem();
+        //Rendo il list item non selezionabile
+        item->setFlags(item->flags() & ~Qt::ItemIsSelectable);
+
         found->addItem(item);
         //Creo la custom view dell'oggetto della lista
         item->setSizeHint(QSize(0, 100));

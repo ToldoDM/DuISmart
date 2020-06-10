@@ -1,10 +1,6 @@
 #include "onoffbutton.h"
 
 OnOffButton::OnOffButton(DeviceState actualState, QWidget *parent) : CustomButton(parent), state(actualState) {
-    onIco = QIcon(QPixmap(":Images/on.png"));
-    offIco = QIcon(QPixmap(":Images/off.png"));
-    onOver = QIcon(QPixmap(":Images/on_clicked.png"));
-    offOver = QIcon(QPixmap(":Images/off_clicked.png"));
     setIcon(state == DeviceState::Off ? offIco : onIco);
     setIconSize(QSize(100,100));
 }
@@ -30,3 +26,10 @@ void OnOffButton::leaveEvent(QEvent *event){
     setIcon(state == DeviceState::Off ? offIco : onIco);
 }
 
+void OnOffButton::setOnOffIcons(const QString &onIco, const QString &offIco, const QString &onOver, const QString &offOver){
+    this->onIco = QIcon(QPixmap(onIco));
+    this->offIco = QIcon(QPixmap(offIco));
+    this->onOver = QIcon(QPixmap(onOver));
+    this->offOver = QIcon(QPixmap(offOver));
+    setIcon(state == DeviceState::Off ? this->offIco : this->onIco);
+}
