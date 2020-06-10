@@ -1,34 +1,23 @@
 #include "additemmodel.h"
 
 
-additemmodel::additemmodel(QObject *parent): QObject(parent)
-{
-/*PROVA BULB, da utilizzare per gli oggetti*/
-    lampadina = new  QList<Bulb>;
-    Bulb b,c;
-    lampadina->append(b);
-    lampadina->append(c);
+AddItemModel::AddItemModel(QList<const QString*> *list){
 
-// lista camere da aggiungere
-    camere=new QList<QString>;
-    camere->append("inserire stanza");
-    camere->append("Cucina");
-    camere->append("Salotto");
-    camere->append("Bagno");
-    camere->append("Camera da letto");
+    // lista camere che verranno prese/passate dal mainVM
+    camere = list;
 
+    deviceName = tr("Device name");
+    friendlyName = tr("Device description");
 }
 
-void additemmodel::insert(const QString s){
+void AddItemModel::insert(const QString& s){
     //mettere controllo di stanza già presenti nella possibile lista
-    camere->append(s);
+    camere->append(&s);
 }
 
-//da fare funzione che ritorna stringa per view
-QString additemmodel::ExtractData(int a) const{
-    return camere->operator [](a);
-}
+void AddItemModel::setDName(const QString &s){ deviceName = s; }
 
-int additemmodel::NumEl() const{
-    return camere->count();
-}
+void AddItemModel::setFName(const QString &s){ friendlyName = s; }
+
+const QString& AddItemModel::getFName() const{ return friendlyName; }
+

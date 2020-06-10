@@ -1,24 +1,14 @@
 #include "mainwindow.h"
-#include "additem.h"
-
-
-//prova
+#include "additemwindow.h"
 #include "bulbsettings.h"
 
-MainWindow::MainWindow(MainViewModel* m,QWidget *parent) : model(m), QWidget(parent)
-{
-    this->model = model;
-
+MainWindow::MainWindow(QWidget *parent) : QWidget(parent){
     setWindowTitle ("DuISmartMainWindow");
     setFixedSize(640,480);
 
     //Creazione della visualizzazione di default
-    defaultTab = new QListWidget(this);
     tab = new QTabWidget(this);
-    addDevice = new QPushButton(tr("Aggiungi"), this);
-
-    //tab->addDevicedTab(defaultTab, tr("All"));
-    tab->addTab(defaultTab,tr("All"));
+    addDevice = new QPushButton(tr("Aggiungi un dispositivo"), this);
 
     //Main layout finestra
     QVBoxLayout *vLay = new QVBoxLayout(this);
@@ -26,55 +16,40 @@ MainWindow::MainWindow(MainViewModel* m,QWidget *parent) : model(m), QWidget(par
     vLay->addWidget(addDevice);
 
     //Colleggo segnali e slot
-    connect(addDevice, SIGNAL(clicked()), this, SLOT(addClieckedHandler()));
+    connect(addDevice, SIGNAL(clicked()), this, SIGNAL(addNewDevice()));
 
     //Imposto lo stile
     setWindowStyle();
-    secondaFinestra=new QDialog();
 
-
-
-// prova bottone impostazioni (da sostituire)
-    QPushButton *b = new QPushButton("impostazioni prova bulb",this);
-    vLay->addWidget(b);
-    connect(b,SIGNAL(clicked(bool)),this,SIGNAL(AccSettingsBulb()));
-
-// prova bottone imp 2.0
-    QPushButton *c = new QPushButton("impostazioni prova display",this);
-    vLay->addWidget(c);
-    connect(c,SIGNAL(clicked(bool)),this,SIGNAL(AccSettingsDisplay()));
+    //Rendo invisibile QTabWidget perche' non contiene nessun tab
+    tab->setVisible(false);
 }
 
-
-
-void MainWindow::addToAllList() const{
-
-    // ---ATTENZIONE--- esempio di inserimento
-
-    //Creo l'oggetto da inserire nella lista
-    QListWidgetItem *item = new QListWidgetItem();
-    defaultTab->addItem(item);
-    //Creo la custom view dell'oggetto della lista
-    BulbListItem *dli = new BulbListItem();
-    item->setSizeHint(QSize(0, 100));
-    //Associo la custom view all'oggetto della lista
-    defaultTab->setItemWidget(item, dli);
+void MainWindow::addTab(const QString& tabName){
+    //Viene aggiunto unn nuovo tab con il nome indicato
+    tab->addTab(new QListWidget(this), tabName);
+    tab->setVisible(true);
 }
 
+void MainWindow::addToAllTab(DeviceListItem *dli, const QString& tabName) const{
+    //cerco la stanza in cui mettere il device
+    QListWidget* found = nullptr;
+    for (int i = 0; i < tab->count() && !found; ++i) {
+        if(tab->tabText(i) == tabName) found = dynamic_cast<QListWidget*>(tab->widget(i));
+    }
 
-void MainWindow::addClieckedHandler()
-{
-    //secondaFinestra ha l'unica funzione di permettere ad exec di bloccare la prima finestra
-    AddItem *AddI=new AddItem(secondaFinestra);
-    AddI->exec();
-    addToAllList();
-/*
-        PROBLEMA RISCONTRATO: con exec, se dalla finestra figlia si chiude tramite il bottone cancel impedisce
-                              la creazione dell'oggetto che viene creato in automatico al click di "Aggiungi" della finestra principale,
-                              mentre se la si chiude dalla tab in alto a dx la crea normalmente -->??
-*/
-
+    //Controllo che found sia un QListWidget/sia stato trovato
+    if(found){
+        //Creo l'oggetto da inserire nella lista
+        QListWidgetItem *item = new QListWidgetItem();
+        found->addItem(item);
+        //Creo la custom view dell'oggetto della lista
+        item->setSizeHint(QSize(0, 100));
+        //Associo la custom view all'oggetto della lista
+        found->setItemWidget(item, dli);
+    }
 }
+
 
 void MainWindow::setWindowStyle(){
     // Imposto le dimensioni

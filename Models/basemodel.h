@@ -5,16 +5,15 @@
 
 class BaseModel : public QObject
 {
-    Q_OBJECT
-
-signals:
-
 public:
     /**
      * @brief BaseModel Costruttore di default
-     * @param parent    widget genitore
      */
-    BaseModel(QObject *parent = nullptr);
+    explicit BaseModel();
+
+    /**
+     * @brief ~BaseModel: Distruttore
+     */
     virtual ~BaseModel() = 0;
 };
 

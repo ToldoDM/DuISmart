@@ -1,5 +1,5 @@
 #include "smartdevice.h"
 
-SmartDevice::SmartDevice(){}
+SmartDevice::SmartDevice(const int& devID, const QString& fName) : deviceId(devID), friendlyName(fName) {}
 
 SmartDevice::~SmartDevice() = default;

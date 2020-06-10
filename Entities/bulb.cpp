@@ -1,8 +1,7 @@
 #include "bulb.h"
 
-Bulb::Bulb(){}
+Bulb::Bulb(const int& devID, const QString& fName) : SmartDevice(devID, fName) {}
 
-BulbListItem* Bulb::getListType() const {
-    BulbListItem* device = new BulbListItem();
-
+DeviceListItem* Bulb::getListType() const {
+    return new BulbListItem(deviceId, friendlyName);
 }

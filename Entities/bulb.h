@@ -11,14 +11,16 @@ class Bulb : public SmartDevice, public ListDevice
 public:
     /**
      * @brief Bulb: Costruttore di default
+     * @param devID: Id device
      */
-    Bulb();
+    explicit Bulb(const int& devID, const QString& fName);
 
     /**
      * @brief getListType: Metodo utilizzato per creare l'oggetto che verra' visualizzato nella lista dei device.
+     * @param devId: Id device di riferimento
      * @return Oggetto visivo della lista
      */
-    virtual BulbListItem* getListType() const;
+    virtual DeviceListItem * getListType() const override;
 };
 
 #endif // BULB_H

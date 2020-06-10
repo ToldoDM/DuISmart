@@ -4,38 +4,55 @@
 
 #include <QList>
 #include <QString>
-
+#include "basemodel.h"
 #include "Entities/bulb.h"
+#include "Enums/devicetype.h"
 
-class additemmodel: public QObject
+class AddItemModel: public BaseModel
 {
     Q_OBJECT
 public:
-    explicit additemmodel(QObject *parent=nullptr);
-
-    QList<Bulb> *lampadina;//test
 
     /**
-     * @brief ExtractData: estrazione dati di un particolare indice
-     * @return : Qstring dato presente nell'indice passato come parametro
+     * @brief AddItemModel: Costruttore di default
      */
-    QString ExtractData(int) const;
+    explicit AddItemModel(QList<const QString*> *list);
 
-    /**
-     * @brief NumEl: numero elementi in
-     * @return
-     */
-    int NumEl() const;
-
-private:
-    QList<QString> *camere;
-
-public slots:
     /**
      * @brief insert: utilizzato per inserire la nuova stanza
      */
-    void insert(const QString s);
+    void insert(const QString& s);
 
+    /**
+     * @brief setDName: utilizzato per aggiornare il valore di deviceName
+     */
+    void setDName(const QString& s);
+
+    /**
+     * @brief setFName: utilizzato per aggiornare il valore friendlyName
+     */
+    void setFName(const QString& s);
+
+    /**
+     * @brief setFName: utilizzato per avere il valore friendlyName
+     */
+    const QString& getFName() const;
+
+private:
+    /**
+     * @brief camere: Lista camere presenti
+     */
+    QList<const QString*> *camere;
+
+    /**
+     * @brief deviceName: Nome device
+     */
+    QString deviceName;
+
+    /**
+     * @brief friendlyName: Nome friendly
+     */
+    QString friendlyName;
 };
 
 #endif // ADDITEMMODEL_H
