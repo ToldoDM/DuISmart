@@ -6,7 +6,8 @@
 #include<Views/mainwindow.h>
 
 #include "Views/bulbsettings.h"
-
+#include "Views/displaysettings.h"
+#include "Views/thermostatsettings.h"
 
 class Controller : public QObject {
     Q_OBJECT
@@ -21,19 +22,19 @@ private slots:
     void riseBulbSettingsWindow();
 
     /**
-     * @brief BulbSelectColor: mostra impostazioni cambio colore/luminosità
+     * @brief riseDisplaySettings: stessa cosa del precedente ma di display settings
      */
-    void BulbSelectColor() const;
+    void riseDisplaySettings();
 
     /**
-     * @brief ChangeToSelectedColor: applica modifiche al bottone
+     * @brief getDisplaySettings: ottiene modifiche display
      */
-    void ChangeToSelectedColor(const QColor) const;
+    void getBulbSettings(const QColor , const int);
 
     /**
-     * @brief getBulbSettings: prende modifiche lampadina
+     * @brief getDisplaySettings: ottiene modifiche display
      */
-    void getBulbSettings(const QColor, const int);
+    void getDisplaySettings(const int , const int);
 
 private:
 
@@ -47,6 +48,10 @@ private:
     MainWindow* MainW;
 
     BulbSettings *BulbS;
+
+    DisplaySettings *DispS;
+
+    thermostatSettings *TherS;
 
 public:
     /**

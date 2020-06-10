@@ -5,7 +5,9 @@ Controller::Controller(QObject* parent) : QObject(parent){
     MainW = new MainWindow(MainVM);
 
     //connessioni segnali e slot
-    connect(MainW,SIGNAL(AccSettings()),this,SLOT(riseBulbSettingsWindow()));
+    connect(MainW,SIGNAL(AccSettingsBulb()),this,SLOT(riseBulbSettingsWindow()));
+
+    connect(MainW,SIGNAL(AccSettingsDisplay()),this, SLOT(riseDisplaySettings()));
 }
 
 void Controller::ShowMainWindow() const { MainW->show(); }
@@ -14,36 +16,28 @@ void Controller::ShowMainWindow() const { MainW->show(); }
 
 
 void Controller::riseBulbSettingsWindow(){
-    BulbS=new BulbSettings();
+
+    /*BulbS=new BulbSettings();
     BulbS->show();
 
-    //connessioni con impostazioni bulb
-    connect(BulbS,SIGNAL(pressedSelectColor()),this, SLOT(BulbSelectColor()));
 
-    //connessione slider-display
-    connect(BulbS,SIGNAL(ChangeDisplayInt(int)),BulbS->lcdBulb,SLOT(display(int)));
-    //non so se lcdBulb debba essere messa come private e gestire questo segnale direttamente da bulbsettings
-
-    //connessione segnale conferma di cDialog -> cambio colore del bottone selectColor
-    connect(BulbS,SIGNAL(selectedColor( const QColor)),this,SLOT(ChangeToSelectedColor(const QColor)));
-    //ho messo cambio di colore al bottone a caso, in realtà dovrebbe essere inviato al dispositivo fisico
-
+    //connessione per intercettare dati estratti
     connect(BulbS, SIGNAL(extractedData(const QColor,const int)),this,SLOT(getBulbSettings(const QColor, const int)));
+*/
+    TherS=new thermostatSettings();
+    TherS->show();
 }
 
-
-//mostra finestra
-void Controller::BulbSelectColor() const{
-    BulbS->cDialog->show();
+void Controller::getBulbSettings(const QColor colore, const int valore){
+    //fare qualcosa con i valori restituiti
 }
 
-//modifica sfondo bottone
-void Controller::ChangeToSelectedColor( const QColor colorSelected) const{
-    BulbS->selectColor->setPalette(colorSelected);
+void Controller::riseDisplaySettings(){
+
+    DispS= new DisplaySettings();
+    DispS->show();
 }
 
-//fare qualcosa con modifiche
-void Controller::getBulbSettings(const QColor color, const int displayValue){
-    // inviare modifiche a dispositivo
-
+void Controller::getDisplaySettings(const int contrast, const int brightness){
+    //fare qualcosa
 }

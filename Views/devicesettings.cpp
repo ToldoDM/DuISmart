@@ -23,5 +23,5 @@ void Settings::accept(){
 }
 
 void Settings::cancel(){
-    this->destroy();
+    this->close();
 }

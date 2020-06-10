@@ -32,11 +32,20 @@ MainWindow::MainWindow(MainViewModel* m,QWidget *parent) : model(m), QWidget(par
     setWindowStyle();
     secondaFinestra=new QDialog();
 
+
+
 // prova bottone impostazioni (da sostituire)
-    QPushButton *b = new QPushButton("impostazioni prova",this);
+    QPushButton *b = new QPushButton("impostazioni prova bulb",this);
     vLay->addWidget(b);
-    connect(b,SIGNAL(clicked(bool)),this,SIGNAL(AccSettings()));
+    connect(b,SIGNAL(clicked(bool)),this,SIGNAL(AccSettingsBulb()));
+
+// prova bottone imp 2.0
+    QPushButton *c = new QPushButton("impostazioni prova display",this);
+    vLay->addWidget(c);
+    connect(c,SIGNAL(clicked(bool)),this,SIGNAL(AccSettingsDisplay()));
 }
+
+
 
 void MainWindow::addToAllList() const{
 

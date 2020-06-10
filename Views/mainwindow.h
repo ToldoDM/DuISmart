@@ -34,7 +34,9 @@ signals:
     /**
      * @brief AccSettings: evento generato quando si preme il bottone "ingranaggio"
      */
-    void AccSettings();
+    void AccSettingsBulb();
+
+    void AccSettingsDisplay();
 
 public slots:
     /**
