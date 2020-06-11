@@ -28,6 +28,8 @@ SOURCES += \
         Entities/display.cpp \
         Entities/listdevice.cpp \
         Entities/smartdevice.cpp \
+    Entities/thermostat.cpp \
+    Entities/tv.cpp \
     Exceptions/argumentexception.cpp \
         Models/basemodel.cpp \
         Models/mainviewmodel.cpp \
@@ -37,6 +39,8 @@ SOURCES += \
         Views/CustomItems/devicelistitem.cpp \
         Views/CustomItems/onoffbutton.cpp \
     Views/CustomItems/settingsbutton.cpp \
+    Views/CustomItems/thermolistitem.cpp \
+    Views/CustomItems/tvlistitem.cpp \
     Views/additemwindow.cpp \
         Views/mainwindow.cpp \
         controller.cpp \
@@ -48,6 +52,8 @@ SOURCES += \
 
 
 HEADERS += \
+    Entities/thermostat.h \
+    Entities/tv.h \
     Enums/RoomType.h \
         Enums/devicestate.h \
         Entities/bulb.h \
@@ -63,6 +69,8 @@ HEADERS += \
         Views/CustomItems/devicelistitem.h \
         Views/CustomItems/onoffbutton.h \
     Views/CustomItems/settingsbutton.h \
+    Views/CustomItems/thermolistitem.h \
+    Views/CustomItems/tvlistitem.h \
     Views/additemwindow.h \
         Views/mainwindow.h \
         controller.h \

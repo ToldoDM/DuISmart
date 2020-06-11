@@ -1,24 +1,23 @@
-#ifndef BULBLISTITEM_H
-#define BULBLISTITEM_H
+#ifndef THERMOLISTITEM_H
+#define THERMOLISTITEM_H
 
 #include "devicelistitem.h"
 #include "onoffbutton.h"
 
-class BulbListItem : public DeviceListItem
+class ThermoListItem : public DeviceListItem
 {
 public:
-
     /**
      * @brief BulbListItem: Costruttore di default
      * @param devId: Identificativo dello smart device
      * @param parent: Widget genitore
      */
-    explicit BulbListItem(int devId, const QString& fName, QWidget *parent = nullptr);
+    explicit ThermoListItem(int devId, const QString& fName, QWidget *parent = nullptr);
 
     /**
      * @brief ~BulbListItem: Distruttore
      */
-    virtual ~BulbListItem();
+    virtual ~ThermoListItem();
 
 protected slots:
     /**
@@ -32,6 +31,10 @@ private:
      */
     OnOffButton *interr;
 
+    /**
+     * @brief temperature: Indica lo stato con la temperatura attuale
+     */
+    QLabel *temperature;
 };
 
-#endif // BULBLISTITEM_H
+#endif // THERMOLISTITEM_H

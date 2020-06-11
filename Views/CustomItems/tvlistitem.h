@@ -1,24 +1,25 @@
-#ifndef BULBLISTITEM_H
-#define BULBLISTITEM_H
+#ifndef TVLISTITEM_H
+#define TVLISTITEM_H
 
-#include "devicelistitem.h"
+#include<QString>
+#include<QWidget>
 #include "onoffbutton.h"
+#include "devicelistitem.h"
 
-class BulbListItem : public DeviceListItem
+class TvListItem : public DeviceListItem
 {
 public:
-
     /**
      * @brief BulbListItem: Costruttore di default
      * @param devId: Identificativo dello smart device
      * @param parent: Widget genitore
      */
-    explicit BulbListItem(int devId, const QString& fName, QWidget *parent = nullptr);
+    explicit TvListItem(int devId, const QString& fName, QWidget *parent = nullptr);
 
     /**
      * @brief ~BulbListItem: Distruttore
      */
-    virtual ~BulbListItem();
+    virtual ~TvListItem();
 
 protected slots:
     /**
@@ -31,7 +32,6 @@ private:
      * @brief interr: Bottone con funzione di interruttore per la lampadina
      */
     OnOffButton *interr;
-
 };
 
-#endif // BULBLISTITEM_H
+#endif // TVLISTITEM_H

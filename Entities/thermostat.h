@@ -1,11 +1,11 @@
-#ifndef BULB_H
-#define BULB_H
+#ifndef THERMOSTAT_H
+#define THERMOSTAT_H
 
 #include "listdevice.h"
 #include "smartdevice.h"
-#include "Views/CustomItems/bulblistitem.h"
+#include "Views/CustomItems/thermolistitem.h"
 
-class Bulb : public SmartDevice, public ListDevice
+class Thermostat: public SmartDevice, public ListDevice
 {
 
 public:
@@ -14,14 +14,14 @@ public:
      * @param devID: Id device
      * @param fName: Friendly name device
      */
-    explicit Bulb(const int& devID, const QString& fName);
+    explicit Thermostat(const int& devID, const QString& fName);
 
     /**
      * @brief getListType: Metodo utilizzato per creare l'oggetto che verra' visualizzato nella lista dei device.
      * @param devId: Id device di riferimento
      * @return Oggetto visivo della lista
      */
-    virtual DeviceListItem * getListType() const override;    
+    virtual DeviceListItem * getListType() const override;
 
     /**
      * @brief switchOnDevice: Metodo usato per avviare la procedura di accensione del device
@@ -34,4 +34,4 @@ public:
     virtual void switchOffDevice() const override;
 };
 
-#endif // BULB_H
+#endif // THERMOSTAT_H

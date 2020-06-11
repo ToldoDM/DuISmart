@@ -45,7 +45,7 @@ void Controller::riseDisplaySettings(){
 void Controller::getDisplaySettings(const int contrast, const int brightness){}
     //fare qualcosa
 
-void Controller::addSmartDeviceToList(DeviceType,SmartDevice *device, const QString& targetTab) const{
+void Controller::addSmartDeviceToList(SmartDevice *device, const QString& targetTab) const{
     DeviceListItem* dli = MainVM->addDevice(device);
     MainW->addToAllTab(dli, targetTab);
     connect(dli,SIGNAL(SettingPressed(DeviceType,int)),this,SLOT(selectSettings(DeviceType,int)));
@@ -107,17 +107,15 @@ void Controller::setFriendlyNameChanged(const QString& text) const{ AddItemVM->s
 void Controller::addNewDeviceToMainW(DeviceType dType, const QString& roomName){
     switch (dType) {
     case DeviceType::BULB:
-        //ATTENZIONE!!! da rendere l'id del device univoco
-        addSmartDeviceToList(BULB,new Bulb(0, AddItemVM->getFName()), roomName);
+        addSmartDeviceToList(new Bulb(idCount++, AddItemVM->getFName()), roomName);
         break;
-   /* case DeviceType::TV:
-        addSmartDeviceToList(new Bulb(0), roomName);
+    case DeviceType::TV:
+        addSmartDeviceToList(new Tv(idCount++, AddItemVM->getFName()), roomName);
         break;
     case DeviceType::THERMOSTAT:
-        addSmartDeviceToList(new (0), roomName);
+        addSmartDeviceToList(new Thermostat(idCount++, AddItemVM->getFName()), roomName);
         break;
     }
-*/
     AddItemW->close();
 }
-}
+

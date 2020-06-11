@@ -20,7 +20,7 @@ public:
     /**
      * @brief ~DeviceListItem: Distruttore
      */
-    virtual ~DeviceListItem() override;
+    virtual ~DeviceListItem();
 
 signals:
     /**
@@ -70,6 +70,11 @@ protected:
      * @brief vlay: Layout verticale utilizzato per il Widget centrale
      */
     QVBoxLayout *vlay;
+
+    /**
+     * @brief centerHlay: Layout orizzontale utilizzato per il Widget centrale
+     */
+    QHBoxLayout *centerHlay;
 
 private:
 

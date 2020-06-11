@@ -6,6 +6,9 @@
 #include "Models/additemmodel.h"
 #include "Views/mainwindow.h"
 #include "Views/additemwindow.h"
+#include "Entities/bulb.h"
+#include "Entities/tv.h"
+#include "Entities/thermostat.h"
 
 #include "Views/bulbsettings.h"
 #include "Views/displaysettings.h"
@@ -13,9 +16,6 @@
 
 class Controller : public QObject {
     Q_OBJECT
-
-
-signals:
 
 private slots:
 
@@ -82,6 +82,12 @@ private slots:
     void selectSettings(DeviceType,int deviceID) const;
 
 private:
+
+    /**
+     * @brief idCount: Id count utilizzato per gli id univoci dei device
+     */
+    int idCount = 0;
+
     /**
      * @brief AddItemW: Finestra aggiunta nuovo device
      */
@@ -103,7 +109,7 @@ private:
     /**
      * @brief addSmartDeviceToList: aggiunge lo smartDevice alla lista della main window
      */
-    void addSmartDeviceToList(DeviceType,SmartDevice* device, const QString& targetTab) const;
+    void addSmartDeviceToList(SmartDevice* device, const QString& targetTab) const;
 
     BulbSettings *BulbS;
 
