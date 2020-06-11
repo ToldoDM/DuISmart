@@ -27,9 +27,9 @@ void Controller::riseBulbSettingsWindow(){
 
     //connessione per intercettare dati estratti
     connect(BulbS, SIGNAL(extractedData(const QColor,const int)),this,SLOT(getBulbSettings(const QColor, const int)));
-*/
+
     TherS=new thermostatSettings();
-    TherS->show();
+    TherS->show();*/
 }
 
 void Controller::getBulbSettings(const QColor colore, const int valore){
@@ -42,16 +42,36 @@ void Controller::riseDisplaySettings(){
     DispS->show();
 }
 
-void Controller::getDisplaySettings(const int contrast, const int brightness){
+void Controller::getDisplaySettings(const int contrast, const int brightness){}
     //fare qualcosa
 
-void Controller::addSmartDeviceToList(SmartDevice *device, const QString& targetTab) const{
+void Controller::addSmartDeviceToList(DeviceType,SmartDevice *device, const QString& targetTab) const{
     DeviceListItem* dli = MainVM->addDevice(device);
     MainW->addToAllTab(dli, targetTab);
+    connect(dli,SIGNAL(SettingPressed(DeviceType,int)),this,SLOT(selectSettings(DeviceType,int)));
+}
+
+void Controller::selectSettings(DeviceType type, int IDNumber) const
+{
+    switch (type) {
+    case DeviceType::BULB:
+        BulbS->show();
+        break;
+
+    /*case DeviceType::TV:
+        DispS=new DisplaySettings() ;
+        DispS->show();
+        break;
+
+    case DeviceType::THERMOSTAT:
+        TherS=new thermostatSettings();
+        TherS->show();
+        break;*/
+    }
+
 }
 
 void Controller::riseAddWindow(){
-    //secondaFinestra ha l'unica funzione di permettere ad exec di bloccare la prima finestra
     auto list = MainVM->getRoomList();
     AddItemVM = new AddItemModel(list);
     AddItemW = new AddItemWindow();
@@ -88,15 +108,16 @@ void Controller::addNewDeviceToMainW(DeviceType dType, const QString& roomName){
     switch (dType) {
     case DeviceType::BULB:
         //ATTENZIONE!!! da rendere l'id del device univoco
-        addSmartDeviceToList(new Bulb(0, AddItemVM->getFName()), roomName);
+        addSmartDeviceToList(BULB,new Bulb(0, AddItemVM->getFName()), roomName);
         break;
-    case DeviceType::TV:
-        //addSmartDeviceToList(new Bulb(0), roomName);
+   /* case DeviceType::TV:
+        addSmartDeviceToList(new Bulb(0), roomName);
         break;
     case DeviceType::THERMOSTAT:
-        //addSmartDeviceToList(new Bulb(0), roomName);
+        addSmartDeviceToList(new (0), roomName);
         break;
     }
-
+*/
     AddItemW->close();
+}
 }

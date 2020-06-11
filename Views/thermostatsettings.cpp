@@ -11,14 +11,7 @@ thermostatSettings::thermostatSettings(Settings *parent): Settings(parent)
 /*
  * prova
 */
-    increase->setIcon(QIcon(":/Images/Triangolo_alto.png"));
-
-
     decrease = new QPushButton();
-    QPixmap pixmap(":/Images/Triangolo_basso.png");
-    QIcon ButtonIcon(pixmap);
-    decrease->setIcon(ButtonIcon);
-
 
     //inserimento bottoni in layout
     vlay->addWidget(increase);

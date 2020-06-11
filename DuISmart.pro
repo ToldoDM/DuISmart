@@ -31,6 +31,7 @@ SOURCES += \
     Exceptions/argumentexception.cpp \
         Models/basemodel.cpp \
         Models/mainviewmodel.cpp \
+        Models/additemmodel.cpp \
         Views/CustomItems/bulblistitem.cpp \
     Views/CustomItems/custombutton.cpp \
         Views/CustomItems/devicelistitem.cpp \
@@ -44,6 +45,7 @@ SOURCES += \
     Views/bulbsettings.cpp \
     Views/displaysettings.cpp \
     Views/thermostatsettings.cpp
+
 
 HEADERS += \
     Enums/RoomType.h \

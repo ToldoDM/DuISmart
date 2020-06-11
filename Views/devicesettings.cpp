@@ -14,7 +14,6 @@ Settings::Settings(QWidget *parent): QWidget(parent)
     connect(settingsBox,SIGNAL(accepted()),this,SLOT(accept()));
     connect(settingsBox,SIGNAL(rejected()),this,SLOT(cancel()));
 
-
     this->show();
 }
 

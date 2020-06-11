@@ -75,6 +75,12 @@ private slots:
      */
     void addNewRoom(const QString& roomName) const;
 
+    /**
+     * @brief selectSettings:: Slot utilizzato per sciegliere quale schermata impostazioni visualizzare per un determinato oggetto
+     * @param deviceID: codice identificativo unico degli oggetti
+     */
+    void selectSettings(DeviceType,int deviceID) const;
+
 private:
     /**
      * @brief AddItemW: Finestra aggiunta nuovo device
@@ -97,7 +103,7 @@ private:
     /**
      * @brief addSmartDeviceToList: aggiunge lo smartDevice alla lista della main window
      */
-    void addSmartDeviceToList(SmartDevice* device, const QString& targetTab) const;
+    void addSmartDeviceToList(DeviceType,SmartDevice* device, const QString& targetTab) const;
 
     BulbSettings *BulbS;
 

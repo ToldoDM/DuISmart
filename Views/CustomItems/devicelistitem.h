@@ -4,6 +4,7 @@
 #include <QBoxLayout>
 #include <QLabel>
 #include "settingsbutton.h"
+#include "Enums/devicetype.h"
 
 class DeviceListItem : public QWidget
 {
@@ -28,11 +29,11 @@ signals:
      */
     void SettingPressed(int devId);
 
-private slots:
+protected slots:
     /**
      * @brief onSettingClicked: Cattura evento setting cliecked
      */
-    void onSettingClicked();
+    virtual void onSettingClicked()=0;
 
 protected:
     /**

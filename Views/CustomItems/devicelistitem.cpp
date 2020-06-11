@@ -38,7 +38,3 @@ DeviceListItem::~DeviceListItem(){
     delete(hlay);
 }
 
-void DeviceListItem::onSettingClicked(){
-    //rilancio l'evento indicando a quale device fa' riferimento
-    emit SettingPressed(deviceId);
-}

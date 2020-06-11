@@ -29,4 +29,3 @@ void OnOffButton::leaveEvent(QEvent *event){
     CustomButton::leaveEvent(event);
     setIcon(state == DeviceState::Off ? offIco : onIco);
 }
-
