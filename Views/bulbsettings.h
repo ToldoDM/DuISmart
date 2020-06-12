@@ -19,15 +19,15 @@ public:
 
     explicit BulbSettings(Settings *parent=nullptr);
 
+protected:
     QPushButton *selectColor;
 
     QLCDNumber *lcdBulb;
 
     QColorDialog *cDialog;
 
-private:
-
     QSlider *sliderBulb;
+
     QColor *bulbColor;
 
 

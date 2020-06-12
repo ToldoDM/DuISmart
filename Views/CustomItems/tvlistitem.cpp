@@ -17,4 +17,6 @@ TvListItem::~TvListItem(){
     delete(interr);
 }
 
-void TvListItem::onSettingClicked(){}
+void TvListItem::onSettingClicked(){
+    emit DeviceListItem::SettingPressed(TV,deviceId);
+}

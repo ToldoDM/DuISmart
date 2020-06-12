@@ -21,4 +21,6 @@ ThermoListItem::~ThermoListItem(){
 }
 
 
-void ThermoListItem::onSettingClicked(){}
+void ThermoListItem::onSettingClicked(){
+    emit DeviceListItem::SettingPressed(THERMOSTAT,deviceId);
+}

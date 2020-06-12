@@ -27,7 +27,7 @@ signals:
      * @brief SettingPressed: Evento generato quando viene premuto il pulsante settings
      * @param devId: Id device di riferimento a cui e' stata chiesta la visualizzazione delle impostazioni
      */
-    void SettingPressed(int devId);
+    void SettingPressed(DeviceType,int devId);
 
 protected slots:
     /**

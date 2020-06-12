@@ -4,69 +4,44 @@ Controller::Controller(QObject* parent) : QObject(parent){
     MainVM = new MainViewModel();
     MainW = new MainWindow();
 
-    //connessioni segnali e slot
-    connect(MainW,SIGNAL(AccSettingsBulb()),this,SLOT(riseBulbSettingsWindow()));
-
-    connect(MainW,SIGNAL(AccSettingsDisplay()),this, SLOT(riseDisplaySettings()));
-
-
     //Connessioni segnali e slot
     connect(MainW, SIGNAL(addNewDevice()), this, SLOT(riseAddWindow()));
 }
 
 void Controller::ShowMainWindow() const { MainW->show(); }
 
-//in questa classe gestisco tutte le viste e i model
-
-
-void Controller::riseBulbSettingsWindow(){
-
-    /*BulbS=new BulbSettings();
-    BulbS->show();
-
-
-    //connessione per intercettare dati estratti
-    connect(BulbS, SIGNAL(extractedData(const QColor,const int)),this,SLOT(getBulbSettings(const QColor, const int)));
-
-    TherS=new thermostatSettings();
-    TherS->show();*/
-}
-
-void Controller::getBulbSettings(const QColor colore, const int valore){
-    //fare qualcosa con i valori restituiti
-}
-
-void Controller::riseDisplaySettings(){
-
-    DispS= new DisplaySettings();
-    DispS->show();
-}
-
-void Controller::getDisplaySettings(const int contrast, const int brightness){}
+//void Controller::getDisplaySettings(const int contrast, const int brightness){}
+    //fare qualcosa
+//void Controller::getThermostatSettings(int temp){}
+    //fare qualcosa
+//void Controller::getDisplaySettings(int brightness , const int contrast)){}
     //fare qualcosa
 
+// metodo che permette l'aggiunta di un nuovo device in un tab
 void Controller::addSmartDeviceToList(SmartDevice *device, const QString& targetTab) const{
     DeviceListItem* dli = MainVM->addDevice(device);
     MainW->addToAllTab(dli, targetTab);
     connect(dli,SIGNAL(SettingPressed(DeviceType,int)),this,SLOT(selectSettings(DeviceType,int)));
 }
 
+//slot la cui funzione è quella di direzionare a quale finestra di impostazioni si riferisce il segnale settingpressed
 void Controller::selectSettings(DeviceType type, int IDNumber) const
 {
     switch (type) {
     case DeviceType::BULB:
+        BulbS= new BulbSettings();
         BulbS->show();
         break;
 
-    /*case DeviceType::TV:
+    case DeviceType::TV:
         DispS=new DisplaySettings() ;
         DispS->show();
         break;
 
     case DeviceType::THERMOSTAT:
-        TherS=new thermostatSettings();
+        TherS=new ThermostatSettings();
         TherS->show();
-        break;*/
+        break;
     }
 
 }

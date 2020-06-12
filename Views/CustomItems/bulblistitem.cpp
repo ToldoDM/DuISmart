@@ -17,5 +17,5 @@ BulbListItem::~BulbListItem(){
 }
 
 void BulbListItem::onSettingClicked(){
-    emit SettingPressed(BULB,deviceId);
+    emit DeviceListItem::SettingPressed(BULB,deviceId);
 }

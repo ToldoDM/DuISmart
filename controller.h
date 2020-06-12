@@ -18,26 +18,20 @@ class Controller : public QObject {
     Q_OBJECT
 
 private slots:
+    /**
+     * @brief getThermostatSettings: ottiene le modifiche apportate al termostato
+     */
+    //void getThermostatSettings(int);
 
     /**
-     * @brief riseSettingsWindow: slot utilizzato per catturare segnale inviato per accedere alle impostazioni del device bulb
+     * @brief getBulbSettings: ottiene modifiche display
      */
-    void riseBulbSettingsWindow();
-
-    /**
-     * @brief riseDisplaySettings: stessa cosa del precedente ma di display settings
-     */
-    void riseDisplaySettings();
-
-    /**
-     * @brief getDisplaySettings: ottiene modifiche display
-     */
-    void getBulbSettings(const QColor , const int);
+    //void getBulbSettings(const QColor , const int);
 
     /**
      * @brief getDisplaySettings: ottiene modifiche display
      */
-    void getDisplaySettings(const int , const int);
+    //void getDisplaySettings(const int , const int);
 
     /**
      * @brief addWinClosed: Slot utilizzato per la distruzione dell'oggetto AddItemWindow
@@ -111,11 +105,11 @@ private:
      */
     void addSmartDeviceToList(SmartDevice* device, const QString& targetTab) const;
 
-    BulbSettings *BulbS;
+    mutable BulbSettings *BulbS;
 
-    DisplaySettings *DispS;
+    mutable DisplaySettings *DispS;
 
-    thermostatSettings *TherS;
+    mutable ThermostatSettings *TherS;
 
 public:
     /**

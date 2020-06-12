@@ -7,20 +7,28 @@
 #include <QIcon>
 #include <QPixmap>
 
-class thermostatSettings : public Settings
+class ThermostatSettings : public Settings
 {
     Q_OBJECT
 public:
-    thermostatSettings(Settings *parent=nullptr);
-private:
+    ThermostatSettings(Settings *parent=nullptr);
+protected:
     QPushButton *increase;
     QPushButton *decrease;
     QLCDNumber *num ;
+
+signals:
+    void ThermostatExtractedData(int);
+
+
 private slots:
 
     void displayIncreased();
 
     void displayDecreased();
+
+private slots:
+    virtual void accept();
 };
 
 #endif // THERMOSTATSETTINGS_H

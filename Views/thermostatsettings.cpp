@@ -1,6 +1,6 @@
 #include "thermostatsettings.h"
 
-thermostatSettings::thermostatSettings(Settings *parent): Settings(parent)
+ThermostatSettings::ThermostatSettings(Settings *parent): Settings(parent)
 {
     QHBoxLayout *hlay=new QHBoxLayout();
     gLayout->addLayout(hlay,1,1);
@@ -8,9 +8,7 @@ thermostatSettings::thermostatSettings(Settings *parent): Settings(parent)
     // xreazione bottoni aumento e decremento + layout
     QVBoxLayout *vlay = new QVBoxLayout();
     increase = new QPushButton();
-/*
- * prova
-*/
+
     decrease = new QPushButton();
 
     //inserimento bottoni in layout
@@ -29,12 +27,17 @@ thermostatSettings::thermostatSettings(Settings *parent): Settings(parent)
 }
 
 
-void thermostatSettings::displayIncreased(){
+void ThermostatSettings::displayIncreased(){
     int i= num->value();
     emit num->display(i+1);
 }
 
-void thermostatSettings::displayDecreased(){
+void ThermostatSettings::displayDecreased(){
     int i= num->value();
     emit num->display(i-1);
+}
+
+void ThermostatSettings::accept(){
+    emit ThermostatExtractedData(num->value());
+    emit Settings::cancel();
 }

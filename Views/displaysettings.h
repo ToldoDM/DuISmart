@@ -15,7 +15,7 @@ class DisplaySettings : public Settings
     Q_OBJECT
 public:
     DisplaySettings(Settings *parent=nullptr);
-
+protected:
     //campi per il contrasto
     QLCDNumber *lcdCont;
     QSlider *sliderCont;
@@ -27,7 +27,6 @@ public:
     //campo per il refresh-rate
     //QComboBox *refreshRate;
 
-private:
 
 signals:
     void displayExtractedData(int, int);
