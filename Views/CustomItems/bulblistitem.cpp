@@ -15,3 +15,7 @@ BulbListItem::BulbListItem(int devId, const QString& fName, QWidget *parent) : D
 BulbListItem::~BulbListItem(){
     delete(interr);
 }
+
+void BulbListItem::onSettingClicked(){
+    emit SettingPressed(BULB,deviceId);
+}

@@ -76,7 +76,7 @@ protected:
      */
     QHBoxLayout *centerHlay;
 
-private:
+protected:
 
     /**
      * @brief deviceId: Identificativo del device

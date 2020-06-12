@@ -16,3 +16,5 @@ TvListItem::TvListItem(int devId, const QString& fName, QWidget *parent) : Devic
 TvListItem::~TvListItem(){
     delete(interr);
 }
+
+void TvListItem::onSettingClicked(){}

@@ -19,3 +19,6 @@ ThermoListItem::ThermoListItem(int devId, const QString& fName, QWidget *parent)
 ThermoListItem::~ThermoListItem(){
     delete(interr);
 }
+
+
+void ThermoListItem::onSettingClicked(){}
