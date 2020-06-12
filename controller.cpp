@@ -10,13 +10,6 @@ Controller::Controller(QObject* parent) : QObject(parent){
 
 void Controller::ShowMainWindow() const { MainW->show(); }
 
-//void Controller::getDisplaySettings(const int contrast, const int brightness){}
-    //fare qualcosa
-//void Controller::getThermostatSettings(int temp){}
-    //fare qualcosa
-//void Controller::getDisplaySettings(int brightness , const int contrast)){}
-    //fare qualcosa
-
 // metodo che permette l'aggiunta di un nuovo device in un tab
 void Controller::addSmartDeviceToList(SmartDevice *device, const QString& targetTab) const{
     DeviceListItem* dli = MainVM->addDevice(device);
@@ -30,17 +23,21 @@ void Controller::selectSettings(DeviceType type, int IDNumber) const
     switch (type) {
     case DeviceType::BULB:
         BulbS= new BulbSettings();
+        //void Controller::getBulbSettings(int brightness , const int contrast)){}
         BulbS->show();
         break;
 
     case DeviceType::TV:
         DispS=new DisplaySettings() ;
         DispS->show();
+        //void Controller::getDisplaySettings(const int contrast, const int brightness){}
+
         break;
 
     case DeviceType::THERMOSTAT:
         TherS=new ThermostatSettings();
         TherS->show();
+        //void Controller::getThermostatSettings(int temp){}
         break;
     }
 

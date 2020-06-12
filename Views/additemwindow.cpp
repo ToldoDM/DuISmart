@@ -57,8 +57,8 @@ AddItemWindow::AddItemWindow(){
     //inserimento campi in formlayout
     formLayout->addRow("Smart Device Name",name);
     formLayout->addRow("Description",description);
-    formLayout->addRow("Room",room);
     formLayout->addRow("Device",device);
+    formLayout->addRow("Room",room);
 
 
     /***********************************************************************************/
@@ -68,8 +68,9 @@ AddItemWindow::AddItemWindow(){
     aggiungiStanza=new QLineEdit(this);
 
     addRoom->setEnabled(false);
-    racchiudiStanza->addWidget(aggiungiStanza);
-    racchiudiStanza->addWidget(addRoom);
+    //racchiudiStanza->addWidget(addRoom);
+    //racchiudiStanza->addWidget(aggiungiStanza);
+    formLayout->addRow(addRoom,aggiungiStanza);
     /***********************************************************************************/
 
 

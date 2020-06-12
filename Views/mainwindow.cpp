@@ -67,14 +67,6 @@ void MainWindow::setWindowStyle(){
     setStyleSheet(styleSheet);
 }
 
-/*  spostato nel controller
- * // prova settings
-void MainWindow::sett(){
-    BulbSettings *settings=new BulbSettings();
-    settings->show();
-}
-
-*/
 
 
 

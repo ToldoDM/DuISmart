@@ -15,6 +15,8 @@
 #include <QComboBox>
 #include <QDialogButtonBox>
 
+#include <QGridLayout>
+
 //prova
 #include <QMenu>
 #include <QToolButton>
