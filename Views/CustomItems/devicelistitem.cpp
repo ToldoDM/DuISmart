@@ -39,7 +39,7 @@ DeviceListItem::~DeviceListItem(){
     delete(centerHlay);
     delete(center);
     delete(ico);
-    delete(hlay);    
+    delete(hlay);
 }
 
 void DeviceListItem::onSettingClicked(){

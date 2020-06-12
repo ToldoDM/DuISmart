@@ -11,8 +11,9 @@ ThermoListItem::ThermoListItem(int devId, const QString& fName, QWidget *parent)
     interr->setOnOffIcons(tr(":Images/day.png"), tr(":Images/night.png"), tr(":Images/day_over.png"), tr(":Images/night_over.png"));
     interr->setIconSize(QSize(100,70));
 
-    //Aggiunta scritta con riferimento allo stato attuale del device (TODO)
-    centerHlay->addWidget(new QLabel("23°C"));
+    //Aggiunta scritta con riferimento allo stato attuale del device
+    temperature = new QLabel("23°C");
+    centerHlay->addWidget(temperature);
 
     //Inserimento dello switch day/night
     hlay->addWidget(interr);
@@ -20,5 +21,6 @@ ThermoListItem::ThermoListItem(int devId, const QString& fName, QWidget *parent)
 }
 
 ThermoListItem::~ThermoListItem(){
-    delete(interr);
+    delete interr;
+    delete temperature;
 }
