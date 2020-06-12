@@ -20,6 +20,7 @@ void Controller::addSmartDeviceToList(SmartDevice *device, const QString& target
 void Controller::removeSmartDeviceFromList() const{
     //Prendo il dli e tramite l'item trovo l'oggetto QlistWidgetItem della lista e lo cancello
     //Cancello il dli e successivamente cancello lo smartDevice dalla lista device
+    //Controllo se il tab dove era il device e se non ci sono piu device lo cancello
 }
 
 //slot la cui funzione è quella di direzionare a quale finestra di impostazioni si riferisce il segnale settingpressed
