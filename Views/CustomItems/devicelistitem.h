@@ -5,6 +5,7 @@
 #include <QLabel>
 #include "settingsbutton.h"
 #include "Enums/devicetype.h"
+#include <QListWidgetItem>
 
 class DeviceListItem : public QWidget
 {
@@ -22,12 +23,23 @@ public:
      */
     virtual ~DeviceListItem();
 
+    /**
+     * @brief setListItem: Imposta il ListItem a cui viene associato il dli
+     * @param qli: List item
+     */
+    void setListItem(QListWidgetItem* qli);
+
 signals:
     /**
      * @brief SettingPressed: Evento generato quando viene premuto il pulsante settings
      * @param devId: Id device di riferimento a cui e' stata chiesta la visualizzazione delle impostazioni
      */
     void SettingPressed(DeviceType,int devId);
+
+    /**
+     * @brief deleteRequest: Evento generato alla richiesta di cancellazione dello smartDevice
+     */
+    void deleteRequest();
 
 protected slots:
     /**
@@ -76,12 +88,15 @@ protected:
      */
     QHBoxLayout *centerHlay;
 
-protected:
-
     /**
      * @brief deviceId: Identificativo del device
      */
     int deviceId;
+
+    /**
+     * @brief item: Item di riferimento a cui e' attaccato il widget
+     */
+    QListWidgetItem *item;
 
 };
 

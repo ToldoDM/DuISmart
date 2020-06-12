@@ -10,18 +10,16 @@ Controller::Controller(QObject* parent) : QObject(parent){
 
 void Controller::ShowMainWindow() const { MainW->show(); }
 
-//void Controller::getDisplaySettings(const int contrast, const int brightness){}
-    //fare qualcosa
-//void Controller::getThermostatSettings(int temp){}
-    //fare qualcosa
-//void Controller::getDisplaySettings(int brightness , const int contrast)){}
-    //fare qualcosa
-
 // metodo che permette l'aggiunta di un nuovo device in un tab
 void Controller::addSmartDeviceToList(SmartDevice *device, const QString& targetTab) const{
     DeviceListItem* dli = MainVM->addDevice(device);
     MainW->addToAllTab(dli, targetTab);
     connect(dli,SIGNAL(SettingPressed(DeviceType,int)),this,SLOT(selectSettings(DeviceType,int)));
+}
+
+void Controller::removeSmartDeviceFromList() const{
+    //Prendo il dli e tramite l'item trovo l'oggetto QlistWidgetItem della lista e lo cancello
+    //Cancello il dli e successivamente cancello lo smartDevice dalla lista device
 }
 
 //slot la cui funzione è quella di direzionare a quale finestra di impostazioni si riferisce il segnale settingpressed
@@ -43,7 +41,6 @@ void Controller::selectSettings(DeviceType type, int IDNumber) const
         TherS->show();
         break;
     }
-
 }
 
 void Controller::riseAddWindow(){

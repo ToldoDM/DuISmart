@@ -50,6 +50,9 @@ void MainWindow::addToAllTab(DeviceListItem *dli, const QString& tabName) const{
         item->setSizeHint(QSize(0, 100));
         //Associo la custom view all'oggetto della lista
         found->setItemWidget(item, dli);
+
+        //Associo al dli il QListItem per utilizzo cancellazione
+        dli->setListItem(item);
     }
 }
 
@@ -66,15 +69,5 @@ void MainWindow::setWindowStyle(){
 
     setStyleSheet(styleSheet);
 }
-
-/*  spostato nel controller
- * // prova settings
-void MainWindow::sett(){
-    BulbSettings *settings=new BulbSettings();
-    settings->show();
-}
-
-*/
-
 
 

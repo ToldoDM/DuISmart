@@ -31,6 +31,8 @@ DeviceListItem::DeviceListItem(int devId, const QString& fName, QWidget *parent)
     connect(settButton,SIGNAL(onClicked()),this,SLOT(onSettingClicked()));
 }
 
+void DeviceListItem::setListItem(QListWidgetItem *qli){ item = qli; }
+
 DeviceListItem::~DeviceListItem(){
     delete(settButton);
     delete(friendlyName);
