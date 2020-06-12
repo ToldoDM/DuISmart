@@ -82,6 +82,7 @@ protected:
      * @brief deviceId: Identificativo del device
      */
     int deviceId;
+
 };
 
 #endif // DEVICELISTITEM_H
