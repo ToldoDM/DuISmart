@@ -54,9 +54,22 @@ DisplaySettings::DisplaySettings(Settings *parent): Settings(parent)
 
 */ //non so se metterlo
 
+    //creazione bottone e spinbox(range numeri)
+    QHBoxLayout *chHLay=new QHBoxLayout();
+    spinBox=new QSpinBox();
+    QPushButton *Channel=new QPushButton("Change channel");
+    //gestione layout
+    chHLay->addWidget(Channel);
+    chHLay->addWidget(spinBox);
+
+    vlay->addLayout(chHLay);
+
+    spinBox->setRange(1,100);
+
+
 
 // dimensioni minime
-    this->setMinimumSize(400,250);
+    this->setMinimumSize(450,250);
 
 
     //connessione segnale value changed con segnale ChangeContrast che verrà intercettato dal controller
@@ -64,6 +77,9 @@ DisplaySettings::DisplaySettings(Settings *parent): Settings(parent)
 
     //connessione segnale value changed con segnale ChangeBrightness che verrà intercettato dal controller
     connect(sliderBright,SIGNAL(valueChanged(int)),lcdBright,SLOT(display(int)));
+
+    //connessione bottone change channel con invio del nuovo canale
+    connect(Channel,SIGNAL(clicked(bool)),this,SLOT(newChannel()));
 }
 
 
@@ -72,4 +88,7 @@ void DisplaySettings::accept(){
     emit Settings::cancel();
 }
 
+void DisplaySettings::newChannel(){
+    emit setNewChannel(spinBox->value());
+}
 
