@@ -14,6 +14,8 @@
 #include "Views/displaysettings.h"
 #include "Views/thermostatsettings.h"
 
+#include "txtmanager.h"
+
 class Controller : public QObject {
     Q_OBJECT
 
@@ -110,6 +112,11 @@ private:
     mutable DisplaySettings *DispS;
 
     mutable ThermostatSettings *TherS;
+
+    /**
+     * @brief fileIO: oggetto che permette scrittura su file
+     */
+    TxtManager* fileIO;
 
 public:
     /**

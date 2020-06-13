@@ -48,7 +48,8 @@ SOURCES += \
     Views/devicesettings.cpp \
     Views/bulbsettings.cpp \
     Views/displaysettings.cpp \
-    Views/thermostatsettings.cpp
+    Views/thermostatsettings.cpp \
+    txtmanager.cpp
 
 
 HEADERS += \
@@ -78,7 +79,8 @@ HEADERS += \
     Views/devicesettings.h \
     Views/bulbsettings.h \
     Views/displaysettings.h \
-    Views/thermostatsettings.h
+    Views/thermostatsettings.h \
+    txtmanager.h
 
 FORMS +=
 

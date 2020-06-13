@@ -11,13 +11,17 @@ ThermostatSettings::ThermostatSettings(Settings *parent): Settings(parent)
     QIcon up(":/Images/Up.png");
     increase->setIcon(up);
     increase->setMinimumSize(50,50);
-    increase->setIconSize(QSize(50,50));
+    increase->sizeIncrement().width();
+
+    //da fare resize->ingrandimento
+
+    //increase->setIconSize(QSize(49,49));
     //increase->setStyleSheet("*{border-image: url (:/Images/bulb.png)}");
 
     decrease = new QPushButton();
     QIcon down(":/Images/Down.png");
-    increase->setIcon(down);
-    increase->setMinimumSize(50,50);
+    decrease->setIcon(down);
+    decrease->setMinimumSize(50,50);
 
     //inserimento bottoni in layout
     vlay->addWidget(increase);

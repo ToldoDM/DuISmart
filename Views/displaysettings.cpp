@@ -37,6 +37,10 @@ DisplaySettings::DisplaySettings(Settings *parent): Settings(parent)
     setDisplay->addWidget(lcdBright,2,3);
     setDisplay->addWidget(sliderBright,2,4);
 
+
+    // da fare i tasti telecomando
+
+
 /*
 // refresh rate
     QHBoxLayout *hlay=new QHBoxLayout();

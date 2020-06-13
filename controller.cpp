@@ -4,6 +4,8 @@ Controller::Controller(QObject* parent) : QObject(parent){
     MainVM = new MainViewModel();
     MainW = new MainWindow();
 
+    fileIO = new TxtManager();
+    
     //Connessioni segnali e slot
     connect(MainW, SIGNAL(addNewDevice()), this, SLOT(riseAddWindow()));
 }
@@ -79,13 +81,16 @@ void Controller::setFriendlyNameChanged(const QString& text) const{ AddItemVM->s
 void Controller::addNewDeviceToMainW(DeviceType dType, const QString& roomName){
     switch (dType) {
     case DeviceType::BULB:
-        addSmartDeviceToList(new Bulb(idCount++, AddItemVM->getFName()), roomName);
+        fileIO->writeData(BULB,idCount++,roomName);
+        addSmartDeviceToList(new Bulb(idCount, AddItemVM->getFName()), roomName);
         break;
     case DeviceType::TV:
-        addSmartDeviceToList(new Tv(idCount++, AddItemVM->getFName()), roomName);
+        fileIO->writeData(TV,idCount++,roomName);
+        addSmartDeviceToList(new Tv(idCount, AddItemVM->getFName()), roomName);
         break;
     case DeviceType::THERMOSTAT:
-        addSmartDeviceToList(new Thermostat(idCount++, AddItemVM->getFName()), roomName);
+        fileIO->writeData(THERMOSTAT,idCount++,roomName);
+        addSmartDeviceToList(new Thermostat(idCount, AddItemVM->getFName()), roomName);
         break;
     }
     AddItemW->close();
