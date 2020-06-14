@@ -61,6 +61,11 @@ private slots:
      */
     void selectSettings(DeviceType,int deviceID) const;
 
+    /**
+     * @brief removeSmartDeviceFromList: rimuove lo smart device dalla lista visiva e dalla lista codice
+     */
+    void removeSmartDeviceFromList(QListWidgetItem*, int) const;
+
 private:
 
     /**
@@ -90,11 +95,6 @@ private:
      * @brief addSmartDeviceToList: aggiunge lo smartDevice alla lista della main window
      */
     void addSmartDeviceToList(SmartDevice* device, const QString& targetTab) const;
-
-    /**
-     * @brief removeSmartDeviceFromList: rimuove lo smart device dalla lista visiva e dalla lista codice
-     */
-    void removeSmartDeviceFromList() const;
 
     mutable BulbSettings *BulbS;
 

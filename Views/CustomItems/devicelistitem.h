@@ -39,13 +39,18 @@ signals:
     /**
      * @brief deleteRequest: Evento generato alla richiesta di cancellazione dello smartDevice
      */
-    void deleteRequest();
+    void deleteRequest(QListWidgetItem*, int);
 
 protected slots:
     /**
      * @brief onSettingClicked: Cattura evento setting cliecked
      */
     virtual void onSettingClicked()=0;
+
+    /**
+     * @brief onDeleteRequest: Slot utilizzato  per rilanciare il segnale deleteRequest con i campi necessari
+     */
+    void onDeleteRequest();
 
 protected:
     /**

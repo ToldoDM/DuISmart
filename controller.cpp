@@ -15,11 +15,16 @@ void Controller::addSmartDeviceToList(SmartDevice *device, const QString& target
     DeviceListItem* dli = MainVM->addDevice(device);
     MainW->addToAllTab(dli, targetTab);
     connect(dli,SIGNAL(SettingPressed(DeviceType,int)),this,SLOT(selectSettings(DeviceType,int)));
+
+    //ATTENZIONE!!! PER QUESTIONE DI TESTING!!!
+    connect(dli, SIGNAL(deleteRequest(QListWidgetItem*, int)), this, SLOT(removeSmartDeviceFromList(QListWidgetItem*, int)));
 }
 
-void Controller::removeSmartDeviceFromList() const{
-    //Prendo il dli e tramite l'item trovo l'oggetto QlistWidgetItem della lista e lo cancello
-    //Cancello il dli e successivamente cancello lo smartDevice dalla lista device
+void Controller::removeSmartDeviceFromList(QListWidgetItem* qli, int deviceID) const{
+    //Tramite qli trovo l'oggetto deviceList della lista e lo cancello
+    MainW->removeFromTab(qli);
+    //Cancellato il qli, successivamente cancello lo smartDevice dalla lista device
+    MainVM->removeDevice(deviceID);
     //Controllo se il tab dove era il device e se non ci sono piu device lo cancello
 }
 
