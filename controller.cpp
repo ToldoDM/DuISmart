@@ -8,6 +8,10 @@ Controller::Controller(QObject* parent) : QObject(parent){
     
     //Connessioni segnali e slot
     connect(MainW, SIGNAL(addNewDevice()), this, SLOT(riseAddWindow()));
+
+    connect(fileIO,SIGNAL(readedData(QString,QString)),this, SLOT(insertData(QString,QString)));
+    // caricare file se sono salvati
+    fileIO->readData();
 }
 
 void Controller::ShowMainWindow() const { MainW->show(); }
@@ -41,6 +45,20 @@ void Controller::selectSettings(DeviceType type, int IDNumber) const
         TherS->show();
         //void Controller::getThermostatSettings(int temp){}
         break;
+    }
+
+}
+
+void Controller::insertData(QString tipo, QString room_name)
+{
+    if(tipo=="0"){
+        addNewDeviceToMainW(BULB,room_name);
+    }
+    else if(tipo=="1"){
+        addNewDeviceToMainW(TV,room_name);
+    }
+    else{
+        addNewDeviceToMainW(THERMOSTAT,room_name);
     }
 
 }

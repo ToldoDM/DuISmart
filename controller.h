@@ -77,6 +77,11 @@ private slots:
      */
     void selectSettings(DeviceType,int deviceID) const;
 
+    /**
+     * @brief insertData: slot che permette il caricamento dei device dopo la chiusura
+     */
+    void insertData(QString, QString);
+
 private:
 
     /**

@@ -10,17 +10,23 @@
 #include "Enums/devicestate.h"
 #include <QTextStream>
 
+#include <QStringList>
 
-class TxtManager
+class TxtManager : public QObject
 {
+    Q_OBJECT
 public:
-    TxtManager();
+    TxtManager(QObject *parent=nullptr);
 
     /**
      * @brief writeData: funzione che permette di scrivere su file le informazione dell'oggetto
      */
     void writeData(DeviceType, int, QString/*, QString, DeviceState*/);
 
+    /**
+     * @brief readData: funzione per lettura dati su file
+     */
+    void readData();
 
 private:
     /**
@@ -28,6 +34,8 @@ private:
      */
     QFile *nameFile;
 
+signals:
+    void readedData(QString,QString);
 
 };
 
