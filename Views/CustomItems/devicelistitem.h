@@ -4,6 +4,7 @@
 #include <QBoxLayout>
 #include <QLabel>
 #include "settingsbutton.h"
+#include "closebutton.h"
 #include "Enums/devicetype.h"
 #include <QListWidgetItem>
 
@@ -57,6 +58,11 @@ protected:
      * @brief settButton: Bottone settings
      */
     SettingsButton *settButton;
+
+    /**
+     * @brief closeButton: bottone chiusura
+     */
+    CloseButton *closeButton;
 
     /**
      * @brief deviceName: Nome device (Lampada, TV, Termostato etc.)

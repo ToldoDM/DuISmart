@@ -49,7 +49,8 @@ SOURCES += \
     Views/bulbsettings.cpp \
     Views/displaysettings.cpp \
     Views/thermostatsettings.cpp \
-    txtmanager.cpp
+    txtmanager.cpp \
+    Views/CustomItems/closebutton.cpp
 
 
 HEADERS += \
@@ -80,7 +81,8 @@ HEADERS += \
     Views/bulbsettings.h \
     Views/displaysettings.h \
     Views/thermostatsettings.h \
-    txtmanager.h
+    txtmanager.h \
+    Views/CustomItems/closebutton.h
 
 FORMS +=
 

@@ -10,6 +10,8 @@ DeviceListItem::DeviceListItem(int devId, const QString& fName, QWidget *parent)
     ico = new QLabel(this);
     settButton = new SettingsButton(this);
 
+    closeButton= new CloseButton(this);
+
     //Impostazione nomi label
     deviceName = new QLabel();
     friendlyName = new QLabel(fName);
@@ -23,18 +25,25 @@ DeviceListItem::DeviceListItem(int devId, const QString& fName, QWidget *parent)
     vlay->addWidget(deviceName);
     vlay->addWidget(friendlyName);
 
+    //prova posizione bottone chiusura
+    hlay->addWidget(closeButton);
+
     hlay->addWidget(ico);
     hlay->addWidget(center);
     hlay->addWidget(settButton);
 
+
+
+
     //connessione segnali e slot
-    //connect(settButton,SIGNAL(onClicked()),this,SLOT(onSettingClicked()));
+    connect(settButton,SIGNAL(onClicked()),this,SLOT(onSettingClicked()));
 
     //PER QUESTIONI DI TEST!!! ATTENZIONE!!!
-    connect(settButton,SIGNAL(onClicked()),this,SLOT(onDeleteRequest()));
+    connect(closeButton,SIGNAL(onClicked()),this,SLOT(onDeleteRequest()));
 }
 
 void DeviceListItem::onDeleteRequest(){ emit deleteRequest(item, deviceId); }
+
 
 void DeviceListItem::setListItem(QListWidgetItem *qli){ item = qli; }
 

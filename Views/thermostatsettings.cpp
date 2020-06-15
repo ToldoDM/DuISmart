@@ -11,7 +11,7 @@ ThermostatSettings::ThermostatSettings(Settings *parent): Settings(parent)
     QIcon up(":/Images/Up.png");
     increase->setIcon(up);
     increase->setMinimumSize(50,50);
-    increase->sizeIncrement().width();
+    //increase->sizeIncrement().width();
 
     //da fare resize->ingrandimento
 
@@ -41,12 +41,14 @@ ThermostatSettings::ThermostatSettings(Settings *parent): Settings(parent)
 
 void ThermostatSettings::displayIncreased(){
     int i= num->value();
-    emit num->display(i+1);
+    if(i<45)
+        emit num->display(i+1);
 }
 
 void ThermostatSettings::displayDecreased(){
     int i= num->value();
-    emit num->display(i-1);
+    if(i>0)
+        emit num->display(i-1);
 }
 
 void ThermostatSettings::accept(){

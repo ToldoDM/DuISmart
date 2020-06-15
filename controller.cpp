@@ -20,9 +20,10 @@ void Controller::ShowMainWindow() const { MainW->show(); }
 void Controller::addSmartDeviceToList(SmartDevice *device, const QString& targetTab) const{
     DeviceListItem* dli = MainVM->addDevice(device);
     MainW->addToAllTab(dli, targetTab);
+    //connessione bottone impostazioni
     connect(dli,SIGNAL(SettingPressed(DeviceType,int)),this,SLOT(selectSettings(DeviceType,int)));
 
-    //ATTENZIONE!!! PER QUESTIONE DI TESTING!!!
+    //connessione bottone delete
     connect(dli, SIGNAL(deleteRequest(QListWidgetItem*, int)), this, SLOT(removeSmartDeviceFromList(QListWidgetItem*, int)));
 }
 
@@ -109,16 +110,16 @@ void Controller::setFriendlyNameChanged(const QString& text) const{ AddItemVM->s
 void Controller::addNewDeviceToMainW(DeviceType dType, const QString& roomName){
     switch (dType) {
     case DeviceType::BULB:
-        fileIO->writeData(BULB,idCount++,roomName);
-        addSmartDeviceToList(new Bulb(idCount, AddItemVM->getFName()), roomName);
+        addSmartDeviceToList(new Bulb(idCount++, AddItemVM->getFName()), roomName);
+        fileIO->writeData(BULB,idCount,roomName);
         break;
     case DeviceType::TV:
-        fileIO->writeData(TV,idCount++,roomName);
-        addSmartDeviceToList(new Tv(idCount, AddItemVM->getFName()), roomName);
+        addSmartDeviceToList(new Tv(idCount++, AddItemVM->getFName()), roomName);
+        fileIO->writeData(TV,idCount,roomName);
         break;
     case DeviceType::THERMOSTAT:
-        fileIO->writeData(THERMOSTAT,idCount++,roomName);
-        addSmartDeviceToList(new Thermostat(idCount, AddItemVM->getFName()), roomName);
+        addSmartDeviceToList(new Thermostat(idCount++, AddItemVM->getFName()), roomName);
+        fileIO->writeData(THERMOSTAT,idCount,roomName);
         break;
     }
     AddItemW->close();
