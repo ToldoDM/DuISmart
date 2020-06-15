@@ -31,6 +31,16 @@ void MainWindow::addTab(const QString& tabName){
     tab->setVisible(true);
 }
 
+void MainWindow::removeFromTab(QListWidgetItem *qli) const{
+    //Tutti i tab hanno come widget QListWidget
+    auto qList = dynamic_cast<QListWidget*>(tab->widget(tab->currentIndex()));
+    //Elimino il DeviceListItem associato a qli
+    qList->removeItemWidget(qli);
+    delete qList->itemWidget(qli);
+    //Per eliminare qli dalla lista visivamente e' sufficiente eliminare il puntatore
+    delete qli;
+}
+
 void MainWindow::addToAllTab(DeviceListItem *dli, const QString& tabName) const{
     //cerco la stanza in cui mettere il device
     QListWidget* found = nullptr;
@@ -50,6 +60,9 @@ void MainWindow::addToAllTab(DeviceListItem *dli, const QString& tabName) const{
         item->setSizeHint(QSize(0, 100));
         //Associo la custom view all'oggetto della lista
         found->setItemWidget(item, dli);
+
+        //Associo al dli il QListItem per utilizzo cancellazione
+        dli->setListItem(item);
     }
 }
 
@@ -66,7 +79,6 @@ void MainWindow::setWindowStyle(){
 
     setStyleSheet(styleSheet);
 }
-
 
 
 

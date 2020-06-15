@@ -20,20 +20,6 @@ class Controller : public QObject {
     Q_OBJECT
 
 private slots:
-    /**
-     * @brief getThermostatSettings: ottiene le modifiche apportate al termostato
-     */
-    //void getThermostatSettings(int);
-
-    /**
-     * @brief getBulbSettings: ottiene modifiche display
-     */
-    //void getBulbSettings(const QColor , const int);
-
-    /**
-     * @brief getDisplaySettings: ottiene modifiche display
-     */
-    //void getDisplaySettings(const int , const int);
 
     /**
      * @brief addWinClosed: Slot utilizzato per la distruzione dell'oggetto AddItemWindow
@@ -77,10 +63,15 @@ private slots:
      */
     void selectSettings(DeviceType,int deviceID) const;
 
-    /**
-     * @brief insertData: slot che permette il caricamento dei device dopo la chiusura
+    
+     /** @brief insertData: slot che permette il caricamento dei device dopo la chiusura
      */
     void insertData(QString, QString);
+
+     /** @brief removeSmartDeviceFromList: rimuove lo smart device dalla lista visiva e dalla lista codice
+     */
+    void removeSmartDeviceFromList(QListWidgetItem*, int) const;
+
 
 private:
 

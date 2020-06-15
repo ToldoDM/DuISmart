@@ -4,8 +4,7 @@
 #include "basemodel.h"
 #include "Entities/smartdevice.h"
 #include "Entities/listdevice.h"
-#include <vector>
-
+#include <QVector>
 
 class MainViewModel : public BaseModel{
 
@@ -23,6 +22,12 @@ public:
      * @return
      */
     const SmartDevice* getDevice(int deviceId) const;
+
+    /**
+     * @brief removeDevice: Rimuove il device dalla lista
+     * @param devId: Id del device da eliminare
+     */
+    void removeDevice(int devId);
 
     /**
      * @brief addDevice: Metodo per aggiungere un nuovo device alla lista
@@ -53,7 +58,7 @@ private:
     /**
      * @brief deviceList: Lista device
      */
-    std::vector<const SmartDevice*> deviceList;
+    QVector<const SmartDevice*> deviceList;
 };
 
 #endif // MAINVIEWMODEL_H

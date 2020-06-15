@@ -28,8 +28,15 @@ DeviceListItem::DeviceListItem(int devId, const QString& fName, QWidget *parent)
     hlay->addWidget(settButton);
 
     //connessione segnali e slot
-    connect(settButton,SIGNAL(onClicked()),this,SLOT(onSettingClicked()));
+    //connect(settButton,SIGNAL(onClicked()),this,SLOT(onSettingClicked()));
+
+    //PER QUESTIONI DI TEST!!! ATTENZIONE!!!
+    connect(settButton,SIGNAL(onClicked()),this,SLOT(onDeleteRequest()));
 }
+
+void DeviceListItem::onDeleteRequest(){ emit deleteRequest(item, deviceId); }
+
+void DeviceListItem::setListItem(QListWidgetItem *qli){ item = qli; }
 
 DeviceListItem::~DeviceListItem(){
     delete(settButton);

@@ -29,6 +29,11 @@ public:
      */
     void addToAllTab(DeviceListItem* dli, const QString& tabName) const;
 
+    /**
+     * @brief removeFromTab: Rimuove dal tab corrente il qli ed il suo widget associato
+     * @param qli: list item della lista
+     */
+    void removeFromTab(QListWidgetItem* qli) const;
 
 public slots:
     /**

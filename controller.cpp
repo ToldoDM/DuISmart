@@ -21,6 +21,17 @@ void Controller::addSmartDeviceToList(SmartDevice *device, const QString& target
     DeviceListItem* dli = MainVM->addDevice(device);
     MainW->addToAllTab(dli, targetTab);
     connect(dli,SIGNAL(SettingPressed(DeviceType,int)),this,SLOT(selectSettings(DeviceType,int)));
+
+    //ATTENZIONE!!! PER QUESTIONE DI TESTING!!!
+    connect(dli, SIGNAL(deleteRequest(QListWidgetItem*, int)), this, SLOT(removeSmartDeviceFromList(QListWidgetItem*, int)));
+}
+
+void Controller::removeSmartDeviceFromList(QListWidgetItem* qli, int deviceID) const{
+    //Tramite qli trovo l'oggetto deviceList della lista e lo cancello
+    MainW->removeFromTab(qli);
+    //Cancellato il qli, successivamente cancello lo smartDevice dalla lista device
+    MainVM->removeDevice(deviceID);
+    //Controllo se il tab dove era il device e se non ci sono piu device lo cancello
 }
 
 //slot la cui funzione è quella di direzionare a quale finestra di impostazioni si riferisce il segnale settingpressed
@@ -46,7 +57,6 @@ void Controller::selectSettings(DeviceType type, int IDNumber) const
         //void Controller::getThermostatSettings(int temp){}
         break;
     }
-
 }
 
 void Controller::insertData(QString tipo, QString room_name)
