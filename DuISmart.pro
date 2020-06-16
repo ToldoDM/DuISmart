@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         Entities/bulb.cpp \
+    Entities/cvector.cpp \
         Entities/display.cpp \
         Entities/listdevice.cpp \
         Entities/smartdevice.cpp \
@@ -52,6 +53,7 @@ SOURCES += \
 
 
 HEADERS += \
+    Entities/cvector.h \
     Entities/thermostat.h \
     Entities/tv.h \
     Enums/RoomType.h \

@@ -1,5 +1,6 @@
 #include "mainviewmodel.h"
 
+
 MainViewModel::MainViewModel() : BaseModel() {
     rooms = new QList<const QString*>();
 }
@@ -17,26 +18,25 @@ void MainViewModel::addRoom(const QString *newRoom){
 
 void MainViewModel::removeDevice(int devId){
     const SmartDevice* dev = nullptr;
-    for(auto it = deviceList.begin(); it != deviceList.end() && !dev; ++it) {
-        dev = (*it)->isThisDevice(devId);
-        if(dev){
-            delete dev;
-            deviceList.erase(it);
-        }
-    }
+     for (int i=0; i<deviceList.size() && !dev; i++) {
+         dev = deviceList[i]->isThisDevice(devId);
+         if(dev){
+             deviceList.erase(dev);
+         }
+     }
 }
 
 QList<const QString*>* MainViewModel::getRoomList(){ return rooms; }
 
 DeviceListItem* MainViewModel::addDevice(SmartDevice* newDevice){
-    deviceList.insert(deviceList.end(), newDevice);
+    deviceList.push(newDevice);
     ListDevice* ld = dynamic_cast<ListDevice*>(newDevice);
     return ld ? ld->getListType() : nullptr;
 }
 
 const SmartDevice* MainViewModel::getDevice(int deviceId) const{
     const SmartDevice* dev = nullptr;
-    for(auto it = deviceList.begin(); it != deviceList.end() && !dev; ++it) { dev = (*it)->isThisDevice(deviceId); }
+    for (int i=0; i<deviceList.size(); i++) { dev = deviceList[i]->isThisDevice(deviceId); }
     return dev;
 }
 
