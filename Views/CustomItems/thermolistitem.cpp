@@ -12,20 +12,25 @@ ThermoListItem::ThermoListItem(int devId, const QString& fName, QWidget *parent)
     interr->setIconSize(QSize(100,70));
 
     //Aggiunta scritta con riferimento allo stato attuale del device
-    temperature = new QLabel("23°C");
-    centerHlay->addWidget(temperature);
+    //change = new QLabel("23°C");
+    //centerHlay->addWidget(change);
 
     //Inserimento dello switch day/night
     hlay->addWidget(interr);
 
+    //inserimento qlabel nel layout di devicelistitem
+    centerHlay->addWidget(changeTemp);
+
+    changeTemp->setText("Temperatura: ");
 }
 
 ThermoListItem::~ThermoListItem(){
     delete interr;
-    delete temperature;
+    delete changeTemp;
 }
 
 
 void ThermoListItem::onSettingClicked(){
     emit DeviceListItem::SettingPressed(THERMOSTAT,deviceId);
 }
+

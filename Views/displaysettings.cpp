@@ -85,6 +85,7 @@ DisplaySettings::DisplaySettings(Settings *parent): Settings(parent)
 
 void DisplaySettings::accept(){
     emit displayExtractedData(lcdCont->value(),lcdBright->value());
+    emit setNewChannel(spinBox->value());
     emit Settings::cancel();
 }
 

@@ -10,16 +10,21 @@ TvListItem::TvListItem(int devId, const QString& fName, QWidget *parent) : Devic
     interr->setOnOffIcons(tr(":Images/on.png"), tr(":Images/off.png"), tr(":Images/on_clicked.png"), tr(":Images/off_clicked.png"));
 
     //Aggiunta scritta con riferimento allo stato attuale del device
-    channel = new QLabel("Ch.: 6");
-    centerHlay->addWidget(channel);
+    //change = new QLabel("Ch.: 6");
+    //centerHlay->addWidget(channel);
 
     //Inserimento dello switch acceso/spento
     hlay->addWidget(interr);
+
+    //inserimento della label nel layout di devicelistitem
+    centerHlay->addWidget(changeChan);
+
+    changeChan->setText("Canale: ");
 }
 
 TvListItem::~TvListItem(){
     delete interr;
-    delete channel;
+    delete DeviceListItem::changeChan;
 }
 
 void TvListItem::onSettingClicked(){

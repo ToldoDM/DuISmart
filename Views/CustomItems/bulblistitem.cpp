@@ -12,6 +12,7 @@ BulbListItem::BulbListItem(int devId, const QString& fName, QWidget *parent) : D
     hlay->addWidget(interr);
 }
 
+
 BulbListItem::~BulbListItem(){
     delete(interr);
 }
@@ -19,3 +20,4 @@ BulbListItem::~BulbListItem(){
 void BulbListItem::onSettingClicked(){
     emit DeviceListItem::SettingPressed(BULB,deviceId);
 }
+

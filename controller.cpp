@@ -25,6 +25,10 @@ void Controller::addSmartDeviceToList(SmartDevice *device, const QString& target
 
     //connessione bottone delete
     connect(dli, SIGNAL(deleteRequest(QListWidgetItem*, int)), this, SLOT(removeSmartDeviceFromList(QListWidgetItem*, int)));
+
+    connect(this,SIGNAL(changeChan(int)),dli,SLOT(changeLabelChan(int)));
+    connect(this,SIGNAL(changeTemp(int)),dli,SLOT(changeLabelTemp(int)));
+
 }
 
 void Controller::removeSmartDeviceFromList(QListWidgetItem* qli, int deviceID) const{
@@ -48,17 +52,25 @@ void Controller::selectSettings(DeviceType type, int IDNumber) const
     case DeviceType::TV:
         DispS=new DisplaySettings() ;
         DispS->show();
-        //void Controller::getDisplaySettings(const int contrast, const int brightness){}
-
+        connect(DispS,SIGNAL(setNewChannel(int)),this,SLOT(getChannel(int)));
         break;
 
     case DeviceType::THERMOSTAT:
         TherS=new ThermostatSettings();
         TherS->show();
-        //void Controller::getThermostatSettings(int temp){}
+        connect(TherS,SIGNAL(ThermostatExtractedData(int)),this,SLOT(getTemp(int)));
         break;
     }
 }
+
+void Controller::getChannel(int channel){
+    emit changeChan(channel);
+}
+
+void Controller::getTemp(int temp){
+    emit changeTemp(temp);
+}
+
 
 void Controller::insertData(QString tipo, QString room_name)
 {

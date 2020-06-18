@@ -1,6 +1,7 @@
 #ifndef DEVICELISTITEM_H
 #define DEVICELISTITEM_H
 
+#include <QSize>
 #include <QBoxLayout>
 #include <QLabel>
 #include "settingsbutton.h"
@@ -30,6 +31,23 @@ public:
      */
     void setListItem(QListWidgetItem* qli);
 
+    /**
+     * @brief Change: Label che identifica temperatura / canale
+     */
+    QLabel *changeTemp;
+    QLabel *changeChan;
+
+public slots:
+    /**
+     * @brief changeLabelChan:slot utilizzato per modificare in label canale
+     */
+    void changeLabelChan(int);
+
+    /**
+     * @brief changeLabelTemp:slot utilizzato per modificare in label temperatura
+     */
+    void changeLabelTemp(int);
+
 signals:
     /**
      * @brief SettingPressed: Evento generato quando viene premuto il pulsante settings
@@ -52,6 +70,8 @@ protected slots:
      * @brief onDeleteRequest: Slot utilizzato  per rilanciare il segnale deleteRequest con i campi necessari
      */
     void onDeleteRequest();
+
+
 
 protected:
     /**

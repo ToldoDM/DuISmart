@@ -11,12 +11,6 @@ ThermostatSettings::ThermostatSettings(Settings *parent): Settings(parent)
     QIcon up(":/Images/Up.png");
     increase->setIcon(up);
     increase->setMinimumSize(50,50);
-    //increase->sizeIncrement().width();
-
-    //da fare resize->ingrandimento
-
-    //increase->setIconSize(QSize(49,49));
-    //increase->setStyleSheet("*{border-image: url (:/Images/bulb.png)}");
 
     decrease = new QPushButton();
     QIcon down(":/Images/Down.png");
@@ -25,7 +19,7 @@ ThermostatSettings::ThermostatSettings(Settings *parent): Settings(parent)
 
     //inserimento bottoni in layout
     vlay->addWidget(increase);
-    vlay->addWidget(decrease);
+    vlay->addWidget(decrease);    
 
     //inserimento layout verticale in quello orizzontale
     hlay->addLayout(vlay);
@@ -42,13 +36,13 @@ ThermostatSettings::ThermostatSettings(Settings *parent): Settings(parent)
 void ThermostatSettings::displayIncreased(){
     int i= num->value();
     if(i<45)
-        emit num->display(i+1);
+        num->display(i+1);
 }
 
 void ThermostatSettings::displayDecreased(){
     int i= num->value();
     if(i>0)
-        emit num->display(i-1);
+        num->display(i-1);
 }
 
 void ThermostatSettings::accept(){

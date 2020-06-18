@@ -25,16 +25,13 @@ protected slots:
      */
     virtual void onSettingClicked() override;
 
+
 private:
     /**
      * @brief interr: Bottone con funzione di interruttore per la lampadina
      */
     OnOffButton *interr;
 
-    /**
-     * @brief temperature: Indica lo stato con la temperatura attuale
-     */
-    QLabel *temperature;
 };
 
 #endif // THERMOLISTITEM_H

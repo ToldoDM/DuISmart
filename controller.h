@@ -22,6 +22,16 @@ class Controller : public QObject {
 private slots:
 
     /**
+     * @brief getChannel: cattura il segnale setNewChannel per cambiare il canale
+     */
+    void getChannel(int);
+
+    /**
+     * @brief getTemp: cattura il segnale di cambiamento della temperatura
+     */
+    void getTemp(int);
+
+    /**
      * @brief addWinClosed: Slot utilizzato per la distruzione dell'oggetto AddItemWindow
      * @param result: Risultato dialog
      */
@@ -63,7 +73,7 @@ private slots:
      */
     void selectSettings(DeviceType,int deviceID) const;
 
-    
+
      /** @brief insertData: slot che permette il caricamento dei device dopo la chiusura
      */
     void insertData(QString, QString);
@@ -74,6 +84,11 @@ private slots:
 
 
 private:
+
+    /**
+     * @brief dli:oggetto di tipo device list item
+     */
+    DeviceListItem *dli;
 
     /**
      * @brief idCount: Id count utilizzato per gli id univoci dei device
@@ -103,16 +118,29 @@ private:
      */
     void addSmartDeviceToList(SmartDevice* device, const QString& targetTab) const;
 
+    /**
+     * @brief BulbS: impostazioni lampadina
+     */
     mutable BulbSettings *BulbS;
 
+    /**
+     * @brief DispS: impostazioni Tv
+     */
     mutable DisplaySettings *DispS;
 
+    /**
+     * @brief TherS: impostazini termosifone
+     */
     mutable ThermostatSettings *TherS;
 
     /**
      * @brief fileIO: oggetto che permette scrittura su file
      */
     TxtManager* fileIO;
+
+
+    //SmartDevice *pointer;
+
 
 public:
     /**
@@ -125,6 +153,18 @@ public:
      * @brief ShowMainWindow: Comando che chiama show della mainWindow
      */
     void ShowMainWindow() const;
+
+
+signals:
+    /**
+     * @brief changeChan: segnale cambiamento canale
+     */
+    void changeChan(int);
+
+    /**
+     * @brief changeTemp: segnale cambiamento temperatura
+     */
+    void changeTemp(int);
 };
 
 #endif

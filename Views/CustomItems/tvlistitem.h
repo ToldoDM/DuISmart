@@ -27,16 +27,12 @@ protected slots:
      */
     virtual void onSettingClicked() override;
 
+
 private:
     /**
      * @brief interr: Bottone con funzione di interruttore per la lampadina
      */
     OnOffButton *interr;
-
-    /**
-     * @brief channel: Label che indica il canale attuale della televisione
-     */
-    QLabel *channel;
 };
 
 #endif // TVLISTITEM_H

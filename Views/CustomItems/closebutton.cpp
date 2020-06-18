@@ -3,8 +3,8 @@
 CloseButton::CloseButton(QWidget *parent) : CustomButton(parent){
   //IconStd = QIcon(":/Images/close_std.png");
   //onOver = QIcon(":Images/close_over.png");
-  IconStd = QIcon(":/Images/night.png");
-  onOver = QIcon(":Images/bulb.png");
+  IconStd = QIcon(":/Images/close_std.png");
+  onOver = QIcon(":Images/close_over.png");
   setIcon(IconStd);
   setIconSize(QSize(20,20));
 }
