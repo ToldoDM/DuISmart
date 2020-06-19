@@ -1,8 +1,8 @@
-#include "displaysettings.h"
+#include "tvsettings.h"
 #include <QLabel>
 
 
-DisplaySettings::DisplaySettings(Settings *parent): Settings(parent)
+TvSettings::TvSettings(Settings *parent): Settings(parent)
 {
 
 // creazione layout di bulbsettings e inserimento nela prima riga di gLayout
@@ -83,13 +83,13 @@ DisplaySettings::DisplaySettings(Settings *parent): Settings(parent)
 }
 
 
-void DisplaySettings::accept(){
+void TvSettings::accept(){
     emit displayExtractedData(lcdCont->value(),lcdBright->value());
     emit setNewChannel(spinBox->value());
     emit Settings::cancel();
 }
 
-void DisplaySettings::newChannel(){
+void TvSettings::newChannel(){
     emit setNewChannel(spinBox->value());
 }
 

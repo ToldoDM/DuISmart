@@ -11,7 +11,7 @@
 #include "Entities/thermostat.h"
 
 #include "Views/bulbsettings.h"
-#include "Views/displaysettings.h"
+#include "Views/tvsettings.h"
 #include "Views/thermostatsettings.h"
 
 #include "txtmanager.h"
@@ -82,6 +82,15 @@ private slots:
      */
     void removeSmartDeviceFromList(QListWidgetItem*, int) const;
 
+    /**
+     * @brief extractedDataBulb: slot che intercetta segnale inviato da bulbsettings su colore e luminosità
+     */
+    void extractedDataBulb(const QColor ,const int);
+    /**
+     * @brief extractedDataTv: slot che intercetta segnale inviato da displaysettings su luminosià e contrasto
+     */
+    void extractedDataTv(int, int);
+
 
 private:
 
@@ -126,7 +135,7 @@ private:
     /**
      * @brief DispS: impostazioni Tv
      */
-    mutable DisplaySettings *DispS;
+    mutable TvSettings *DispS;
 
     /**
      * @brief TherS: impostazini termosifone

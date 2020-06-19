@@ -44,11 +44,11 @@ private slots:
     /**
      * @brief SelectedColor: segnale colore selezionato per bulb
      */
-    void selectedColor(const QColor);
+    void bulbSelectedColor(const QColor);
 
 signals:
 
-    void extractedData(const QColor ,const int );
+    void bulbExtractedData(const QColor ,const int );
 };
 
 #endif // BULBSETTINGS_H

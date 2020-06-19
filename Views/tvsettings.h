@@ -12,11 +12,11 @@
 #include <QPushButton>
 
 
-class DisplaySettings : public Settings
+class TvSettings : public Settings
 {
     Q_OBJECT
 public:
-    DisplaySettings(Settings *parent=nullptr);
+    TvSettings(Settings *parent=nullptr);
 protected:
     //campi per il contrasto
     QLCDNumber *lcdCont;

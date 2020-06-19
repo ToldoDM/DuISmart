@@ -44,7 +44,7 @@ BulbSettings::BulbSettings(Settings *parent): Settings(parent)
     connect(selectColor,SIGNAL(clicked(bool)),this,SLOT(pressedSelectColor()));
 
     //connessione segnale conferma di cDialog -> cambio colore del bottone selectColor
-    connect(cDialog,SIGNAL(colorSelected(QColor)),this,SLOT(selectedColor(const QColor)));
+    connect(cDialog,SIGNAL(colorSelected(QColor)),this,SLOT(bulbSelectedColor(const QColor)));
 
 
 //connessione segnale conferma di cDialog -> cambio colore del bottone selectColor
@@ -55,12 +55,12 @@ void BulbSettings::pressedSelectColor() const{
         cDialog->show();
 }
 
-void BulbSettings::selectedColor(const QColor color){
+void BulbSettings::bulbSelectedColor(const QColor color){
     selectColor->setPalette(cDialog->selectedColor());
 }
 
 void BulbSettings::accept(){
-    emit extractedData(cDialog->selectedColor(),sliderBulb->value());
+    emit bulbExtractedData(cDialog->selectedColor(),sliderBulb->value());
     emit Settings::cancel();
 }
 

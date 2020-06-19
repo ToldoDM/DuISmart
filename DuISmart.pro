@@ -47,10 +47,10 @@ SOURCES += \
         main.cpp \
     Views/devicesettings.cpp \
     Views/bulbsettings.cpp \
-    Views/displaysettings.cpp \
     Views/thermostatsettings.cpp \
     txtmanager.cpp \
-    Views/CustomItems/closebutton.cpp
+    Views/CustomItems/closebutton.cpp \
+    Views/tvsettings.cpp
 
 
 HEADERS += \
@@ -79,10 +79,10 @@ HEADERS += \
     Models/additemmodel.h \
     Views/devicesettings.h \
     Views/bulbsettings.h \
-    Views/displaysettings.h \
     Views/thermostatsettings.h \
     txtmanager.h \
-    Views/CustomItems/closebutton.h
+    Views/CustomItems/closebutton.h \
+    Views/tvsettings.h
 
 FORMS +=
 
