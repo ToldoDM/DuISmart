@@ -2,7 +2,7 @@
 
 #include <QPushButton>
 
-Settings::Settings(QWidget *parent): QWidget(parent)
+Settings::Settings(QDialog *parent): QDialog(parent)
 {
 // layout verticale finestra impostazioni
     gLayout = new QGridLayout(this);

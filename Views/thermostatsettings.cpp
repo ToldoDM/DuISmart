@@ -1,6 +1,6 @@
 #include "thermostatsettings.h"
 
-ThermostatSettings::ThermostatSettings(Settings *parent): Settings(parent)
+ThermostatSettings::ThermostatSettings(int ID,Settings *parent): idDevice(ID), Settings(parent)
 {
     QHBoxLayout *hlay=new QHBoxLayout();
     gLayout->addLayout(hlay,1,1);
@@ -30,6 +30,9 @@ ThermostatSettings::ThermostatSettings(Settings *parent): Settings(parent)
 
     connect(increase,SIGNAL(clicked()),this,SLOT(displayIncreased()));
     connect(decrease,SIGNAL(clicked()),this,SLOT(displayDecreased()));
+
+    this->setMaximumSize(400,250);
+
 }
 
 
@@ -46,6 +49,6 @@ void ThermostatSettings::displayDecreased(){
 }
 
 void ThermostatSettings::accept(){
-    emit ThermostatExtractedData(num->value());
+    emit ThermostatExtractedData(idDevice,num->value());
     emit Settings::cancel();
 }

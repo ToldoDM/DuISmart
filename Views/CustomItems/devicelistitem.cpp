@@ -53,12 +53,18 @@ void DeviceListItem::onDeleteRequest(){ emit deleteRequest(item, deviceId); }
 void DeviceListItem::setListItem(QListWidgetItem *qli){ item = qli; }
 
 
-void DeviceListItem::changeLabelChan(int num){
-    changeChan->setText("Canale: " + QString::number(num));
+void DeviceListItem::changeLabelChan(int ID,int num){
+    if(ID==deviceId)
+    {
+        changeChan->setText("Canale: " + QString::number(num));
+    }
 }
 
-void DeviceListItem::changeLabelTemp(int num){
-    changeTemp->setText("Temperatura: " + QString::number(num));
+void DeviceListItem::changeLabelTemp(int ID,int num){
+    if(ID==deviceId)
+    {
+        changeTemp->setText("Temperatura: " + QString::number(num));
+    }
 }
 
 

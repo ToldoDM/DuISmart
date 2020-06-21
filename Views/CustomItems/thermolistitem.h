@@ -25,7 +25,6 @@ protected slots:
      */
     virtual void onSettingClicked() override;
 
-
 private:
     /**
      * @brief interr: Bottone con funzione di interruttore per la lampadina

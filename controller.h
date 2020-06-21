@@ -24,12 +24,12 @@ private slots:
     /**
      * @brief getChannel: cattura il segnale setNewChannel per cambiare il canale
      */
-    void getChannel(int);
+    void getChannel(int,int);
 
     /**
      * @brief getTemp: cattura il segnale di cambiamento della temperatura
      */
-    void getTemp(int);
+    void getTemp(int,int);
 
     /**
      * @brief addWinClosed: Slot utilizzato per la distruzione dell'oggetto AddItemWindow
@@ -127,6 +127,11 @@ private:
      */
     void addSmartDeviceToList(SmartDevice* device, const QString& targetTab) const;
 
+
+    mutable Settings *parent;
+
+    //mutable perchè avviene assegnazione su oggetto read only
+
     /**
      * @brief BulbS: impostazioni lampadina
      */
@@ -168,12 +173,12 @@ signals:
     /**
      * @brief changeChan: segnale cambiamento canale
      */
-    void changeChan(int);
+    void changeChan(int,int);
 
     /**
      * @brief changeTemp: segnale cambiamento temperatura
      */
-    void changeTemp(int);
+    void changeTemp(int,int);
 };
 
 #endif

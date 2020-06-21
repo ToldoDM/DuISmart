@@ -13,6 +13,8 @@ Controller::Controller(QObject* parent) : QObject(parent){
     connect(fileIO,SIGNAL(readedData(QString,QString)),this, SLOT(insertData(QString,QString)));
     // caricare file se sono salvati
     fileIO->readData();
+
+
 }
 
 
@@ -106,14 +108,20 @@ void Controller::ShowMainWindow() const { MainW->show(); }
 void Controller::addSmartDeviceToList(SmartDevice *device, const QString& targetTab) const{
     DeviceListItem* dli = MainVM->addDevice(device);
     MainW->addToAllTab(dli, targetTab);
+
+
     //connessione bottone impostazioni
     connect(dli,SIGNAL(SettingPressed(DeviceType,int)),this,SLOT(selectSettings(DeviceType,int)));
 
     //connessione bottone delete
     connect(dli, SIGNAL(deleteRequest(QListWidgetItem*, int)), this, SLOT(removeSmartDeviceFromList(QListWidgetItem*, int)));
 
-    connect(this,SIGNAL(changeChan(int)),dli,SLOT(changeLabelChan(int)));
-    connect(this,SIGNAL(changeTemp(int)),dli,SLOT(changeLabelTemp(int)));
+    connect(this,SIGNAL(changeChan(int,int)),dli,SLOT(changeLabelChan(int,int)));
+    connect(this,SIGNAL(changeTemp(int,int)),dli,SLOT(changeLabelTemp(int,int)));
+
+    //creo oggetto di tipo settings per i device
+    parent= new Settings();
+    parent->setVisible(false);
 }
 
 
@@ -123,35 +131,34 @@ void Controller::selectSettings(DeviceType type, int IDNumber) const
 {
     switch (type) {
     case DeviceType::BULB:
-        BulbS= new BulbSettings();
-        //void Controller::getBulbSettings(int brightness , const int contrast)){}
+        BulbS = new BulbSettings(parent);
         BulbS->show();
         break;
 
     case DeviceType::TV:
-        DispS=new TvSettings() ;
+        DispS=new TvSettings(IDNumber,parent) ;
         DispS->show();
-        connect(DispS,SIGNAL(setNewChannel(int)),this,SLOT(getChannel(int)));
+        connect(DispS,SIGNAL(setNewChannel(int,int)),this,SLOT(getChannel(int,int)));
         break;
 
     case DeviceType::THERMOSTAT:
-        TherS=new ThermostatSettings();
+        TherS=new ThermostatSettings(IDNumber,parent);
         TherS->show();
-        connect(TherS,SIGNAL(ThermostatExtractedData(int)),this,SLOT(getTemp(int)));
+        connect(TherS,SIGNAL(ThermostatExtractedData(int,int)),this,SLOT(getTemp(int,int)));
         break;
     }
 }
 
 
 
-void Controller::getChannel(int channel){
-    emit changeChan(channel);
+void Controller::getChannel(int ID,int channel){
+    emit changeChan(ID,channel);
 }
 
 
 
-void Controller::getTemp(int temp){
-    emit changeTemp(temp);
+void Controller::getTemp(int ID,int temp){
+    emit changeTemp(ID,temp);
 }
 
 

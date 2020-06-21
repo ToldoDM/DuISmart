@@ -16,7 +16,7 @@ class TvSettings : public Settings
 {
     Q_OBJECT
 public:
-    TvSettings(Settings *parent=nullptr);
+    TvSettings(int idDevice,Settings *parent=nullptr);
 protected:
     //campi per il contrasto
     QLCDNumber *lcdCont;
@@ -41,7 +41,10 @@ signals:
     /**
      * @brief setNewChannel: segnale emesso che permette di cambiare al canale int
      */
-    void setNewChannel(int);
+    void setNewChannel(int,int);
+
+protected:
+    int idDevice;
 
 private slots:
     virtual void accept();

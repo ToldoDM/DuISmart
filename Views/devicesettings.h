@@ -4,23 +4,20 @@
 
 #include <QDialog>
 #include <QDialogButtonBox>
-#include <QWidget>
-
 #include <QGridLayout>
 
 
-class Settings: public QWidget
+class Settings: public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit Settings(QWidget *parent=nullptr);
+    explicit Settings(QDialog *parent=nullptr);
     QGridLayout * gLayout;
 
 public slots:
     virtual void accept();
     void cancel();
-
 
 private:
 

@@ -11,14 +11,15 @@ class ThermostatSettings : public Settings
 {
     Q_OBJECT
 public:
-    ThermostatSettings(Settings *parent=nullptr);
+    ThermostatSettings(int idDevice,Settings *parent=nullptr);
 protected:
     QPushButton *increase;
     QPushButton *decrease;
     QLCDNumber *num ;
+    int idDevice;
 
 signals:
-    void ThermostatExtractedData(int);
+    void ThermostatExtractedData(int,int);
 
 
 private slots:

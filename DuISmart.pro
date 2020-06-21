@@ -50,8 +50,7 @@ SOURCES += \
     Views/thermostatsettings.cpp \
     txtmanager.cpp \
     Views/CustomItems/closebutton.cpp \
-    Views/tvsettings.cpp
-
+    Views/tvsettings.cpp \
 
 HEADERS += \
     Entities/thermostat.h \
@@ -80,9 +79,9 @@ HEADERS += \
     Views/devicesettings.h \
     Views/bulbsettings.h \
     Views/thermostatsettings.h \
-    txtmanager.h \
     Views/CustomItems/closebutton.h \
-    Views/tvsettings.h
+    Views/tvsettings.h \
+    txtmanager.h
 
 FORMS +=
 

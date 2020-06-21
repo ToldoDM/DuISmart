@@ -41,12 +41,12 @@ public slots:
     /**
      * @brief changeLabelChan:slot utilizzato per modificare in label canale
      */
-    void changeLabelChan(int);
+    void changeLabelChan(int,int);
 
     /**
      * @brief changeLabelTemp:slot utilizzato per modificare in label temperatura
      */
-    void changeLabelTemp(int);
+    void changeLabelTemp(int,int);
 
 signals:
     /**

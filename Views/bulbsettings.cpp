@@ -1,6 +1,6 @@
 #include "bulbsettings.h"
 
-BulbSettings::BulbSettings(Settings *parent): Settings(parent)
+BulbSettings::BulbSettings(Settings *parent):Settings(parent)
 {
     cDialog= new QColorDialog();
 
