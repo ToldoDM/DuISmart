@@ -1,7 +1,6 @@
 #ifndef DEVICELISTITEM_H
 #define DEVICELISTITEM_H
 
-#include <QSize>
 #include <QBoxLayout>
 #include <QLabel>
 #include "settingsbutton.h"

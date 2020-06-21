@@ -9,7 +9,6 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
-#include <QColor>
 
 
 class BulbSettings : public Settings

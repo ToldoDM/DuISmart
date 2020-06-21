@@ -1,25 +1,16 @@
 #ifndef ADDITEMWINDOW_H
 #define ADDITEMWINDOW_H
 
-//aggiunte per finestra
+
 #include <QFormLayout>
 #include <QDialog>
 #include <QVBoxLayout>
 #include <QLineEdit>
 #include <QTextEdit>
-#include <QWidget>
-//assicurarsi di rimuovere le classi "prova" a completamento del return
 #include <QPushButton>
 #include <QLabel>
-#include <QBoxLayout>
 #include <QComboBox>
 #include <QDialogButtonBox>
-
-#include <QGridLayout>
-
-//prova
-#include <QMenu>
-#include <QToolButton>
 #include "Enums/devicetype.h"
 #include "Enums/RoomType.h"
 

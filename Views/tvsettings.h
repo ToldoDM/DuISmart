@@ -7,7 +7,6 @@
 #include <QSlider>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QComboBox>
 #include <QSpinBox>
 #include <QPushButton>
 

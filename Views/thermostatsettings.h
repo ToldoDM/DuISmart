@@ -5,7 +5,6 @@
 #include <QLCDNumber>
 #include <QPushButton>
 #include <QIcon>
-#include <QPixmap>
 
 class ThermostatSettings : public Settings
 {
