@@ -4,7 +4,8 @@
 #include "basemodel.h"
 #include "Entities/smartdevice.h"
 #include "Entities/listdevice.h"
-#include <QVector>
+#include "Entities/cvector.h"
+
 
 class MainViewModel : public BaseModel{
 
@@ -58,7 +59,7 @@ private:
     /**
      * @brief deviceList: Lista device
      */
-    QVector<const SmartDevice*> deviceList;
+    CVector<const SmartDevice*> deviceList;
 };
 
 #endif // MAINVIEWMODEL_H
