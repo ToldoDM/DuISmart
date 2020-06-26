@@ -5,6 +5,7 @@
 #include<QWidget>
 #include "onoffbutton.h"
 #include "devicelistitem.h"
+#include "Views/tvsettings.h"
 
 class TvListItem : public DeviceListItem
 {
@@ -20,6 +21,12 @@ public:
      * @brief ~BulbListItem: Distruttore
      */
     virtual ~TvListItem();
+
+    /**
+     * @brief getSettingDialog: Ritorna l'oggetto QDialog appartenente ap proprio tipo
+     * @return
+     */
+    TvSettings* getSettingDialog() override;
 
 protected slots:
     /**

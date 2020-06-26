@@ -3,6 +3,7 @@
 
 #include "devicelistitem.h"
 #include "onoffbutton.h"
+#include "Views/thermostatsettings.h"
 
 class ThermoListItem : public DeviceListItem
 {
@@ -17,7 +18,13 @@ public:
     /**
      * @brief ~BulbListItem: Distruttore
      */
-    virtual ~ThermoListItem();
+    virtual ~ThermoListItem() override;
+
+    /**
+     * @brief getSettingDialog: Ritorna l'oggetto QDialog appartenente ap proprio tipo
+     * @return
+     */
+    ThermostatSettings* getSettingDialog() override;
 
 protected slots:
     /**

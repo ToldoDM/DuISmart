@@ -55,6 +55,7 @@ SOURCES += \
 
 HEADERS += \
     Entities/cvector.h \
+    Entities/settingdata.h \
     Entities/thermostat.h \
     Entities/tv.h \
     Enums/RoomType.h \

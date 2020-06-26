@@ -31,6 +31,17 @@ public:
      * @brief switchOffDevice: Metodo usato per avviare la procedura di spegnimento del device
      */
     virtual void switchOffDevice() const override;
+
+    /**
+     * @brief setSettings: Imposta il corrente device con le impostazioni date
+     * @param data: Dati correnti
+     */
+    virtual void setSettings(const SettingData &data) override;
+
+private:
+    int contrast;
+    int brightness;
+    int channel;
 };
 
 #endif // TV_H

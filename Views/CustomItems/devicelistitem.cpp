@@ -38,12 +38,8 @@ DeviceListItem::DeviceListItem(int devId, const QString& fName, QWidget *parent)
     hlay->addWidget(settButton);
 
 
-
-
     //connessione segnali e slot
     connect(settButton,SIGNAL(onClicked()),this,SLOT(onSettingClicked()));
-
-    //PER QUESTIONI DI TEST!!! ATTENZIONE!!!
     connect(closeButton,SIGNAL(onClicked()),this,SLOT(onDeleteRequest()));
 }
 

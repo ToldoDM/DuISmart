@@ -7,20 +7,44 @@
 #include <QGridLayout>
 
 
-class Settings: public QDialog
+class DeviceSettings: public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit Settings(QDialog *parent=nullptr);
-    QGridLayout * gLayout;
+    /**
+     * @brief Settings: Costruttore di default
+     */
+    explicit DeviceSettings();
 
-public slots:
+    /**
+     * @brief ~DeviceSettings: Distruttore
+     */
+    virtual ~DeviceSettings();
+
+protected slots:
+
     virtual void accept();
+
     void cancel();
+
+protected:
+
+    /**
+     * @brief idDevice: Id device a cui e' associato
+     */
+    int idDevice;
+
+    /**
+     * @brief gLayout: Layout principale finestra setting
+     */
+    QGridLayout * gLayout;
 
 private:
 
+    /**
+     * @brief settingsBox: Bottoni dialog
+     */
     QDialogButtonBox * settingsBox;
 
 };

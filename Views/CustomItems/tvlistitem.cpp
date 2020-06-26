@@ -28,5 +28,7 @@ TvListItem::~TvListItem(){
 }
 
 void TvListItem::onSettingClicked(){
-    emit DeviceListItem::SettingPressed(TV,deviceId);
+    emit SettingPressed(this);
 }
+
+TvSettings* TvListItem::getSettingDialog(){ return new TvSettings(deviceId); }

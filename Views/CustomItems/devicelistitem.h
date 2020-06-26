@@ -31,6 +31,12 @@ public:
     void setListItem(QListWidgetItem* qli);
 
     /**
+     * @brief getSettingDialog: Ritorna l'oggetto QDialog appartenente ap proprio tipo
+     * @return
+     */
+    virtual QDialog* getSettingDialog() = 0;
+
+    /**
      * @brief Change: Label che identifica temperatura / canale
      */
     QLabel *changeTemp;
@@ -52,7 +58,7 @@ signals:
      * @brief SettingPressed: Evento generato quando viene premuto il pulsante settings
      * @param devId: Id device di riferimento a cui e' stata chiesta la visualizzazione delle impostazioni
      */
-    void SettingPressed(DeviceType,int devId);
+    void SettingPressed(DeviceListItem*);
 
     /**
      * @brief deleteRequest: Evento generato alla richiesta di cancellazione dello smartDevice
@@ -69,7 +75,6 @@ protected slots:
      * @brief onDeleteRequest: Slot utilizzato  per rilanciare il segnale deleteRequest con i campi necessari
      */
     void onDeleteRequest();
-
 
 
 protected:

@@ -1,12 +1,13 @@
 #include "thermostatsettings.h"
 
-ThermostatSettings::ThermostatSettings(int ID,Settings *parent): idDevice(ID), Settings(parent)
-{
-    QHBoxLayout *hlay=new QHBoxLayout();
+ThermostatSettings::ThermostatSettings(int ID){
+    idDevice = ID;
+
+    hlay=new QHBoxLayout();
     gLayout->addLayout(hlay,1,1);
 
     // xreazione bottoni aumento e decremento + layout
-    QVBoxLayout *vlay = new QVBoxLayout();
+    vlay = new QVBoxLayout();
     increase = new QPushButton();
     QIcon up(":/Images/Up.png");
     increase->setIcon(up);
@@ -35,6 +36,14 @@ ThermostatSettings::ThermostatSettings(int ID,Settings *parent): idDevice(ID), S
 
 }
 
+ThermostatSettings::~ThermostatSettings(){
+    delete increase;
+    delete decrease;
+    delete num ;
+    delete hlay;
+    delete vlay;
+}
+
 
 void ThermostatSettings::displayIncreased(){
     int i= num->value();
@@ -50,5 +59,5 @@ void ThermostatSettings::displayDecreased(){
 
 void ThermostatSettings::accept(){
     emit ThermostatExtractedData(idDevice,num->value());
-    emit Settings::cancel();
+    emit DeviceSettings::cancel();
 }

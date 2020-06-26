@@ -13,3 +13,7 @@ void Bulb::switchOnDevice() const {
 void Bulb::switchOffDevice() const {
     //Logica per spegnimento
 }
+
+void Bulb::setSettings(const SettingData &data){
+    brightness = data.brightness;
+}

@@ -18,6 +18,8 @@ BulbListItem::~BulbListItem(){
 }
 
 void BulbListItem::onSettingClicked(){
-    emit DeviceListItem::SettingPressed(BULB,deviceId);
+    emit SettingPressed(this);
 }
+
+BulbSettings* BulbListItem::getSettingDialog(){ return new BulbSettings(); }
 

@@ -31,6 +31,8 @@ ThermoListItem::~ThermoListItem(){
 
 
 void ThermoListItem::onSettingClicked(){
-    emit DeviceListItem::SettingPressed(THERMOSTAT,deviceId);
+    emit SettingPressed(this);
 }
+
+ThermostatSettings* ThermoListItem::getSettingDialog(){ return new ThermostatSettings(deviceId); }
 

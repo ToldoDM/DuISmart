@@ -3,6 +3,7 @@
 
 #include "devicelistitem.h"
 #include "onoffbutton.h"
+#include "Views/bulbsettings.h"
 
 class BulbListItem : public DeviceListItem
 {
@@ -18,7 +19,13 @@ public:
     /**
      * @brief ~BulbListItem: Distruttore
      */
-    virtual ~BulbListItem();
+    virtual ~BulbListItem() override;
+
+    /**
+     * @brief getSettingDialog: Ritorna l'oggetto QDialog appartenente ap proprio tipo
+     * @return
+     */
+    BulbSettings* getSettingDialog() override;
 
 protected slots:
     /**

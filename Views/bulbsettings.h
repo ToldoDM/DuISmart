@@ -11,12 +11,14 @@
 #include <QPushButton>
 
 
-class BulbSettings : public Settings
+class BulbSettings : public DeviceSettings
 {
     Q_OBJECT
 public:
 
-    explicit BulbSettings(Settings *parent=nullptr);
+    explicit BulbSettings();
+
+    ~BulbSettings();
 
 protected:
     QPushButton *selectColor;
@@ -28,6 +30,8 @@ protected:
     QSlider *sliderBulb;
 
     QColor *bulbColor;
+    QGridLayout *setBulb;
+    QVBoxLayout *encase;
 
 
 
@@ -43,11 +47,11 @@ private slots:
     /**
      * @brief SelectedColor: segnale colore selezionato per bulb
      */
-    void bulbSelectedColor(const QColor);
+    void bulbSelectedColor();
 
 signals:
 
-    void bulbExtractedData(const QColor ,const int );
+    void bulbExtractedData(const QColor& , int);
 };
 
 #endif // BULBSETTINGS_H

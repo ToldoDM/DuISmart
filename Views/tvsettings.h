@@ -11,11 +11,14 @@
 #include <QPushButton>
 
 
-class TvSettings : public Settings
+class TvSettings : public DeviceSettings
 {
     Q_OBJECT
 public:
-    TvSettings(int idDevice,Settings *parent=nullptr);
+    TvSettings(int idDevice);
+
+    ~TvSettings();
+
 protected:
     //campi per il contrasto
     QLCDNumber *lcdCont;
@@ -27,9 +30,11 @@ protected:
 
     QSpinBox *spinBox;
 
-    //campo per il refresh-rate
-    //QComboBox *refreshRate;
-
+    //layout
+    QGridLayout *setDisplay;
+    QVBoxLayout *vlay;
+    QHBoxLayout *chHLay;
+    QPushButton *Channel;
 
 signals:
     /**
@@ -41,9 +46,6 @@ signals:
      * @brief setNewChannel: segnale emesso che permette di cambiare al canale int
      */
     void setNewChannel(int,int);
-
-protected:
-    int idDevice;
 
 private slots:
     virtual void accept();

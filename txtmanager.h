@@ -35,7 +35,7 @@ private:
     QFile *nameFile;
 
 signals:
-    void readedData(QString,QString);
+    void readedData(const QString&, const QString&);
 
 };
 

@@ -14,4 +14,8 @@ void Tv::switchOffDevice() const {
     //Logica per spegnimento
 }
 
-
+void Tv::setSettings(const SettingData &data){
+    contrast = data.contrast;
+    brightness = data.brightness;
+    channel = data.brightness;
+}

@@ -33,9 +33,13 @@ private slots:
 
     /**
      * @brief addWinClosed: Slot utilizzato per la distruzione dell'oggetto AddItemWindow
-     * @param result: Risultato dialog
      */
-    void addWinClosed(int result);
+    void addWinClosed();
+
+    /**
+     * @brief settWinClosed: Slot utilizzato per la distruzione dell'oggetto settW
+     */
+    void settWinClosed();
 
     /**
      * @brief clieckedHandler: Slot utilizzato per catturare il segnale bottone premuto di addDevice
@@ -69,14 +73,14 @@ private slots:
 
     /**
      * @brief selectSettings:: Slot utilizzato per sciegliere quale schermata impostazioni visualizzare per un determinato oggetto
-     * @param deviceID: codice identificativo unico degli oggetti
+     * @param dli: device list item da cui e' stato premuto il pulsante
      */
-    void selectSettings(DeviceType,int deviceID) const;
+    void selectSettings(DeviceListItem* dli);
 
 
      /** @brief insertData: slot che permette il caricamento dei device dopo la chiusura
      */
-    void insertData(QString, QString);
+    void insertData(const QString&, const QString&);
 
      /** @brief removeSmartDeviceFromList: rimuove lo smart device dalla lista visiva e dalla lista codice
      */
@@ -93,6 +97,11 @@ private slots:
 
 
 private:
+
+    /**
+     * @brief addSmartDeviceToList: aggiunge lo smartDevice alla lista della main window
+     */
+    void addSmartDeviceToList(SmartDevice* device, const QString& targetTab) const;
 
     /**
      * @brief dli:oggetto di tipo device list item
@@ -123,38 +132,14 @@ private:
     MainWindow* MainW = nullptr;
 
     /**
-     * @brief addSmartDeviceToList: aggiunge lo smartDevice alla lista della main window
+     * @brief settW: Dialog setting window
      */
-    void addSmartDeviceToList(SmartDevice* device, const QString& targetTab) const;
-
-
-    mutable Settings *parent;
-
-    //mutable perchè avviene assegnazione su oggetto read only
-
-    /**
-     * @brief BulbS: impostazioni lampadina
-     */
-    mutable BulbSettings *BulbS;
-
-    /**
-     * @brief DispS: impostazioni Tv
-     */
-    mutable TvSettings *DispS;
-
-    /**
-     * @brief TherS: impostazini termosifone
-     */
-    mutable ThermostatSettings *TherS;
+    QDialog *settW;
 
     /**
      * @brief fileIO: oggetto che permette scrittura su file
      */
     TxtManager* fileIO;
-
-
-    //SmartDevice *pointer;
-
 
 public:
     /**

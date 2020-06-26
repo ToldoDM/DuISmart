@@ -14,3 +14,6 @@ void Thermostat::switchOffDevice() const {
     //Logica per spegnimento
 }
 
+void Thermostat::setSettings(const SettingData &data){
+    temp = data.temp;
+}

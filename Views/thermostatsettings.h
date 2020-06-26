@@ -6,16 +6,19 @@
 #include <QPushButton>
 #include <QIcon>
 
-class ThermostatSettings : public Settings
+class ThermostatSettings : public DeviceSettings
 {
     Q_OBJECT
 public:
-    ThermostatSettings(int idDevice,Settings *parent=nullptr);
+    ThermostatSettings(int idDevice);
+
+    ~ThermostatSettings();
 protected:
     QPushButton *increase;
     QPushButton *decrease;
     QLCDNumber *num ;
-    int idDevice;
+    QHBoxLayout *hlay;
+    QVBoxLayout *vlay;
 
 signals:
     void ThermostatExtractedData(int,int);

@@ -2,18 +2,18 @@
 #include <QLabel>
 
 
-TvSettings::TvSettings(int ID,Settings *parent): idDevice(ID),Settings(parent)
-{
+TvSettings::TvSettings(int ID){
+    idDevice = ID;
 
-// creazione layout di bulbsettings e inserimento nela prima riga di gLayout
-    QGridLayout *setDisplay=new QGridLayout();
-    QVBoxLayout *vlay=new QVBoxLayout();
+    // creazione layout di bulbsettings e inserimento nela prima riga di gLayout
+    setDisplay=new QGridLayout();
+    vlay=new QVBoxLayout();
     gLayout->addLayout(vlay,1,1);
     vlay->addLayout(setDisplay);
 
 
 
-// contrasto
+    // contrasto
     lcdCont= new QLCDNumber(3);
     lcdCont->setSegmentStyle(QLCDNumber::Filled);
 
@@ -25,7 +25,7 @@ TvSettings::TvSettings(int ID,Settings *parent): idDevice(ID),Settings(parent)
     setDisplay->addWidget(lcdCont,2,1);
     setDisplay->addWidget(sliderCont,2,2);
 
-// luminosita
+    // luminosita
     lcdBright= new QLCDNumber(3);
     lcdBright->setSegmentStyle(QLCDNumber::Filled);
 
@@ -38,26 +38,10 @@ TvSettings::TvSettings(int ID,Settings *parent): idDevice(ID),Settings(parent)
     setDisplay->addWidget(sliderBright,2,4);
 
 
-    // da fare i tasti telecomando
-
-
-/*
-// refresh rate
-    QHBoxLayout *hlay=new QHBoxLayout();
-    refreshRate = new QComboBox();
-    QLabel *refresh = new QLabel("Select refresh rate");
-
-    hlay->addWidget(refresh);
-    hlay->addWidget(refreshRate);
-
-    vlay->addLayout(hlay);
-
-*/ //non so se metterlo
-
     //creazione bottone e spinbox(range numeri)
-    QHBoxLayout *chHLay=new QHBoxLayout();
+    chHLay=new QHBoxLayout();
     spinBox=new QSpinBox();
-    QPushButton *Channel=new QPushButton("Change channel");
+    Channel=new QPushButton("Change channel");
     //gestione layout
     chHLay->addWidget(Channel);
     chHLay->addWidget(spinBox);
@@ -66,11 +50,8 @@ TvSettings::TvSettings(int ID,Settings *parent): idDevice(ID),Settings(parent)
 
     spinBox->setRange(1,100);
 
-
-
-// dimensioni minime
+    // dimensioni minime
     this->setMinimumSize(450,250);
-
 
     //connessione segnale value changed con segnale ChangeContrast che verrà intercettato dal controller
     connect(sliderCont,SIGNAL(valueChanged(int)),lcdCont,SLOT(display(int)));
@@ -82,11 +63,21 @@ TvSettings::TvSettings(int ID,Settings *parent): idDevice(ID),Settings(parent)
     connect(Channel,SIGNAL(clicked(bool)),this,SLOT(newChannel()));
 }
 
+TvSettings::~TvSettings(){
+    delete lcdCont;
+    delete sliderCont;
+    delete lcdBright;
+    delete sliderBright;
+    delete spinBox;
+    delete setDisplay;
+    delete vlay;
+    delete chHLay;
+    delete Channel;
+}
+
 
 void TvSettings::accept(){
     emit displayExtractedData(lcdCont->value(),lcdBright->value());
-    emit setNewChannel(idDevice,spinBox->value());
-    emit Settings::cancel();
 }
 
 void TvSettings::newChannel(){
