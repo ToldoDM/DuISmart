@@ -1,6 +1,9 @@
 #include "bulbsettings.h"
 
-BulbSettings::BulbSettings(){
+BulbSettings::BulbSettings(int devId){
+
+    idDevice = devId;
+
     cDialog= new QColorDialog();
 
     // creazione layout di bulbsettings e inserimento nela prima riga di gLayout
@@ -30,14 +33,13 @@ BulbSettings::BulbSettings(){
 
     setBulb->addWidget(new QLabel("Bulb color"),2,1);
     setBulb->addWidget(selectColor,2,2);
-    //setBulb->addWidget(cDialog,2,2);
-
 
     //connessione qslider -> display
     connect(sliderBulb,SIGNAL(valueChanged(int)),lcdBulb,SLOT(display(int)));
+    connect(sliderBulb,SIGNAL(valueChanged(int)),this,SLOT(setSettings()));
 
     //setLayout(gLayout);
-    setMinimumSize(300,200);
+    setFixedSize(300,200);
 
     //alla pressione del bottone selectColor si apre la finestra della scelta del colore
     connect(selectColor,SIGNAL(clicked(bool)),this,SLOT(pressedSelectColor()));
@@ -45,30 +47,36 @@ BulbSettings::BulbSettings(){
     //connessione segnale conferma di cDialog -> cambio colore del bottone selectColor
     connect(cDialog,SIGNAL(colorSelected(QColor)),this,SLOT(bulbSelectedColor()));
 
+}
 
-//connessione segnale conferma di cDialog -> cambio colore del bottone selectColor
-   // connect(BulbS->cDialog,SIGNAL(colorSelected(QColor)),this,SLOT(ChangeToSelectedColor(QColor)));
+void BulbSettings::setCurrentSettings(const SettingData &data){
+    selectColor->setPalette(QColor(data.red, data.green, data.blue));
+    sliderBulb->setValue(data.brightness);
 }
 
 BulbSettings::~BulbSettings(){
+    delete encase;
     delete selectColor;
     delete lcdBulb;
     delete cDialog;
     delete sliderBulb;
-    delete bulbColor;
     delete setBulb;
-    delete encase;
 }
 
-void BulbSettings::pressedSelectColor() const{
-        cDialog->show();
-}
+void BulbSettings::pressedSelectColor() const{ cDialog->show(); }
 
 void BulbSettings::bulbSelectedColor(){
     selectColor->setPalette(cDialog->selectedColor());
+    setSettings();
 }
 
-void BulbSettings::accept(){
-    emit bulbExtractedData(cDialog->selectedColor(), sliderBulb->value());
+void BulbSettings::setSettings() const{
+    SettingData data(idDevice);
+    data.brightness = sliderBulb->value();
+    data.red = cDialog->selectedColor().red();
+    data.green = cDialog->selectedColor().green();
+    data.blue = cDialog->selectedColor().blue();
+
+    emit onSetNewSettings(data);
 }
 

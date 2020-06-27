@@ -17,3 +17,9 @@ void Thermostat::switchOffDevice() const {
 void Thermostat::setSettings(const SettingData &data){
     temp = data.temp;
 }
+
+SettingData* Thermostat::getSettings() const {
+    SettingData* data = new SettingData(deviceId);
+    data->temp = temp;
+    return data;
+}

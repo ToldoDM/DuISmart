@@ -17,6 +17,7 @@ AddItemWindow::~AddItemWindow(){
 }
 
 AddItemWindow::AddItemWindow(){
+
     //Qui verra' gestita la nuova finestra per l'inserimento del nuovo device
     Problem = new QDialog(this);
     LProblem = new QVBoxLayout(Problem);

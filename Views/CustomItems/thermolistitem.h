@@ -24,7 +24,15 @@ public:
      * @brief getSettingDialog: Ritorna l'oggetto QDialog appartenente ap proprio tipo
      * @return
      */
-    ThermostatSettings* getSettingDialog() override;
+    ThermostatSettings* getSettingDialog(const SettingData&) override;
+
+public slots:
+
+    /**
+     * @brief setSettings: Imposta le settings del device
+     * @param data: Settings data
+     */
+    virtual void setSettings(const SettingData& data) override;
 
 protected slots:
     /**
@@ -33,6 +41,12 @@ protected slots:
     virtual void onSettingClicked() override;
 
 private:
+
+    /**
+     * @brief Change: Label che identifica temperatura / canale
+     */
+    QLabel *changeTemp;
+
     /**
      * @brief interr: Bottone con funzione di interruttore per la lampadina
      */

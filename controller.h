@@ -22,16 +22,6 @@ class Controller : public QObject {
 private slots:
 
     /**
-     * @brief getChannel: cattura il segnale setNewChannel per cambiare il canale
-     */
-    void getChannel(int,int);
-
-    /**
-     * @brief getTemp: cattura il segnale di cambiamento della temperatura
-     */
-    void getTemp(int,int);
-
-    /**
      * @brief addWinClosed: Slot utilizzato per la distruzione dell'oggetto AddItemWindow
      */
     void addWinClosed();
@@ -87,14 +77,10 @@ private slots:
     void removeSmartDeviceFromList(QListWidgetItem*, int) const;
 
     /**
-     * @brief extractedDataBulb: slot che intercetta segnale inviato da bulbsettings su colore e luminosità
+     * @brief setSettings: Imposta le settings del device
+     * @param data: Settings data
      */
-    void extractedDataBulb(const QColor ,const int);
-    /**
-     * @brief extractedDataTv: slot che intercetta segnale inviato da displaysettings su luminosià e contrasto
-     */
-    void extractedDataTv(int, int);
-
+    void setSettings(const SettingData& data);
 
 private:
 
@@ -153,17 +139,6 @@ public:
      */
     void ShowMainWindow() const;
 
-
-signals:
-    /**
-     * @brief changeChan: segnale cambiamento canale
-     */
-    void changeChan(int,int);
-
-    /**
-     * @brief changeTemp: segnale cambiamento temperatura
-     */
-    void changeTemp(int,int);
 };
 
 #endif

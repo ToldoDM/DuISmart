@@ -13,6 +13,12 @@ public:
     ThermostatSettings(int idDevice);
 
     ~ThermostatSettings();
+
+    /**
+     * @brief setCurrentSettings: Imposta i dati correnti all'apertura della finestra
+     */
+    virtual void setCurrentSettings(const SettingData&) override;
+
 protected:
     QPushButton *increase;
     QPushButton *decrease;
@@ -20,18 +26,13 @@ protected:
     QHBoxLayout *hlay;
     QVBoxLayout *vlay;
 
-signals:
-    void ThermostatExtractedData(int,int);
+protected slots:
 
+    /**
+     * @brief setSettings: Slot utilizzato per gestire le modifiche da parte della finestra settings
+     */
+    virtual void setSettings() const override;
 
-private slots:
-
-    void displayIncreased();
-
-    void displayDecreased();
-
-private slots:
-    virtual void accept();
 };
 
 #endif // THERMOSTATSETTINGS_H

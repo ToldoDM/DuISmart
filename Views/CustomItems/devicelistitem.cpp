@@ -25,11 +25,6 @@ DeviceListItem::DeviceListItem(int devId, const QString& fName, QWidget *parent)
     vlay->addWidget(deviceName);
     vlay->addWidget(friendlyName);
 
-    changeTemp=new QLabel("");
-    changeChan=new QLabel("");
-
-
-
     //prova posizione bottone chiusura
     hlay->addWidget(closeButton);
 
@@ -49,19 +44,7 @@ void DeviceListItem::onDeleteRequest(){ emit deleteRequest(item, deviceId); }
 void DeviceListItem::setListItem(QListWidgetItem *qli){ item = qli; }
 
 
-void DeviceListItem::changeLabelChan(int ID,int num){
-    if(ID==deviceId)
-    {
-        changeChan->setText("Canale: " + QString::number(num));
-    }
-}
-
-void DeviceListItem::changeLabelTemp(int ID,int num){
-    if(ID==deviceId)
-    {
-        changeTemp->setText("Temperatura: " + QString::number(num));
-    }
-}
+int DeviceListItem::getDeviceID() const { return deviceId; }
 
 
 DeviceListItem::~DeviceListItem(){

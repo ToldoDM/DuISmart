@@ -16,9 +16,14 @@ class BulbSettings : public DeviceSettings
     Q_OBJECT
 public:
 
-    explicit BulbSettings();
+    explicit BulbSettings(int devId);
 
     ~BulbSettings();
+
+    /**
+     * @brief setCurrentSettings: Imposta i dati correnti all'apertura della finestra
+     */
+    virtual void setCurrentSettings(const SettingData&) override;
 
 protected:
     QPushButton *selectColor;
@@ -29,15 +34,18 @@ protected:
 
     QSlider *sliderBulb;
 
-    QColor *bulbColor;
     QGridLayout *setBulb;
     QVBoxLayout *encase;
 
+protected slots:
+
+    /**
+     * @brief setSettings: Slot utilizzato per gestire le modifiche da parte della finestra settings
+     */
+    virtual void setSettings() const override;
 
 
 private slots:
-    //ridefinizione metodo virtuale di devicesettings?
-    virtual void accept();
 
     /**
      * @brief pressedSelectColor: segnale per aprire dialogo selezione colore
@@ -48,10 +56,6 @@ private slots:
      * @brief SelectedColor: segnale colore selezionato per bulb
      */
     void bulbSelectedColor();
-
-signals:
-
-    void bulbExtractedData(const QColor& , int);
 };
 
 #endif // BULBSETTINGS_H

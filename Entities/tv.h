@@ -36,7 +36,12 @@ public:
      * @brief setSettings: Imposta il corrente device con le impostazioni date
      * @param data: Dati correnti
      */
-    virtual void setSettings(const SettingData &data) override;
+    virtual void setSettings(const SettingData &data) override;    
+
+    /**
+     * @brief getSettings: Ottiene le impostazioni correnti del device
+     */
+    virtual SettingData* getSettings() const override;
 
 private:
     int contrast;

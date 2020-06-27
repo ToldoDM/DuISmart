@@ -17,3 +17,12 @@ void Bulb::switchOffDevice() const {
 void Bulb::setSettings(const SettingData &data){
     brightness = data.brightness;
 }
+
+SettingData* Bulb::getSettings() const {
+    SettingData* data = new SettingData(deviceId);
+    data->brightness = brightness;
+    data->red = red;
+    data->green = green;
+    data->blue = blue;
+    return data;
+}

@@ -41,6 +41,11 @@ public:
      */
     virtual void setSettings(const SettingData& data) = 0;
 
+    /**
+     * @brief getSettings: Ottiene le impostazioni correnti del device
+     */
+    virtual SettingData* getSettings() const = 0;
+
 protected:
 
     /**

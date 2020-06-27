@@ -21,5 +21,11 @@ void BulbListItem::onSettingClicked(){
     emit SettingPressed(this);
 }
 
-BulbSettings* BulbListItem::getSettingDialog(){ return new BulbSettings(); }
+BulbSettings* BulbListItem::getSettingDialog(const SettingData& data){
+    BulbSettings* bs = new BulbSettings(deviceId);
+    bs->setCurrentSettings(data);
+    return bs;
+}
+
+void BulbListItem::setSettings(const SettingData&){}
 

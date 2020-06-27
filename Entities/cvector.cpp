@@ -10,7 +10,7 @@ CVector<T>::CVector(){
 template<class T>
 CVector<T>::CVector(const CVector<T>& vec){
     delete[] arr;
-    arr = new T[vec.capacity];
+    arr = new T[static_cast<unsigned long>(vec.capacity)];
     for (int i = 0; i < capacity; i++) { arr[i] = vec[i]; }
 }
 
@@ -37,7 +37,7 @@ void CVector<T>::push(const T& data){
     // significa che non c'e piu spazio.
     // dobbiamo raddoppiare la capacita'
     if (current == capacity) {
-        T* temp = new T[2*capacity];
+        T* temp = new T[static_cast<unsigned long>(2*capacity)];
 
         // copio il vecchio array in un nuovo array
         for (int i = 0; i < capacity; i++) {
@@ -85,4 +85,5 @@ void CVector<T>::erase(const T& item){
 template<class T>
 int CVector<T>::size() const{ return current;}
 
+//Inizializzato per questioni di errori run-time
 template class CVector<const SmartDevice*>;

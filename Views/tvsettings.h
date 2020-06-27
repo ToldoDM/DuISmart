@@ -19,7 +19,20 @@ public:
 
     ~TvSettings();
 
+    /**
+     * @brief setCurrentSettings: Imposta i dati correnti all'apertura della finestra
+     */
+    virtual void setCurrentSettings(const SettingData&) override;
+
+protected slots:
+
+    /**
+     * @brief setSettings: Slot utilizzato per gestire le modifiche da parte della finestra settings
+     */
+    virtual void setSettings() const override;
+
 protected:
+
     //campi per il contrasto
     QLCDNumber *lcdCont;
     QSlider *sliderCont;
@@ -35,25 +48,6 @@ protected:
     QVBoxLayout *vlay;
     QHBoxLayout *chHLay;
     QPushButton *Channel;
-
-signals:
-    /**
-     * @brief displayExtractedData: segnale che permette di trasferire informazioni luminosità e contrasto
-     */
-    void displayExtractedData(int, int);
-
-    /**
-     * @brief setNewChannel: segnale emesso che permette di cambiare al canale int
-     */
-    void setNewChannel(int,int);
-
-private slots:
-    virtual void accept();
-
-    /**
-     * @brief newChannel: slot che serve per invio segnale nuovo canale
-     */
-    void newChannel();
 
 };
 

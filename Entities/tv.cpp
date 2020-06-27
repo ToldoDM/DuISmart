@@ -17,5 +17,13 @@ void Tv::switchOffDevice() const {
 void Tv::setSettings(const SettingData &data){
     contrast = data.contrast;
     brightness = data.brightness;
-    channel = data.brightness;
+    channel = data.channel;
+}
+
+SettingData* Tv::getSettings() const {
+    SettingData* data = new SettingData(deviceId);
+    data->contrast = contrast;
+    data->brightness = brightness;
+    data->channel = channel;
+    return data;
 }

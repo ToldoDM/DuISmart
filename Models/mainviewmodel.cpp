@@ -20,9 +20,7 @@ void MainViewModel::removeDevice(int devId){
     const SmartDevice* dev = nullptr;
      for (int i=0; i<deviceList.size() && !dev; i++) {
          dev = deviceList[i]->isThisDevice(devId);
-         if(dev){
-             deviceList.erase(dev);
-         }
+         if(dev) deviceList.erase(dev);
      }
 }
 
@@ -40,4 +38,21 @@ const SmartDevice* MainViewModel::getDevice(int deviceId) const{
     return dev;
 }
 
+void MainViewModel::setDeviceSettings(const SettingData &data){
+    const SmartDevice* dev = nullptr;
+    for (int i=0; i<deviceList.size() && !dev; i++) {
+        dev = deviceList[i]->isThisDevice(data.devId);
+        if(dev) const_cast<SmartDevice*>(dev)->setSettings(data);
+    }
+}
+
+SettingData* MainViewModel::getDeviceSettings(int devId) const{
+    const SmartDevice* dev = nullptr;
+    SettingData* data = nullptr;
+    for (int i=0; i<deviceList.size() && !dev; i++) {
+        dev = deviceList[i]->isThisDevice(devId);
+        if(dev) data = dev->getSettings();
+    }
+    return data;
+}
 

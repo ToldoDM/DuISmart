@@ -7,6 +7,7 @@
 #include "closebutton.h"
 #include "Enums/devicetype.h"
 #include <QListWidgetItem>
+#include "Entities/settingdata.h"
 
 class DeviceListItem : public QWidget
 {
@@ -34,24 +35,20 @@ public:
      * @brief getSettingDialog: Ritorna l'oggetto QDialog appartenente ap proprio tipo
      * @return
      */
-    virtual QDialog* getSettingDialog() = 0;
+    virtual QDialog* getSettingDialog(const SettingData&) = 0;
 
     /**
-     * @brief Change: Label che identifica temperatura / canale
+     * @brief getDeviceID: Ritorna il device id associato a deviceListItem
      */
-    QLabel *changeTemp;
-    QLabel *changeChan;
+    int getDeviceID() const;
 
 public slots:
-    /**
-     * @brief changeLabelChan:slot utilizzato per modificare in label canale
-     */
-    void changeLabelChan(int,int);
 
     /**
-     * @brief changeLabelTemp:slot utilizzato per modificare in label temperatura
+     * @brief setSettings: Imposta le settings del device
+     * @param data: Settings data
      */
-    void changeLabelTemp(int,int);
+    virtual void setSettings(const SettingData& data) = 0;
 
 signals:
     /**

@@ -5,6 +5,7 @@
 #include <QDialog>
 #include <QDialogButtonBox>
 #include <QGridLayout>
+#include "Entities/settingdata.h"
 
 
 class DeviceSettings: public QDialog
@@ -22,11 +23,25 @@ public:
      */
     virtual ~DeviceSettings();
 
+    /**
+     * @brief setCurrentSettings: Imposta i dati correnti all'apertura della finestra
+     */
+    virtual void setCurrentSettings(const SettingData&) = 0;
+
+signals:
+
+    /**
+     * @brief onSetNewSettings: segnale emesso che permette di cambiare le impostazioni
+     */
+    void onSetNewSettings(const SettingData&) const;
+
+
 protected slots:
 
-    virtual void accept();
-
-    void cancel();
+    /**
+     * @brief setSettings: Slot utilizzato per gestire le modifiche da parte della finestra settings
+     */
+    virtual void setSettings() const = 0;
 
 protected:
 
@@ -39,13 +54,6 @@ protected:
      * @brief gLayout: Layout principale finestra setting
      */
     QGridLayout * gLayout;
-
-private:
-
-    /**
-     * @brief settingsBox: Bottoni dialog
-     */
-    QDialogButtonBox * settingsBox;
 
 };
 

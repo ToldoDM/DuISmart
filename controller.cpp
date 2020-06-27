@@ -29,9 +29,6 @@ void Controller::addSmartDeviceToList(SmartDevice *device, const QString& target
 
     //connessione bottone delete
     connect(dli, SIGNAL(deleteRequest(QListWidgetItem*, int)), this, SLOT(removeSmartDeviceFromList(QListWidgetItem*, int)));
-
-    connect(this,SIGNAL(changeChan(int,int)),dli,SLOT(changeLabelChan(int,int)));
-    connect(this,SIGNAL(changeTemp(int,int)),dli,SLOT(changeLabelTemp(int,int)));
 }
 
 //PRIVATE SLOTS
@@ -105,27 +102,29 @@ void Controller::insertData(const QString& tipo, const QString& room_name)
 //slot la cui funzione è quella di direzionare a quale finestra di impostazioni si riferisce il segnale settingpressed
 void Controller::selectSettings(DeviceListItem* dli){
 
-    settW = dli->getSettingDialog();
+    //Prendo le impostazioni del corrente device e le passo alla finestra
+    SettingData* data = MainVM->getDeviceSettings(dli->getDeviceID());
+    settW = dli->getSettingDialog(*data);
 
     //Connessione slot
-    connect(settW,SIGNAL(setNewChannel(int,int)),this,SLOT(getChannel(int,int)));
-    connect(settW,SIGNAL(ThermostatExtractedData(int,int)),this,SLOT(getTemp(int,int)));
+    connect(settW,SIGNAL(onSetNewSettings(const SettingData&)),dli,SLOT(setSettings(const SettingData&)));
+    connect(settW,SIGNAL(onSetNewSettings(const SettingData&)),this,SLOT(setSettings(const SettingData&)));
     connect(settW, SIGNAL(finished(int)), this, SLOT(settWinClosed()));
 
     settW->exec();
+
+    //elimino il settingdata
+    delete data;
+}
+
+void Controller::setSettings(const SettingData& data){
+    MainVM->setDeviceSettings(data);
 }
 
 void Controller::settWinClosed(){
+    settW->close();
     delete settW;
     settW = nullptr;
-}
-
-void Controller::getChannel(int ID,int channel){
-    emit changeChan(ID,channel);
-}
-
-void Controller::getTemp(int ID,int temp){
-    emit changeTemp(ID,temp);
 }
 
 void Controller::removeSmartDeviceFromList(QListWidgetItem* qli, int deviceID) const{
@@ -135,18 +134,6 @@ void Controller::removeSmartDeviceFromList(QListWidgetItem* qli, int deviceID) c
     MainVM->removeDevice(deviceID);
     //Controllo se il tab dove era il device e se non ci sono piu device lo cancello
 }
-
-void Controller::extractedDataBulb(const QColor, const int)
-{
-    //emit something
-}
-
-void Controller::extractedDataTv(int, int)
-{
-    //emit something
-}
-
-
 
 
 

@@ -49,6 +49,18 @@ public:
      */
     QList<const QString*>* getRoomList();
 
+    /**
+     * @brief setDeviceSettings: Imposta i setting del device indicato
+     * @param data: setting data
+     */
+    void setDeviceSettings(const SettingData& data);
+
+    /**
+     * @brief getDeviceSettings: Ottiene i setting del device indicato
+     * @param devId: Id device
+     */
+    SettingData* getDeviceSettings(int devId) const;
+
 private:
 
     /**

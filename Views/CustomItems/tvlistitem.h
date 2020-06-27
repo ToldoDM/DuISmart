@@ -26,9 +26,18 @@ public:
      * @brief getSettingDialog: Ritorna l'oggetto QDialog appartenente ap proprio tipo
      * @return
      */
-    TvSettings* getSettingDialog() override;
+    TvSettings* getSettingDialog(const SettingData&) override;
+
+public slots:
+
+    /**
+     * @brief setSettings: Imposta le settings del device
+     * @param data: Settings data
+     */
+    virtual void setSettings(const SettingData& data) override;
 
 protected slots:
+
     /**
      * @brief onSettingClicked: Cattura evento setting cliecked
      */
@@ -36,6 +45,12 @@ protected slots:
 
 
 private:
+
+    /**
+     * @brief changeChan: Label indicante il canale corrente della tv
+     */
+    QLabel *changeChan;
+
     /**
      * @brief interr: Bottone con funzione di interruttore per la lampadina
      */

@@ -51,19 +51,29 @@ TvSettings::TvSettings(int ID){
     spinBox->setRange(1,100);
 
     // dimensioni minime
-    this->setMinimumSize(450,250);
+    setFixedSize(450,250);
 
-    //connessione segnale value changed con segnale ChangeContrast che verrà intercettato dal controller
+    //connessione segnale value changed con segnale ChangeContrast
     connect(sliderCont,SIGNAL(valueChanged(int)),lcdCont,SLOT(display(int)));
+    connect(sliderCont,SIGNAL(valueChanged(int)),this,SLOT(setSettings()));
 
-    //connessione segnale value changed con segnale ChangeBrightness che verrà intercettato dal controller
+    //connessione segnale value changed con segnale ChangeBrightness
     connect(sliderBright,SIGNAL(valueChanged(int)),lcdBright,SLOT(display(int)));
+    connect(sliderBright,SIGNAL(valueChanged(int)),this,SLOT(setSettings()));
 
     //connessione bottone change channel con invio del nuovo canale
-    connect(Channel,SIGNAL(clicked(bool)),this,SLOT(newChannel()));
+    connect(Channel,SIGNAL(clicked(bool)),this,SLOT(setSettings()));
+}
+
+void TvSettings::setCurrentSettings(const SettingData &data){
+    sliderCont->setValue(data.contrast);
+    sliderBright->setValue(data.brightness);
+    spinBox->setValue(data.channel);
 }
 
 TvSettings::~TvSettings(){
+    delete Channel;
+    delete chHLay;
     delete lcdCont;
     delete sliderCont;
     delete lcdBright;
@@ -71,16 +81,13 @@ TvSettings::~TvSettings(){
     delete spinBox;
     delete setDisplay;
     delete vlay;
-    delete chHLay;
-    delete Channel;
 }
 
-
-void TvSettings::accept(){
-    emit displayExtractedData(lcdCont->value(),lcdBright->value());
-}
-
-void TvSettings::newChannel(){
-    emit setNewChannel(idDevice,spinBox->value());
+void TvSettings::setSettings() const{
+    SettingData data(idDevice);
+    data.channel = spinBox->value();
+    data.contrast = static_cast<int>(lcdCont->value());
+    data.brightness = static_cast<int>(lcdBright->value());
+    emit onSetNewSettings(data);
 }
 

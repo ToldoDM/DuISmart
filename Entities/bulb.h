@@ -39,6 +39,11 @@ public:
      */
     virtual void setSettings(const SettingData &data) override;
 
+    /**
+     * @brief getSettings: Ottiene le impostazioni correnti del device
+     */
+    virtual SettingData* getSettings() const override;
+
 private:
     int brightness;
     int red;

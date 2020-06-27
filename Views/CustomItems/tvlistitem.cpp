@@ -10,8 +10,7 @@ TvListItem::TvListItem(int devId, const QString& fName, QWidget *parent) : Devic
     interr->setOnOffIcons(tr(":Images/on.png"), tr(":Images/off.png"), tr(":Images/on_clicked.png"), tr(":Images/off_clicked.png"));
 
     //Aggiunta scritta con riferimento allo stato attuale del device
-    //change = new QLabel("Ch.: 6");
-    //centerHlay->addWidget(channel);
+    changeChan=new QLabel("");
 
     //Inserimento dello switch acceso/spento
     hlay->addWidget(interr);
@@ -19,16 +18,24 @@ TvListItem::TvListItem(int devId, const QString& fName, QWidget *parent) : Devic
     //inserimento della label nel layout di devicelistitem
     centerHlay->addWidget(changeChan);
 
-    changeChan->setText("Canale: ");
+    changeChan->setText("");
 }
 
 TvListItem::~TvListItem(){
     delete interr;
-    delete DeviceListItem::changeChan;
+    delete changeChan;
 }
 
 void TvListItem::onSettingClicked(){
     emit SettingPressed(this);
 }
 
-TvSettings* TvListItem::getSettingDialog(){ return new TvSettings(deviceId); }
+TvSettings* TvListItem::getSettingDialog(const SettingData& data){
+    TvSettings* ts = new TvSettings(deviceId);
+    ts->setCurrentSettings(data);
+    return ts;
+}
+
+void TvListItem::setSettings(const SettingData& data){
+    changeChan->setText("Canale: " + QString::number(data.channel));
+}

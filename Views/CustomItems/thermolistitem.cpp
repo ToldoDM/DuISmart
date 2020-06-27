@@ -2,6 +2,7 @@
 
 ThermoListItem::ThermoListItem(int devId, const QString& fName, QWidget *parent) : DeviceListItem(devId, fName, parent){
 
+
     //Impostazione icona thermostat
     ico->setPixmap(QPixmap(":Images/thermostat.png").scaled(80,80));
     deviceName->setText(tr("Termostato"));
@@ -12,8 +13,7 @@ ThermoListItem::ThermoListItem(int devId, const QString& fName, QWidget *parent)
     interr->setIconSize(QSize(100,70));
 
     //Aggiunta scritta con riferimento allo stato attuale del device
-    //change = new QLabel("23°C");
-    //centerHlay->addWidget(change);
+    changeTemp=new QLabel("");
 
     //Inserimento dello switch day/night
     hlay->addWidget(interr);
@@ -21,7 +21,7 @@ ThermoListItem::ThermoListItem(int devId, const QString& fName, QWidget *parent)
     //inserimento qlabel nel layout di devicelistitem
     centerHlay->addWidget(changeTemp);
 
-    changeTemp->setText("Temperatura: ");
+    changeTemp->setText("");
 }
 
 ThermoListItem::~ThermoListItem(){
@@ -34,5 +34,12 @@ void ThermoListItem::onSettingClicked(){
     emit SettingPressed(this);
 }
 
-ThermostatSettings* ThermoListItem::getSettingDialog(){ return new ThermostatSettings(deviceId); }
+ThermostatSettings* ThermoListItem::getSettingDialog(const SettingData& data){
+    ThermostatSettings* ts = new ThermostatSettings(deviceId);
+    ts->setCurrentSettings(data);
+    return ts;
+}
 
+void ThermoListItem::setSettings(const SettingData& data){
+    changeTemp->setText("Temperatura: " + QString::number(data.temp));
+}

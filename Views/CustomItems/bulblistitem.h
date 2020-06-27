@@ -25,7 +25,15 @@ public:
      * @brief getSettingDialog: Ritorna l'oggetto QDialog appartenente ap proprio tipo
      * @return
      */
-    BulbSettings* getSettingDialog() override;
+    BulbSettings* getSettingDialog(const SettingData&) override;
+
+public slots:
+
+    /**
+     * @brief setSettings: Imposta le settings del device
+     * @param data: Settings data
+     */
+    virtual void setSettings(const SettingData& data) override;
 
 protected slots:
     /**

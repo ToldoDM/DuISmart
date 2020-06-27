@@ -5,6 +5,13 @@
 class SettingData{
 public:
 
+    SettingData(int Id) { devId = Id; }
+
+    /**
+     * @brief devId: device id di riferimento per le settings
+     */
+    int devId;
+
     /**
      * @brief contrast: Contrasto
      */
@@ -25,8 +32,19 @@ public:
      */
     int temp;
 
+    /**
+     * @brief red: Range rosso
+     */
     int red;
+
+    /**
+     * @brief blue: Range blue
+     */
     int blue;
+
+    /**
+     * @brief green: Range verde
+     */
     int green;
 
 };
