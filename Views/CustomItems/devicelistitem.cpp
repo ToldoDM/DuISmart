@@ -38,6 +38,67 @@ DeviceListItem::DeviceListItem(int devId, const QString& fName, QWidget *parent)
     connect(closeButton,SIGNAL(onClicked()),this,SLOT(onDeleteRequest()));
 }
 
+DeviceListItem::DeviceListItem(const DeviceListItem& dli){
+    deviceId = dli.deviceId;
+
+    //Creazione layout default
+    hlay = new QHBoxLayout(this);
+    center = new QWidget(this);
+    centerHlay = new QHBoxLayout(center);
+    vlay = new QVBoxLayout();
+    ico = new QLabel(this);
+    settButton = new SettingsButton(this);
+
+    closeButton= new CloseButton(this);
+
+    //Impostazione nomi label
+    deviceName = new QLabel(dli.deviceName);
+    friendlyName = new QLabel(dli.friendlyName);
+
+    //Impostazione icona default
+    ico->setPixmap(QPixmap(":/Images/image.png").scaled(120,80));
+    ico->setFixedWidth(120);
+
+    //Widget centrale
+    centerHlay->addLayout(vlay);
+    vlay->addWidget(deviceName);
+    vlay->addWidget(friendlyName);
+
+    //prova posizione bottone chiusura
+    hlay->addWidget(closeButton);
+
+    hlay->addWidget(ico);
+    hlay->addWidget(center);
+    hlay->addWidget(settButton);
+
+
+    //connessione segnali e slot
+    connect(settButton,SIGNAL(onClicked()),this,SLOT(onSettingClicked()));
+    connect(closeButton,SIGNAL(onClicked()),this,SLOT(onDeleteRequest()));
+}
+
+DeviceListItem& DeviceListItem::operator=(const DeviceListItem& dli){
+    if(&dli != this){
+        delete(closeButton);
+        delete(settButton);
+        delete(friendlyName);
+        delete(deviceName);
+        delete(ico);
+
+        deviceId = dli.deviceId;
+        ico = new QLabel(this);
+        settButton = new SettingsButton(this);
+        closeButton= new CloseButton(this);
+        deviceName = new QLabel(dli.deviceName);
+        friendlyName = new QLabel(dli.friendlyName);
+
+        //connessione segnali e slot
+        connect(settButton,SIGNAL(onClicked()),this,SLOT(onSettingClicked()));
+        connect(closeButton,SIGNAL(onClicked()),this,SLOT(onDeleteRequest()));
+    }
+    return *this;
+}
+
 void DeviceListItem::onDeleteRequest(){ emit deleteRequest(item, deviceId); }
 
 
@@ -50,6 +111,7 @@ QListWidgetItem* DeviceListItem::getListItem() const { return item; }
 
 
 DeviceListItem::~DeviceListItem(){
+    delete(closeButton);
     delete(settButton);
     delete(friendlyName);
     delete(deviceName);

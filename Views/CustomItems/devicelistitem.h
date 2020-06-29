@@ -21,6 +21,14 @@ public:
     explicit DeviceListItem(int devId, const QString& fName, QWidget *parent = nullptr);
 
     /**
+     * @brief DeviceListItem: Costruttore di copia
+     * @param dli
+     */
+    DeviceListItem(const DeviceListItem& dli);
+
+    DeviceListItem& operator=(const DeviceListItem&);
+
+    /**
      * @brief ~DeviceListItem: Distruttore
      */
     virtual ~DeviceListItem();

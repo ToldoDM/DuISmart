@@ -5,9 +5,28 @@ MainViewModel::MainViewModel() : BaseModel() {
     rooms = new QList<const QString*>();
 }
 
+MainViewModel::MainViewModel(const MainViewModel& vm){
+    rooms = new QList<const QString*>();
+    for (int i=0; i<vm.rooms->size(); ++i) {
+        rooms->append(new QString(*(*vm.rooms)[i]));
+    }
+}
+
+MainViewModel& MainViewModel::operator=(const MainViewModel& vm){
+    if(&vm != this){
+        for (int i=0; i<rooms->size(); ++i) {
+            delete rooms->takeAt(i);
+        }
+        for (int i=0; i<vm.rooms->size(); ++i) {
+            rooms->append(new QString(*(*vm.rooms)[i]));
+        }
+    }
+    return *this;
+}
+
 MainViewModel::~MainViewModel(){
     for (int i=0; i<rooms->size(); ++i) {
-        delete (*rooms)[i];
+        delete rooms->takeAt(i);
     }
     delete rooms;
 }

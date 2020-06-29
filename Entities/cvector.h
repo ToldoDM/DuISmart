@@ -35,6 +35,8 @@ public:
      */
     CVector(const CVector<T>& vec);
 
+    CVector<T>& operator=(const CVector<T>& vec);
+
     ~CVector();
 
     const T& operator[](int i) const;

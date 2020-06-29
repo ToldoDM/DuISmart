@@ -9,14 +9,24 @@ CVector<T>::CVector(){
 
 template<class T>
 CVector<T>::CVector(const CVector<T>& vec){
-    delete[] arr;
-    arr = new T[static_cast<unsigned long>(vec.capacity)];
-    for (int i = 0; i < capacity; i++) { arr[i] = vec[i]; }
+    for (int i = 0; i < vec.current; i++) { push(T(vec[i])); }
 }
 
 template<class T>
 CVector<T>::~CVector(){
     delete[] arr;
+}
+
+template<class T>
+CVector<T>& CVector<T>::operator=(const CVector<T>& vec){
+    if(&vec != this){
+        delete[] arr;
+        arr = new T[1];
+        current=0;
+        capacity=1;
+        for (int i = 0; i < vec.current; i++) { push(T(vec[i])); }
+    }
+    return *this;
 }
 
 template<class T>

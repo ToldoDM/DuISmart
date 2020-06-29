@@ -15,7 +15,15 @@ public:
      */
     explicit MainViewModel();
 
+    /**
+     * @brief MainViewModel: Ridefinizione costruttore di copia
+     */
+    MainViewModel(const MainViewModel&);
+
+
     ~MainViewModel();
+
+    MainViewModel& operator=(const MainViewModel&);
 
     /**
      * @brief getDevice: Ritorna l'oggetto device richiesto
