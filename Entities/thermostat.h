@@ -45,7 +45,7 @@ public:
     virtual SettingData* getSettings() const override;
 
 private:
-    int temp;
+    int temp = 15;
 };
 
 #endif // THERMOSTAT_H

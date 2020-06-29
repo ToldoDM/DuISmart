@@ -46,6 +46,8 @@ void DeviceListItem::setListItem(QListWidgetItem *qli){ item = qli; }
 
 int DeviceListItem::getDeviceID() const { return deviceId; }
 
+QListWidgetItem* DeviceListItem::getListItem() const { return item; }
+
 
 DeviceListItem::~DeviceListItem(){
     delete(settButton);

@@ -45,10 +45,10 @@ public:
     virtual SettingData* getSettings() const override;
 
 private:
-    int brightness;
-    int red;
-    int blue;
-    int green;
+    int brightness = 0;
+    int red = 255;
+    int blue = 255;
+    int green = 255;
 };
 
 #endif // BULB_H

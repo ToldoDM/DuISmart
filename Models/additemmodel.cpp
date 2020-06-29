@@ -1,7 +1,7 @@
 #include "additemmodel.h"
 
 
-AddItemModel::AddItemModel(QList<const QString*> *list){
+AddItemModel::AddItemModel(QList<const QString*>* list){
 
     // lista camere che verranno prese/passate dal mainVM
     camere = list;

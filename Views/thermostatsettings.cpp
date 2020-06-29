@@ -29,8 +29,8 @@ ThermostatSettings::ThermostatSettings(int ID){
     num = new QLCDNumber(2,this);
     hlay->addWidget(num);
 
-    connect(increase,SIGNAL(clicked()),this,SLOT(setSettings()));
-    connect(decrease,SIGNAL(clicked()),this,SLOT(setSettings()));
+    connect(increase,SIGNAL(clicked()),this,SLOT(increse()));
+    connect(decrease,SIGNAL(clicked()),this,SLOT(decrese()));
 
     setFixedSize(400,250);
 
@@ -49,12 +49,23 @@ ThermostatSettings::~ThermostatSettings(){
     delete hlay;
 }
 
-void ThermostatSettings::setSettings() const{
-
+void ThermostatSettings::decrese(){
     int i = static_cast<int>(num->value());
-    if(i>13) num->display(i-1);
-    if(i<30) num->display(i+1);
+    if(i>13){
+        num->display(i-1);
+        setSettings();
+    }
+}
 
+void ThermostatSettings::increse(){
+    int i = static_cast<int>(num->value());
+    if(i<30) {
+        num->display(i+1);
+        setSettings();
+    }
+}
+
+void ThermostatSettings::setSettings() const{
     SettingData data(idDevice);
     data.temp = static_cast<int>(num->value());
     emit onSetNewSettings(data);

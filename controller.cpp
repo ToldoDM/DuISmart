@@ -9,6 +9,7 @@ Controller::Controller(QObject* parent) : QObject(parent){
     
     //Connessioni segnali e slot
     connect(MainW, SIGNAL(addNewDevice()), this, SLOT(riseAddWindow()));
+    connect(MainW,SIGNAL(onRemoveRoom(const QString&)),this,SLOT(removeRoomFromModel(const QString&)));
 
     connect(fileIO,SIGNAL(readedData(const QString&, const QString&)),this, SLOT(insertData(const QString&, const QString&)));
     // caricare file se sono salvati
@@ -16,11 +17,11 @@ Controller::Controller(QObject* parent) : QObject(parent){
 }
 
 //PUBLIC METHODS
-void Controller::ShowMainWindow() const { MainW->show(); }
+void Controller::ShowMainWindow() const { MainW->show(); MainW->setFixedSize(640,480); }
 
 //PRIVATE METHODS
 // metodo che permette l'aggiunta di un nuovo device in un tab
-void Controller::addSmartDeviceToList(SmartDevice *device, const QString& targetTab) const{
+DeviceListItem* Controller::addSmartDeviceToList(SmartDevice *device, const QString& targetTab) const{
     DeviceListItem* dli = MainVM->addDevice(device);
     MainW->addToAllTab(dli, targetTab);
 
@@ -29,9 +30,13 @@ void Controller::addSmartDeviceToList(SmartDevice *device, const QString& target
 
     //connessione bottone delete
     connect(dli, SIGNAL(deleteRequest(QListWidgetItem*, int)), this, SLOT(removeSmartDeviceFromList(QListWidgetItem*, int)));
+
+    return dli;
 }
 
 //PRIVATE SLOTS
+void Controller::removeRoomFromModel(const QString& roomName){ MainVM->removeRoom(roomName); }
+
 void Controller::riseAddWindow(){
     auto list = MainVM->getRoomList();
     AddItemVM = new AddItemModel(list);
@@ -56,21 +61,36 @@ void Controller::setFriendlyNameChanged(const QString& text) const{ AddItemVM->s
 
 
 void Controller::addNewDeviceToMainW(DeviceType dType, const QString& roomName){
+    SmartDevice* device= nullptr;
+    DeviceListItem* dli = nullptr;
     switch (dType) {
     case DeviceType::BULB:
-        addSmartDeviceToList(new Bulb(idCount++, AddItemVM->getFName()), roomName);
-        fileIO->writeData(BULB,idCount,roomName);
+        device = new Bulb(idCount++, AddItemVM->getFName());
+        //fileIO->writeData(BULB,idCount,roomName);
         break;
     case DeviceType::TV:
-        addSmartDeviceToList(new Tv(idCount++, AddItemVM->getFName()), roomName);
-        fileIO->writeData(TV,idCount,roomName);
+        device = new Tv(idCount++, AddItemVM->getFName());
+        //fileIO->writeData(TV,idCount,roomName);
         break;
     case DeviceType::THERMOSTAT:
-        addSmartDeviceToList(new Thermostat(idCount++, AddItemVM->getFName()), roomName);
-        fileIO->writeData(THERMOSTAT,idCount,roomName);
+        device = new Thermostat(idCount++, AddItemVM->getFName());
+        //fileIO->writeData(THERMOSTAT,idCount,roomName);
         break;
     }
-    AddItemW->close();
+
+
+    //Alle volte per ragioni a noi sconosciute, lancia un seg-fault alla addItemW->Close();
+    try {
+        dli = addSmartDeviceToList(device, roomName);
+        AddItemW->close();
+    } catch (...) {
+        QErrorMessage mb(MainW);
+        mb.showMessage(tr("Aggiunta device non riuscita"));
+        mb.exec();
+        if(dli) {
+            removeSmartDeviceFromList(dli->getListItem(), --idCount);
+        }
+    }
 }
 
 void Controller::addNewRoom(const QString& roomName) const{
@@ -132,7 +152,6 @@ void Controller::removeSmartDeviceFromList(QListWidgetItem* qli, int deviceID) c
     MainW->removeFromTab(qli);
     //Cancellato il qli, successivamente cancello lo smartDevice dalla lista device
     MainVM->removeDevice(deviceID);
-    //Controllo se il tab dove era il device e se non ci sono piu device lo cancello
 }
 
 

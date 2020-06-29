@@ -10,42 +10,42 @@ public:
     /**
      * @brief devId: device id di riferimento per le settings
      */
-    int devId;
+    int devId = 0;
 
     /**
      * @brief contrast: Contrasto
      */
-    int contrast;
+    int contrast = 0;
 
     /**
      * @brief brightness: Luminosita'
      */
-    int brightness;
+    int brightness = 0;
 
     /**
      * @brief channel: Canale Tv
      */
-    int channel;
+    int channel = 0;
 
     /**
      * @brief temp: Temperatura
      */
-    int temp;
+    int temp = 0;
 
     /**
      * @brief red: Range rosso
      */
-    int red;
+    int red = 255;
 
     /**
      * @brief blue: Range blue
      */
-    int blue;
+    int blue = 255;
 
     /**
      * @brief green: Range verde
      */
-    int green;
+    int green = 255;
 
 };
 

@@ -16,6 +16,16 @@ void MainViewModel::addRoom(const QString *newRoom){
     rooms->append(newRoom);
 }
 
+void MainViewModel::removeRoom(const QString& roomName){
+    bool found = false;
+    for (int i=0; i<rooms->count() && !found; i++) {
+        if((*rooms)[i] == roomName){
+            rooms->removeAt(i);
+            found = true;
+        }
+    }
+}
+
 void MainViewModel::removeDevice(int devId){
     const SmartDevice* dev = nullptr;
      for (int i=0; i<deviceList.size() && !dev; i++) {
@@ -24,7 +34,7 @@ void MainViewModel::removeDevice(int devId){
      }
 }
 
-QList<const QString*>* MainViewModel::getRoomList(){ return rooms; }
+QList<const QString*>* MainViewModel::getRoomList() const { return rooms; }
 
 DeviceListItem* MainViewModel::addDevice(SmartDevice* newDevice){
     deviceList.push(newDevice);

@@ -42,6 +42,12 @@ public:
      */
     int getDeviceID() const;
 
+    /**
+     * @brief getListItem: Ritorna il QListWidgetItem associato
+     * @return
+     */
+    QListWidgetItem* getListItem() const;
+
 public slots:
 
     /**

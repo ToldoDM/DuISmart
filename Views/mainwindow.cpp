@@ -4,7 +4,7 @@
 
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent){
     setWindowTitle ("DuISmartMainWindow");
-    setFixedSize(640,480);
+    //setFixedSize(640,480);
 
     //Creazione della visualizzazione di default
     tab = new QTabWidget(this);
@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent){
 
     //Rendo invisibile QTabWidget perche' non contiene nessun tab
     tab->setVisible(false);
+
 }
 
 void MainWindow::addTab(const QString& tabName){
@@ -39,6 +40,15 @@ void MainWindow::removeFromTab(QListWidgetItem *qli) const{
     delete qList->itemWidget(qli);
     //Per eliminare qli dalla lista visivamente e' sufficiente eliminare il puntatore
     delete qli;
+
+    //Se il tab non contiene piu alcun dispositivo, elimino il tab e la lista
+    if(!qList->count()) {
+        emit onRemoveRoom(tab->tabText(tab->currentIndex()));
+        tab->removeTab(tab->currentIndex());
+        //Se il tabWidget non ha piu alcun tab, lo rendo invisibile
+        if(!tab->count()) tab->setVisible(false);
+        delete qList;
+    }
 }
 
 void MainWindow::addToAllTab(DeviceListItem *dli, const QString& tabName) const{

@@ -66,9 +66,9 @@ TvSettings::TvSettings(int ID){
 }
 
 void TvSettings::setCurrentSettings(const SettingData &data){
-    sliderCont->setValue(data.contrast);
-    sliderBright->setValue(data.brightness);
-    spinBox->setValue(data.channel);
+    if(data.contrast) sliderCont->setValue(data.contrast);
+    if(data.brightness) sliderBright->setValue(data.brightness);
+    if(data.channel) spinBox->setValue(data.channel);
 }
 
 TvSettings::~TvSettings(){

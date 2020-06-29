@@ -44,9 +44,9 @@ public:
     virtual SettingData* getSettings() const override;
 
 private:
-    int contrast;
-    int brightness;
-    int channel;
+    int contrast = 0;
+    int brightness = 0;
+    int channel = 1;
 };
 
 #endif // TV_H

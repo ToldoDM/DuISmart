@@ -15,7 +15,7 @@ public:
     /**
      * @brief AddItemModel: Costruttore di default
      */
-    explicit AddItemModel(QList<const QString*> *list);
+    explicit AddItemModel(QList<const QString*>* list);
 
     /**
      * @brief insert: utilizzato per inserire la nuova stanza
@@ -41,7 +41,7 @@ private:
     /**
      * @brief camere: Lista camere presenti
      */
-    QList<const QString*> *camere;
+    QList<const QString*>* camere;
 
     /**
      * @brief deviceName: Nome device

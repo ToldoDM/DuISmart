@@ -91,6 +91,7 @@ AddItemWindow::AddItemWindow(){
     connect(addRoom,SIGNAL(clicked()),this,SLOT(addNewRoomClicked()));
     connect(aggiungiStanza,SIGNAL(textChanged(const QString&)),this,SLOT(addRoomTextChanged(const QString&)));
 
+
 }
 
 void AddItemWindow::addRoomTextChanged(const QString& text){

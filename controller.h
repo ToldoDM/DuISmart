@@ -9,6 +9,9 @@
 #include "Entities/bulb.h"
 #include "Entities/tv.h"
 #include "Entities/thermostat.h"
+#include <iostream>
+#include <exception>
+#include <QErrorMessage>
 
 #include "Views/bulbsettings.h"
 #include "Views/tvsettings.h"
@@ -82,12 +85,17 @@ private slots:
      */
     void setSettings(const SettingData& data);
 
+    /**
+     * @brief RemoveRoomFromModel: Rimuove dal MainVM il nome stanza dalla lista drop down
+     */
+    void removeRoomFromModel(const QString&);
+
 private:
 
     /**
      * @brief addSmartDeviceToList: aggiunge lo smartDevice alla lista della main window
      */
-    void addSmartDeviceToList(SmartDevice* device, const QString& targetTab) const;
+    DeviceListItem* addSmartDeviceToList(SmartDevice* device, const QString& targetTab) const;
 
     /**
      * @brief dli:oggetto di tipo device list item

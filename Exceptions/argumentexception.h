@@ -11,7 +11,7 @@ public:
      * @brief NotImplException: Costruttore di default
      * @param s: Specifica errore
      */
-    explicit ArgumentException(std::string s);
+    explicit ArgumentException(std::string s = "");
 
     /**
      * @brief argument: Specifica dell'errore

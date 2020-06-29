@@ -41,13 +41,19 @@ public:
      * @param newRoom: Nome nuova stanza
      * @return Rirerimento costante della stringa appena aggiunta nella lista
      */
-    void addRoom(const QString* newRoom);
+    void addRoom(const QString *newRoom);
+
+    /**
+     * @brief removeRoom: Metodo utilizzato per rimuovere una stanza dalla lista delle stanze disponibili
+     * @param roomName: nome stanza
+     */
+    void removeRoom(const QString& roomName);
 
     /**
      * @brief getRoomList: Ritorna il puntatore alla lista contenente le camere
      * @return lista contenente le camere
      */
-    QList<const QString*>* getRoomList();
+    QList<const QString*>* getRoomList() const;
 
     /**
      * @brief setDeviceSettings: Imposta i setting del device indicato
@@ -66,7 +72,7 @@ private:
     /**
      * @brief rooms: Stanze presenti
      */
-    QList<const QString*> *rooms;
+    QList<const QString*>* rooms;
 
     /**
      * @brief deviceList: Lista device

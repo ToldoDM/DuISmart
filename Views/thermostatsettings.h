@@ -26,6 +26,18 @@ protected:
     QHBoxLayout *hlay;
     QVBoxLayout *vlay;
 
+private slots:
+
+    /**
+     * @brief decrese: Slot gestione diminuzione temperatura
+     */
+    void decrese();
+
+    /**
+     * @brief increse: Slot gestione incremento temperatura
+     */
+    void increse();
+
 protected slots:
 
     /**
