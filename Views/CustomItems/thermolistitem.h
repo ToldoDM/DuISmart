@@ -1,42 +1,41 @@
-#ifndef BULBLISTITEM_H
-#define BULBLISTITEM_H
+#ifndef THERMOLISTITEM_H
+#define THERMOLISTITEM_H
 
 #include "devicelistitem.h"
 #include "onoffbutton.h"
-#include "Views/bulbsettings.h"
+#include "Views/thermostatsettings.h"
 
-class BulbListItem : public DeviceListItem
+class ThermoListItem : public DeviceListItem
 {
 public:
-
     /**
      * @brief BulbListItem: Costruttore di default
      * @param devId: Identificativo dello smart device
      * @param parent: Widget genitore
      */
-    explicit BulbListItem(int devId, const QString& fName, QWidget *parent = nullptr);
+    explicit ThermoListItem(int devId, const QString& fName, QWidget *parent = nullptr);
 
     /**
      * @brief ~BulbListItem: Distruttore
      */
-    virtual ~BulbListItem() override;
+    virtual ~ThermoListItem() override;
 
     /**
      * @brief BulbListItem: Costruttore di copia
      */
-    BulbListItem(const BulbListItem&);
+    ThermoListItem(const ThermoListItem&);
 
     /**
      * @brief operator=: Operatore di assegnazione
      * @return
      */
-    BulbListItem& operator=(const BulbListItem&);
+    ThermoListItem& operator=(const ThermoListItem&);
 
     /**
      * @brief getSettingDialog: Ritorna l'oggetto QDialog appartenente ap proprio tipo
      * @return
      */
-    BulbSettings* getSettingDialog(const SettingData&) override;
+    ThermostatSettings* getSettingDialog(const SettingData&) override;
 
 public slots:
 
@@ -53,6 +52,12 @@ protected slots:
     virtual void onSettingClicked() override;
 
 private:
+
+    /**
+     * @brief Change: Label che identifica temperatura / canale
+     */
+    QLabel *changeTemp;
+
     /**
      * @brief interr: Bottone con funzione di interruttore per la lampadina
      */
@@ -60,4 +65,4 @@ private:
 
 };
 
-#endif // BULBLISTITEM_H
+#endif // THERMOLISTITEM_H

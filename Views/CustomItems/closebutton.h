@@ -1,32 +1,32 @@
-#ifndef SETTINGSBUTTON_H
-#define SETTINGSBUTTON_H
+#ifndef CLOSEBUTTON_H
+#define CLOSEBUTTON_H
 
+#include <QToolButton>
 #include "Views/CustomItems/custombutton.h"
+#include <QLabel>
+#include <QMouseEvent>
 
-class SettingsButton : public CustomButton
+
+class CloseButton : public CustomButton
 {
 public:
-    /**
-     * @brief SettingsButton: Costruttore di default
-     * @param parent: Widget genitore
-     */
-    explicit SettingsButton(QWidget *parent = nullptr);
+    explicit CloseButton(QWidget *parent=nullptr);
 
-    /**
-     * @brief ~SettingsButton: Distruttore
-     */
-    virtual ~SettingsButton() override;
+    void setCloseIcons(const QString& IconStd, const QString& onOver);
+
+    virtual ~CloseButton() override;
 
     /**
      * @brief OnOffButton: Costruttore di copia
      */
-    SettingsButton(const SettingsButton&);
+    CloseButton(const CloseButton&);
 
     /**
      * @brief operator=: Operatore di assegnazione
      * @return
      */
-    SettingsButton& operator=(const SettingsButton&);
+    CloseButton& operator=(const CloseButton&);
+
 
 protected:
     /**
@@ -43,14 +43,15 @@ protected:
 
 private:
     /**
-     * @brief ico: Icona setting
+     * @brief IconStd: icona standard / Icona pulsante off mouse over
      */
-    QIcon ico;
+    QIcon IconStd;
 
     /**
-     * @brief icoOver: Icona setting over
+     * @brief onOver: Icona pulsante on mouse over
      */
-    QIcon icoOver;
+    QIcon onOver;
+
 };
 
-#endif // SETTINGSBUTTON_H
+#endif // CLOSEBUTTON_H

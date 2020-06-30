@@ -6,20 +6,31 @@
 #include "Models/additemmodel.h"
 #include "Views/mainwindow.h"
 #include "Views/additemwindow.h"
+#include "Entities/bulb.h"
+#include "Entities/tv.h"
+#include "Entities/thermostat.h"
+#include <iostream>
+#include <exception>
+#include <QErrorMessage>
+
+#include "Views/bulbsettings.h"
+#include "Views/tvsettings.h"
+#include "Views/thermostatsettings.h"
 
 class Controller : public QObject {
     Q_OBJECT
-
-
-signals:
 
 private slots:
 
     /**
      * @brief addWinClosed: Slot utilizzato per la distruzione dell'oggetto AddItemWindow
-     * @param result: Risultato dialog
      */
-    void addWinClosed(int result);
+    void addWinClosed();
+
+    /**
+     * @brief settWinClosed: Slot utilizzato per la distruzione dell'oggetto settW
+     */
+    void settWinClosed();
 
     /**
      * @brief clieckedHandler: Slot utilizzato per catturare il segnale bottone premuto di addDevice
@@ -34,12 +45,6 @@ private slots:
     void addNewDeviceToMainW(DeviceType dType, const QString& roomName);
 
     /**
-     * @brief setDeviceNameChanged: Slot utilizzato per aggironare il valore dalla variabile al model
-     * @param text: New Text
-     */
-    void setDeviceNameChanged(const QString& text) const;
-
-    /**
      * @brief setFriendlyNameChanged: Slot utilizzato per aggironare il valore dalla variabile al model
      * @param text: New Text
      */
@@ -51,7 +56,45 @@ private slots:
      */
     void addNewRoom(const QString& roomName) const;
 
+    /**
+     * @brief selectSettings:: Slot utilizzato per sciegliere quale schermata impostazioni visualizzare per un determinato oggetto
+     * @param dli: device list item da cui e' stato premuto il pulsante
+     */
+    void selectSettings(DeviceListItem* dli);
+
+
+     /** @brief removeSmartDeviceFromList: rimuove lo smart device dalla lista visiva e dalla lista codice
+     */
+    void removeSmartDeviceFromList(QListWidgetItem*, int) const;
+
+    /**
+     * @brief setSettings: Imposta le settings del device
+     * @param data: Settings data
+     */
+    void setSettings(const SettingData& data);
+
+    /**
+     * @brief RemoveRoomFromModel: Rimuove dal MainVM il nome stanza dalla lista drop down
+     */
+    void removeRoomFromModel(const QString&);
+
 private:
+
+    /**
+     * @brief addSmartDeviceToList: aggiunge lo smartDevice alla lista della main window
+     */
+    DeviceListItem* addSmartDeviceToList(SmartDevice* device, const QString& targetTab) const;
+
+    /**
+     * @brief dli:oggetto di tipo device list item
+     */
+    DeviceListItem *dli;
+
+    /**
+     * @brief idCount: Id count utilizzato per gli id univoci dei device
+     */
+    int idCount = 0;
+
     /**
      * @brief AddItemW: Finestra aggiunta nuovo device
      */
@@ -71,9 +114,10 @@ private:
     MainWindow* MainW = nullptr;
 
     /**
-     * @brief addSmartDeviceToList: aggiunge lo smartDevice alla lista della main window
+     * @brief settW: Dialog setting window
      */
-    void addSmartDeviceToList(SmartDevice* device, const QString& targetTab) const;
+    QDialog *settW;
+
 
 public:
     /**
@@ -86,6 +130,7 @@ public:
      * @brief ShowMainWindow: Comando che chiama show della mainWindow
      */
     void ShowMainWindow() const;
+
 };
 
 #endif

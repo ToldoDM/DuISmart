@@ -1,23 +1,17 @@
 #ifndef ADDITEMWINDOW_H
 #define ADDITEMWINDOW_H
 
-//aggiunte per finestra
+
 #include <QFormLayout>
+#include <QErrorMessage>
 #include <QDialog>
 #include <QVBoxLayout>
 #include <QLineEdit>
 #include <QTextEdit>
-#include <QWidget>
-//assicurarsi di rimuovere le classi "prova" a completamento del return
 #include <QPushButton>
 #include <QLabel>
-#include <QBoxLayout>
 #include <QComboBox>
 #include <QDialogButtonBox>
-
-//prova
-#include <QMenu>
-#include <QToolButton>
 #include "Enums/devicetype.h"
 #include "Enums/RoomType.h"
 
@@ -34,7 +28,18 @@ public:
      */
     explicit AddItemWindow();
 
-    ~AddItemWindow();
+    ~AddItemWindow() override;
+
+    /**
+     * @brief AddItemWindow: Costruttore di copia
+     */
+    AddItemWindow(const AddItemWindow&);
+
+    /**
+     * @brief operator =: Operatore di assegnazione
+     * @return
+     */
+    AddItemWindow& operator=(const AddItemWindow&);
 
     /**
      * @brief populateRoomsComboBox: Aggiunge alla combo box le camere attualmente presenti
@@ -42,12 +47,14 @@ public:
      */
     void populateRoomsComboBox(QList<const QString*>* list);
 
-signals:
+protected:
 
     /**
-     * @brief onDeviceNameChanged: Evento generato quandoil testo del device name viene cambiatoS
+     * @brief closeEvent: Evento generato alla chiusura della finestra
      */
-    void onDeviceNameChanged(const QString& text);
+    void closeEvent(QCloseEvent *) override;
+
+signals:
 
     /**
      * @brief onFriendlyNameChanged: Evento generato quandoil testo del friendly name viene cambiatoS
@@ -67,18 +74,23 @@ signals:
      */
     void onAddNewRoom(const QString& roomName);
 
+    /**
+     * @brief closeAddItemW: Evento generato alla chiusura della finestra
+     */
+    void closeAddItemW();
+
 
 private slots:
 
     /**
      * @brief getChanges: Slot usato per il segnale proveniente dal textChanged di description
      */
-    void getChanges();
+    void getChanges(const QString&);
 
     /**
      * @brief accept: Accettazione campi nuovo elemento
      */
-    void accept();
+    void accept() override;
 
     /**
      * @brief cancel: Chiusura finestra
@@ -106,20 +118,16 @@ private:
 
     //campi per l'uente
     QLineEdit *name;
-    QTextEdit *description;
     QComboBox *room;
     QComboBox *device;
     QLineEdit *aggiungiStanza;
-
-    QDialog *Problem;
-    QVBoxLayout *LProblem;
-    QLabel *labelText;
 
     QVBoxLayout *Vlayout;
     QFormLayout *formLayout;
 
     QPushButton *addRoom;
     QHBoxLayout *racchiudiStanza;
+    QDialogButtonBox *buttonBox;
 };
 
 #endif // ADDITEMWINDOW_H

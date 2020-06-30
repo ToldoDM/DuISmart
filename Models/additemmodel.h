@@ -5,7 +5,6 @@
 #include <QList>
 #include <QString>
 #include "basemodel.h"
-#include "Entities/bulb.h"
 #include "Enums/devicetype.h"
 
 class AddItemModel: public BaseModel
@@ -16,17 +15,12 @@ public:
     /**
      * @brief AddItemModel: Costruttore di default
      */
-    explicit AddItemModel(QList<const QString*> *list);
+    explicit AddItemModel(QList<const QString*>* list);
 
     /**
      * @brief insert: utilizzato per inserire la nuova stanza
      */
     void insert(const QString& s);
-
-    /**
-     * @brief setDName: utilizzato per aggiornare il valore di deviceName
-     */
-    void setDName(const QString& s);
 
     /**
      * @brief setFName: utilizzato per aggiornare il valore friendlyName
@@ -42,12 +36,7 @@ private:
     /**
      * @brief camere: Lista camere presenti
      */
-    QList<const QString*> *camere;
-
-    /**
-     * @brief deviceName: Nome device
-     */
-    QString deviceName;
+    QList<const QString*>* camere;
 
     /**
      * @brief friendlyName: Nome friendly

@@ -1,42 +1,43 @@
-#ifndef BULBLISTITEM_H
-#define BULBLISTITEM_H
+#ifndef TVLISTITEM_H
+#define TVLISTITEM_H
 
-#include "devicelistitem.h"
+#include<QString>
+#include<QWidget>
 #include "onoffbutton.h"
-#include "Views/bulbsettings.h"
+#include "devicelistitem.h"
+#include "Views/tvsettings.h"
 
-class BulbListItem : public DeviceListItem
+class TvListItem : public DeviceListItem
 {
 public:
-
     /**
      * @brief BulbListItem: Costruttore di default
      * @param devId: Identificativo dello smart device
      * @param parent: Widget genitore
      */
-    explicit BulbListItem(int devId, const QString& fName, QWidget *parent = nullptr);
+    explicit TvListItem(int devId, const QString& fName, QWidget *parent = nullptr);
 
     /**
      * @brief ~BulbListItem: Distruttore
      */
-    virtual ~BulbListItem() override;
+    virtual ~TvListItem();
 
     /**
      * @brief BulbListItem: Costruttore di copia
      */
-    BulbListItem(const BulbListItem&);
+    TvListItem(const TvListItem&);
 
     /**
      * @brief operator=: Operatore di assegnazione
      * @return
      */
-    BulbListItem& operator=(const BulbListItem&);
+    TvListItem& operator=(const TvListItem&);
 
     /**
      * @brief getSettingDialog: Ritorna l'oggetto QDialog appartenente ap proprio tipo
      * @return
      */
-    BulbSettings* getSettingDialog(const SettingData&) override;
+    TvSettings* getSettingDialog(const SettingData&) override;
 
 public slots:
 
@@ -47,17 +48,24 @@ public slots:
     virtual void setSettings(const SettingData& data) override;
 
 protected slots:
+
     /**
      * @brief onSettingClicked: Cattura evento setting cliecked
      */
     virtual void onSettingClicked() override;
 
+
 private:
+
+    /**
+     * @brief changeChan: Label indicante il canale corrente della tv
+     */
+    QLabel *changeChan;
+
     /**
      * @brief interr: Bottone con funzione di interruttore per la lampadina
      */
     OnOffButton *interr;
-
 };
 
-#endif // BULBLISTITEM_H
+#endif // TVLISTITEM_H

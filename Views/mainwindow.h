@@ -30,6 +30,13 @@ public:
     void addToAllTab(DeviceListItem* dli, const QString& tabName) const;
 
     /**
+     * @brief removeFromTab: Rimuove dal tab corrente il qli ed il suo widget associato, se il tab non contiene piu' alcun elemento, viene eliminato
+     * @param qli: list item della lista
+     */
+    void removeFromTab(QListWidgetItem* qli) const;
+
+public slots:
+    /**
      * @brief addTab: Aggiunge un nuovo tab
      * @param tabName: Nome tab da aggiungere
      */
@@ -41,7 +48,10 @@ signals:
      */
     void addNewDevice();
 
-public slots:
+    /**
+     * @brief onRemoveRoom: Evento generato quando viene richiesta l'eliminazione della stanza al model
+     */
+    void onRemoveRoom(const QString&) const;
 
 private:
 

@@ -25,28 +25,40 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         Entities/bulb.cpp \
-        Entities/display.cpp \
+    Entities/cvector.cpp \
         Entities/listdevice.cpp \
         Entities/smartdevice.cpp \
+    Entities/thermostat.cpp \
+    Entities/tv.cpp \
     Exceptions/argumentexception.cpp \
         Models/basemodel.cpp \
         Models/mainviewmodel.cpp \
+        Models/additemmodel.cpp \
         Views/CustomItems/bulblistitem.cpp \
     Views/CustomItems/custombutton.cpp \
         Views/CustomItems/devicelistitem.cpp \
         Views/CustomItems/onoffbutton.cpp \
     Views/CustomItems/settingsbutton.cpp \
+    Views/CustomItems/thermolistitem.cpp \
+    Views/CustomItems/tvlistitem.cpp \
     Views/additemwindow.cpp \
         Views/mainwindow.cpp \
         controller.cpp \
         main.cpp \
-    Models/additemmodel.cpp
+    Views/devicesettings.cpp \
+    Views/bulbsettings.cpp \
+    Views/thermostatsettings.cpp \
+    Views/CustomItems/closebutton.cpp \
+    Views/tvsettings.cpp \
 
 HEADERS += \
+    Entities/cvector.h \
+    Entities/settingdata.h \
+    Entities/thermostat.h \
+    Entities/tv.h \
     Enums/RoomType.h \
         Enums/devicestate.h \
         Entities/bulb.h \
-        Entities/display.h \
         Entities/listdevice.h \
         Entities/smartdevice.h \
     Enums/devicetype.h \
@@ -58,10 +70,17 @@ HEADERS += \
         Views/CustomItems/devicelistitem.h \
         Views/CustomItems/onoffbutton.h \
     Views/CustomItems/settingsbutton.h \
+    Views/CustomItems/thermolistitem.h \
+    Views/CustomItems/tvlistitem.h \
     Views/additemwindow.h \
         Views/mainwindow.h \
         controller.h \
-    Models/additemmodel.h
+    Models/additemmodel.h \
+    Views/devicesettings.h \
+    Views/bulbsettings.h \
+    Views/thermostatsettings.h \
+    Views/CustomItems/closebutton.h \
+    Views/tvsettings.h
 
 FORMS +=
 

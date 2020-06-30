@@ -1,27 +1,26 @@
-#ifndef BULB_H
-#define BULB_H
+#ifndef TV_H
+#define TV_H
 
-#include "listdevice.h"
+#include "Views/CustomItems/tvlistitem.h"
 #include "smartdevice.h"
-#include "Views/CustomItems/bulblistitem.h"
+#include "listdevice.h"
 
-class Bulb : public SmartDevice, public ListDevice
+class Tv : public SmartDevice, public ListDevice
 {
-
 public:
     /**
-     * @brief Bulb: Costruttore di default
-     * @param devID: Id device
+     * @brief Tv: Costruttore di default
+     * @param devID: Id nuovo device
      * @param fName: Friendly name device
      */
-    explicit Bulb(const int& devID, const QString& fName);
+    explicit Tv(const int& devID, const QString& fName);
 
     /**
      * @brief getListType: Metodo utilizzato per creare l'oggetto che verra' visualizzato nella lista dei device.
      * @param devId: Id device di riferimento
      * @return Oggetto visivo della lista
      */
-    virtual DeviceListItem * getListType() const override;    
+    virtual DeviceListItem * getListType() const override;
 
     /**
      * @brief switchOnDevice: Metodo usato per avviare la procedura di accensione del device
@@ -37,7 +36,7 @@ public:
      * @brief setSettings: Imposta il corrente device con le impostazioni date
      * @param data: Dati correnti
      */
-    virtual void setSettings(const SettingData &data) override;
+    virtual void setSettings(const SettingData &data) override;    
 
     /**
      * @brief getSettings: Ottiene le impostazioni correnti del device
@@ -45,10 +44,9 @@ public:
     virtual SettingData* getSettings() const override;
 
 private:
+    int contrast = 0;
     int brightness = 0;
-    int red = 255;
-    int blue = 255;
-    int green = 255;
+    int channel = 1;
 };
 
-#endif // BULB_H
+#endif // TV_H
