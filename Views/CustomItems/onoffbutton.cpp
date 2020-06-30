@@ -16,6 +16,30 @@ void OnOffButton::mousePressEvent(QMouseEvent *mEvent){
     }
 }
 
+OnOffButton::OnOffButton(const OnOffButton& oof) : CustomButton(oof){
+    state = oof.state;
+    this->onIco = QIcon(oof.onIco);
+    this->offIco = QIcon(oof.offIco);
+    this->onOver = QIcon(oof.onOver);
+    this->offOver = QIcon(oof.offOver);
+    setIcon(state == DeviceState::Off ? offIco : onIco);
+    setIconSize(QSize(100,100));
+}
+
+OnOffButton& OnOffButton::operator=(const OnOffButton &oof){
+    CustomButton::operator=(oof);
+    if(this != & oof){
+        state = oof.state;
+        this->onIco = QIcon(oof.onIco);
+        this->offIco = QIcon(oof.offIco);
+        this->onOver = QIcon(oof.onOver);
+        this->offOver = QIcon(oof.offOver);
+        setIcon(state == DeviceState::Off ? offIco : onIco);
+        setIconSize(QSize(100,100));
+    }
+    return *this;
+}
+
 void OnOffButton::enterEvent(QEvent *event){
     CustomButton::enterEvent(event);
     setIcon(state == DeviceState::Off ? offOver : onOver);

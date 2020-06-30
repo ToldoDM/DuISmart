@@ -21,6 +21,41 @@ TvListItem::TvListItem(int devId, const QString& fName, QWidget *parent) : Devic
     changeChan->setText("");
 }
 
+TvListItem::TvListItem(const TvListItem& tvli) : DeviceListItem(tvli){
+
+    interr = new OnOffButton(*tvli.interr);
+
+    //Aggiunta scritta con riferimento allo stato attuale del device
+    changeChan=new QLabel(tvli.changeChan->text());
+
+    //Inserimento dello switch acceso/spento
+    hlay->addWidget(interr);
+
+    //inserimento della label nel layout di devicelistitem
+    centerHlay->addWidget(changeChan);
+}
+
+TvListItem& TvListItem::operator=(const TvListItem &tvli){
+    DeviceListItem::operator=(tvli);
+    if(this != &tvli){
+
+        delete interr;
+        delete changeChan;
+
+        interr = new OnOffButton(*tvli.interr);
+
+        //Aggiunta scritta con riferimento allo stato attuale del device
+        changeChan=new QLabel(tvli.changeChan->text());
+
+        //Inserimento dello switch acceso/spento
+        hlay->addWidget(interr);
+
+        //inserimento della label nel layout di devicelistitem
+        centerHlay->addWidget(changeChan);
+    }
+    return *this;
+}
+
 TvListItem::~TvListItem(){
     delete interr;
     delete changeChan;

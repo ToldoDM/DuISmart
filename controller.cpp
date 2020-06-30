@@ -4,16 +4,10 @@
 Controller::Controller(QObject* parent) : QObject(parent){
     MainVM = new MainViewModel();
     MainW = new MainWindow();
-
-    fileIO = new TxtManager();
     
     //Connessioni segnali e slot
     connect(MainW, SIGNAL(addNewDevice()), this, SLOT(riseAddWindow()));
     connect(MainW,SIGNAL(onRemoveRoom(const QString&)),this,SLOT(removeRoomFromModel(const QString&)));
-
-    connect(fileIO,SIGNAL(readedData(const QString&, const QString&)),this, SLOT(insertData(const QString&, const QString&)));
-    // caricare file se sono salvati
-    fileIO->readData();
 }
 
 //PUBLIC METHODS
@@ -45,17 +39,14 @@ void Controller::riseAddWindow(){
     AddItemW->populateRoomsComboBox(list);
 
     //Connessioni segnali e slot
-    connect(AddItemW, SIGNAL(onDeviceNameChanged(const QString&)), this, SLOT(setDeviceNameChanged(const QString&)));
     connect(AddItemW, SIGNAL(onFriendlyNameChanged(const QString&)), this, SLOT(setFriendlyNameChanged(const QString&)));
     connect(AddItemW, SIGNAL(onAddNewDevice(DeviceType, const QString&)), this, SLOT(addNewDeviceToMainW(DeviceType, const QString&)));
     connect(AddItemW, SIGNAL(onAddNewRoom(const QString&)), this, SLOT(addNewRoom(const QString&)));
-    connect(AddItemW, SIGNAL(finished(int)), this, SLOT(addWinClosed()));
+    connect(AddItemW, SIGNAL(closeAddItemW()), this, SLOT(addWinClosed()));
 
+    AddItemW->setFixedSize(400,200);
     AddItemW->exec();
 }
-
-void Controller::setDeviceNameChanged(const QString& text) const{ AddItemVM->setDName(text); }
-
 
 void Controller::setFriendlyNameChanged(const QString& text) const{ AddItemVM->setFName(text); }
 
@@ -66,15 +57,12 @@ void Controller::addNewDeviceToMainW(DeviceType dType, const QString& roomName){
     switch (dType) {
     case DeviceType::BULB:
         device = new Bulb(idCount++, AddItemVM->getFName());
-        //fileIO->writeData(BULB,idCount,roomName);
         break;
     case DeviceType::TV:
         device = new Tv(idCount++, AddItemVM->getFName());
-        //fileIO->writeData(TV,idCount,roomName);
         break;
     case DeviceType::THERMOSTAT:
         device = new Thermostat(idCount++, AddItemVM->getFName());
-        //fileIO->writeData(THERMOSTAT,idCount,roomName);
         break;
     }
 
@@ -82,6 +70,7 @@ void Controller::addNewDeviceToMainW(DeviceType dType, const QString& roomName){
     //Alle volte per ragioni a noi sconosciute, lancia un seg-fault alla addItemW->Close();
     try {
         dli = addSmartDeviceToList(device, roomName);
+        if(!AddItemW) throw new std::exception(); //SEGFAULT non viene catturato dai try-catch
         AddItemW->close();
     } catch (...) {
         QErrorMessage mb(MainW);
@@ -105,20 +94,6 @@ void Controller::addWinClosed(){
     AddItemVM = nullptr;
 }
 
-void Controller::insertData(const QString& tipo, const QString& room_name)
-{
-    /*if(tipo=="0"){
-        addNewDeviceToMainW(BULB,room_name);
-    }
-    else if(tipo=="1"){
-        addNewDeviceToMainW(TV,room_name);
-    }
-    else{
-        addNewDeviceToMainW(THERMOSTAT,room_name);
-    }*/
-
-}
-
 //slot la cui funzione è quella di direzionare a quale finestra di impostazioni si riferisce il segnale settingpressed
 void Controller::selectSettings(DeviceListItem* dli){
 
@@ -129,7 +104,7 @@ void Controller::selectSettings(DeviceListItem* dli){
     //Connessione slot
     connect(settW,SIGNAL(onSetNewSettings(const SettingData&)),dli,SLOT(setSettings(const SettingData&)));
     connect(settW,SIGNAL(onSetNewSettings(const SettingData&)),this,SLOT(setSettings(const SettingData&)));
-    connect(settW, SIGNAL(finished(int)), this, SLOT(settWinClosed()));
+    connect(settW, SIGNAL(onCloseSettW()), this, SLOT(settWinClosed()));
 
     settW->exec();
 

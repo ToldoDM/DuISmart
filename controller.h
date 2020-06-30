@@ -17,8 +17,6 @@
 #include "Views/tvsettings.h"
 #include "Views/thermostatsettings.h"
 
-#include "txtmanager.h"
-
 class Controller : public QObject {
     Q_OBJECT
 
@@ -47,12 +45,6 @@ private slots:
     void addNewDeviceToMainW(DeviceType dType, const QString& roomName);
 
     /**
-     * @brief setDeviceNameChanged: Slot utilizzato per aggironare il valore dalla variabile al model
-     * @param text: New Text
-     */
-    void setDeviceNameChanged(const QString& text) const;
-
-    /**
      * @brief setFriendlyNameChanged: Slot utilizzato per aggironare il valore dalla variabile al model
      * @param text: New Text
      */
@@ -70,10 +62,6 @@ private slots:
      */
     void selectSettings(DeviceListItem* dli);
 
-
-     /** @brief insertData: slot che permette il caricamento dei device dopo la chiusura
-     */
-    void insertData(const QString&, const QString&);
 
      /** @brief removeSmartDeviceFromList: rimuove lo smart device dalla lista visiva e dalla lista codice
      */
@@ -130,10 +118,6 @@ private:
      */
     QDialog *settW;
 
-    /**
-     * @brief fileIO: oggetto che permette scrittura su file
-     */
-    TxtManager* fileIO;
 
 public:
     /**

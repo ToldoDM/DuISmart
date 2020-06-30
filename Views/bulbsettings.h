@@ -18,7 +18,18 @@ public:
 
     explicit BulbSettings(int devId);
 
-    ~BulbSettings();
+    ~BulbSettings() override;
+
+    /**
+     * @brief BulbSettings: costruttore di copia
+     */
+    BulbSettings(const BulbSettings&);
+
+    /**
+     * @brief operator =: Operatore di assegnazione
+     * @return
+     */
+    BulbSettings& operator=(const BulbSettings&);
 
     /**
      * @brief setCurrentSettings: Imposta i dati correnti all'apertura della finestra

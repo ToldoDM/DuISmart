@@ -65,6 +65,132 @@ TvSettings::TvSettings(int ID){
     connect(Channel,SIGNAL(clicked(bool)),this,SLOT(setSettings()));
 }
 
+TvSettings::TvSettings(const TvSettings& bs) : DeviceSettings(bs){
+    idDevice = bs.idDevice;
+
+    // creazione layout di bulbsettings e inserimento nela prima riga di gLayout
+    setDisplay=new QGridLayout();
+    vlay=new QVBoxLayout();
+    gLayout->addLayout(vlay,1,1);
+    vlay->addLayout(setDisplay);
+
+    // contrasto
+    lcdCont= new QLCDNumber(3);
+    lcdCont->setSegmentStyle(QLCDNumber::Filled);
+
+    sliderCont=new QSlider(Qt::Vertical);
+    sliderCont->setRange(0,100);
+    sliderCont->setValue(bs.sliderCont->value());
+
+    setDisplay->addWidget(new QLabel("Contrast"),1,1);
+    setDisplay->addWidget(lcdCont,2,1);
+    setDisplay->addWidget(sliderCont,2,2);
+
+    // luminosita
+    lcdBright= new QLCDNumber(3);
+    lcdBright->setSegmentStyle(QLCDNumber::Filled);
+
+    sliderBright=new QSlider(Qt::Vertical);
+    sliderBright->setRange(0,100);
+    sliderBright->setValue(bs.sliderBright->value());
+
+    setDisplay->addWidget(new QLabel("Brightness"),1,3);
+    setDisplay->addWidget(lcdBright,2,3);
+    setDisplay->addWidget(sliderBright,2,4);
+
+
+    //creazione bottone e spinbox(range numeri)
+    chHLay=new QHBoxLayout();
+    spinBox=new QSpinBox();
+    spinBox->setValue(spinBox->value());
+    Channel=new QPushButton("Change channel");
+    //gestione layout
+    chHLay->addWidget(Channel);
+    chHLay->addWidget(spinBox);
+
+    vlay->addLayout(chHLay);
+
+    spinBox->setRange(1,100);
+
+    // dimensioni minime
+    setFixedSize(450,250);
+
+    //connessione segnale value changed con segnale ChangeContrast
+    connect(sliderCont,SIGNAL(valueChanged(int)),lcdCont,SLOT(display(int)));
+    connect(sliderCont,SIGNAL(valueChanged(int)),this,SLOT(setSettings()));
+
+    //connessione segnale value changed con segnale ChangeBrightness
+    connect(sliderBright,SIGNAL(valueChanged(int)),lcdBright,SLOT(display(int)));
+    connect(sliderBright,SIGNAL(valueChanged(int)),this,SLOT(setSettings()));
+
+    //connessione bottone change channel con invio del nuovo canale
+    connect(Channel,SIGNAL(clicked(bool)),this,SLOT(setSettings()));
+}
+
+TvSettings& TvSettings::operator=(const TvSettings& bs){
+    DeviceSettings::operator=(bs);
+    if(this != &bs){
+        delete Channel;
+        delete lcdCont;
+        delete sliderCont;
+        delete lcdBright;
+        delete sliderBright;
+        delete spinBox;
+
+        idDevice = bs.idDevice;
+
+        // contrasto
+        lcdCont= new QLCDNumber(3);
+        lcdCont->setSegmentStyle(QLCDNumber::Filled);
+
+        sliderCont=new QSlider(Qt::Vertical);
+        sliderCont->setRange(0,100);
+        sliderCont->setValue(bs.sliderCont->value());
+
+        setDisplay->addWidget(lcdCont,2,1);
+        setDisplay->addWidget(sliderCont,2,2);
+
+        // luminosita
+        lcdBright= new QLCDNumber(3);
+        lcdBright->setSegmentStyle(QLCDNumber::Filled);
+
+        sliderBright=new QSlider(Qt::Vertical);
+        sliderBright->setRange(0,100);
+        sliderBright->setValue(bs.sliderBright->value());
+
+        setDisplay->addWidget(lcdBright,2,3);
+        setDisplay->addWidget(sliderBright,2,4);
+
+
+        //creazione bottone e spinbox(range numeri)
+        spinBox=new QSpinBox();
+        spinBox->setValue(spinBox->value());
+        Channel=new QPushButton("Change channel");
+        //gestione layout
+        chHLay->addWidget(Channel);
+        chHLay->addWidget(spinBox);
+
+        vlay->addLayout(chHLay);
+
+        spinBox->setRange(1,100);
+
+        // dimensioni minime
+        setFixedSize(450,250);
+
+        //connessione segnale value changed con segnale ChangeContrast
+        connect(sliderCont,SIGNAL(valueChanged(int)),lcdCont,SLOT(display(int)));
+        connect(sliderCont,SIGNAL(valueChanged(int)),this,SLOT(setSettings()));
+
+        //connessione segnale value changed con segnale ChangeBrightness
+        connect(sliderBright,SIGNAL(valueChanged(int)),lcdBright,SLOT(display(int)));
+        connect(sliderBright,SIGNAL(valueChanged(int)),this,SLOT(setSettings()));
+
+        //connessione bottone change channel con invio del nuovo canale
+        connect(Channel,SIGNAL(clicked(bool)),this,SLOT(setSettings()));
+    }
+    return *this;
+}
+
 void TvSettings::setCurrentSettings(const SettingData &data){
     if(data.contrast) sliderCont->setValue(data.contrast);
     if(data.brightness) sliderBright->setValue(data.brightness);

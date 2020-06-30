@@ -12,6 +12,17 @@ public:
     explicit BaseModel();
 
     /**
+     * @brief BaseModel: Costruttore di copia
+     */
+    BaseModel(const BaseModel&);
+
+    /**
+     * @brief operator=: Ridefinizione assegnazione
+     * @return
+     */
+    BaseModel& operator=(const BaseModel&);
+
+    /**
      * @brief ~BaseModel: Distruttore
      */
     virtual ~BaseModel() = 0;

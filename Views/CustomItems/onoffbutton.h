@@ -18,6 +18,17 @@ public:
     explicit OnOffButton(DeviceState actualState = DeviceState::Off, QWidget *parent = nullptr);
 
     /**
+     * @brief OnOffButton: Costruttore di copia
+     */
+    OnOffButton(const OnOffButton&);
+
+    /**
+     * @brief operator=: Operatore di assegnazione
+     * @return
+     */
+    OnOffButton& operator=(const OnOffButton&);
+
+    /**
      * @brief ~OnOffButton: Distruttore
      */
     virtual ~OnOffButton() override;

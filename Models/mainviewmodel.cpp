@@ -5,7 +5,7 @@ MainViewModel::MainViewModel() : BaseModel() {
     rooms = new QList<const QString*>();
 }
 
-MainViewModel::MainViewModel(const MainViewModel& vm){
+MainViewModel::MainViewModel(const MainViewModel& vm) : BaseModel(vm){
     rooms = new QList<const QString*>();
     for (int i=0; i<vm.rooms->size(); ++i) {
         rooms->append(new QString(*(*vm.rooms)[i]));
@@ -13,6 +13,7 @@ MainViewModel::MainViewModel(const MainViewModel& vm){
 }
 
 MainViewModel& MainViewModel::operator=(const MainViewModel& vm){
+    BaseModel::operator=(vm);
     if(&vm != this){
         for (int i=0; i<rooms->size(); ++i) {
             delete rooms->takeAt(i);

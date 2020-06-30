@@ -24,6 +24,17 @@ public:
     virtual ~DeviceSettings();
 
     /**
+     * @brief DeviceSettings: Costruttore di copia
+     */
+    DeviceSettings(const DeviceSettings&);
+
+    /**
+     * @brief operator =: Operatore di assegnazione
+     * @return
+     */
+    DeviceSettings& operator=(const DeviceSettings&);
+
+    /**
      * @brief setCurrentSettings: Imposta i dati correnti all'apertura della finestra
      */
     virtual void setCurrentSettings(const SettingData&) = 0;
@@ -35,6 +46,11 @@ signals:
      */
     void onSetNewSettings(const SettingData&) const;
 
+    /**
+     * @brief onCloseSettW: Evento generato alla chiusura della finestra
+     */
+    void onCloseSettW();
+
 
 protected slots:
 
@@ -44,6 +60,11 @@ protected slots:
     virtual void setSettings() const = 0;
 
 protected:
+
+    /**
+     * @brief closeEvent: Evento generato alla chiusura della finestra
+     */
+    void closeEvent(QCloseEvent *) override;
 
     /**
      * @brief idDevice: Id device a cui e' associato

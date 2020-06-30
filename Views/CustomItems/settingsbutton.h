@@ -17,6 +17,17 @@ public:
      */
     virtual ~SettingsButton() override;
 
+    /**
+     * @brief OnOffButton: Costruttore di copia
+     */
+    SettingsButton(const SettingsButton&);
+
+    /**
+     * @brief operator=: Operatore di assegnazione
+     * @return
+     */
+    SettingsButton& operator=(const SettingsButton&);
+
 protected:
     /**
      * @brief enterEvent: Metodo chiamato quando il mouse entra dentro il widget

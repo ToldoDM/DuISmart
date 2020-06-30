@@ -20,9 +20,12 @@ public:
      */
     MainViewModel(const MainViewModel&);
 
-
     ~MainViewModel();
 
+    /**
+     * @brief operator =: Operatore di assegnazione
+     * @return
+     */
     MainViewModel& operator=(const MainViewModel&);
 
     /**

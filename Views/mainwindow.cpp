@@ -78,8 +78,6 @@ void MainWindow::addToAllTab(DeviceListItem *dli, const QString& tabName) const{
 
 
 void MainWindow::setWindowStyle(){
-    // Imposto le dimensioni
-    setMinimumSize(QSize(400,400));
     setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
 
     // Imposto il foglio di stile

@@ -24,6 +24,17 @@ public:
      */
     virtual void setCurrentSettings(const SettingData&) override;
 
+    /**
+     * @brief BulbSettings: costruttore di copia
+     */
+    TvSettings(const TvSettings&);
+
+    /**
+     * @brief operator =: Operatore di assegnazione
+     * @return
+     */
+    TvSettings& operator=(const TvSettings&);
+
 protected slots:
 
     /**

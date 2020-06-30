@@ -46,17 +46,17 @@ DeviceListItem::DeviceListItem(const DeviceListItem& dli){
     center = new QWidget(this);
     centerHlay = new QHBoxLayout(center);
     vlay = new QVBoxLayout();
+    settButton = new SettingsButton(*dli.settButton);
     ico = new QLabel(this);
-    settButton = new SettingsButton(this);
+    ico->setPixmap(*ico->pixmap());
 
-    closeButton= new CloseButton(this);
+    closeButton= new CloseButton(*dli.closeButton);
 
     //Impostazione nomi label
-    deviceName = new QLabel(dli.deviceName);
-    friendlyName = new QLabel(dli.friendlyName);
+    deviceName = new QLabel(dli.deviceName->text());
+    friendlyName = new QLabel(dli.friendlyName->text());
 
     //Impostazione icona default
-    ico->setPixmap(QPixmap(":/Images/image.png").scaled(120,80));
     ico->setFixedWidth(120);
 
     //Widget centrale
@@ -86,11 +86,25 @@ DeviceListItem& DeviceListItem::operator=(const DeviceListItem& dli){
         delete(ico);
 
         deviceId = dli.deviceId;
+        settButton = new SettingsButton(*dli.settButton);
         ico = new QLabel(this);
-        settButton = new SettingsButton(this);
-        closeButton= new CloseButton(this);
-        deviceName = new QLabel(dli.deviceName);
-        friendlyName = new QLabel(dli.friendlyName);
+        ico->setPixmap(*ico->pixmap());
+        closeButton= new CloseButton(*dli.closeButton);
+        deviceName = new QLabel(dli.deviceName->text());
+        friendlyName = new QLabel(dli.friendlyName->text());
+        ico->setFixedWidth(120);
+
+        //Widget centrale
+        centerHlay->addLayout(vlay);
+        vlay->addWidget(deviceName);
+        vlay->addWidget(friendlyName);
+
+        //prova posizione bottone chiusura
+        hlay->addWidget(closeButton);
+
+        hlay->addWidget(ico);
+        hlay->addWidget(center);
+        hlay->addWidget(settButton);
 
         //connessione segnali e slot
         connect(settButton,SIGNAL(onClicked()),this,SLOT(onSettingClicked()));

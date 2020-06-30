@@ -21,6 +21,17 @@ public:
     virtual ~ThermoListItem() override;
 
     /**
+     * @brief BulbListItem: Costruttore di copia
+     */
+    ThermoListItem(const ThermoListItem&);
+
+    /**
+     * @brief operator=: Operatore di assegnazione
+     * @return
+     */
+    ThermoListItem& operator=(const ThermoListItem&);
+
+    /**
      * @brief getSettingDialog: Ritorna l'oggetto QDialog appartenente ap proprio tipo
      * @return
      */

@@ -22,6 +22,17 @@ public:
     virtual ~BulbListItem() override;
 
     /**
+     * @brief BulbListItem: Costruttore di copia
+     */
+    BulbListItem(const BulbListItem&);
+
+    /**
+     * @brief operator=: Operatore di assegnazione
+     * @return
+     */
+    BulbListItem& operator=(const BulbListItem&);
+
+    /**
      * @brief getSettingDialog: Ritorna l'oggetto QDialog appartenente ap proprio tipo
      * @return
      */

@@ -24,6 +24,40 @@ ThermoListItem::ThermoListItem(int devId, const QString& fName, QWidget *parent)
     changeTemp->setText("");
 }
 
+ThermoListItem::ThermoListItem(const ThermoListItem& tli) : DeviceListItem(tli){
+    interr = new OnOffButton(*tli.interr);
+
+    //Aggiunta scritta con riferimento allo stato attuale del device
+    changeTemp=new QLabel(tli.changeTemp->text());
+
+    //Inserimento dello switch acceso/spento
+    hlay->addWidget(interr);
+
+    //inserimento della label nel layout di devicelistitem
+    centerHlay->addWidget(changeTemp);
+}
+
+ThermoListItem& ThermoListItem::operator=(const ThermoListItem &tli){
+    DeviceListItem::operator=(tli);
+    if(this != &tli){
+
+        delete interr;
+        delete changeTemp;
+
+        interr = new OnOffButton(*tli.interr);
+
+        //Aggiunta scritta con riferimento allo stato attuale del device
+        changeTemp=new QLabel(tli.changeTemp->text());
+
+        //Inserimento dello switch acceso/spento
+        hlay->addWidget(interr);
+
+        //inserimento della label nel layout di devicelistitem
+        centerHlay->addWidget(changeTemp);
+    }
+    return *this;
+}
+
 ThermoListItem::~ThermoListItem(){
     delete interr;
     delete changeTemp;

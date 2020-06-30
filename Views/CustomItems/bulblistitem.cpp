@@ -12,6 +12,18 @@ BulbListItem::BulbListItem(int devId, const QString& fName, QWidget *parent) : D
     hlay->addWidget(interr);
 }
 
+BulbListItem::BulbListItem(const BulbListItem& bli) : DeviceListItem(bli){
+    interr = new OnOffButton(*bli.interr);
+}
+
+BulbListItem& BulbListItem::operator=(const BulbListItem &bli){
+    DeviceListItem::operator=(bli);
+    if(this != &bli){
+        delete interr;
+        interr = new OnOffButton(*bli.interr);
+    }
+    return *this;
+}
 
 BulbListItem::~BulbListItem(){
     delete(interr);

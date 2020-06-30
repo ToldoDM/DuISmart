@@ -19,6 +19,17 @@ public:
      */
     virtual void setCurrentSettings(const SettingData&) override;
 
+    /**
+     * @brief BulbSettings: costruttore di copia
+     */
+    ThermostatSettings(const ThermostatSettings&);
+
+    /**
+     * @brief operator =: Operatore di assegnazione
+     * @return
+     */
+    ThermostatSettings& operator=(const ThermostatSettings&);
+
 protected:
     QPushButton *increase;
     QPushButton *decrease;

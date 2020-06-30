@@ -16,7 +16,16 @@ public:
 
     virtual ~CloseButton() override;
 
-signals:
+    /**
+     * @brief OnOffButton: Costruttore di copia
+     */
+    CloseButton(const CloseButton&);
+
+    /**
+     * @brief operator=: Operatore di assegnazione
+     * @return
+     */
+    CloseButton& operator=(const CloseButton&);
 
 
 protected:

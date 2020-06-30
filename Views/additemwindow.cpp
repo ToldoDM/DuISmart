@@ -1,28 +1,143 @@
 #include "additemwindow.h"
 
 AddItemWindow::~AddItemWindow(){
+
     delete name;
-    delete description;
     delete room;
     delete device;
     delete aggiungiStanza;
 
-    delete labelText;
-    delete LProblem;
-
     delete racchiudiStanza;
+    delete buttonBox;
     delete addRoom;
     delete formLayout;
     delete Vlayout;
 }
 
-AddItemWindow::AddItemWindow(){
+AddItemWindow::AddItemWindow(const AddItemWindow& aiw){
 
-    //Qui verra' gestita la nuova finestra per l'inserimento del nuovo device
-    Problem = new QDialog(this);
-    LProblem = new QVBoxLayout(Problem);
-    labelText = new QLabel(Problem);
-    LProblem->addWidget(labelText);
+    //dichiarazione dei layout
+    Vlayout=new QVBoxLayout(this);
+    formLayout=new QFormLayout();
+
+    //ridimensionamenti random
+    formLayout->setRowWrapPolicy(QFormLayout::DontWrapRows);
+    formLayout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+    formLayout->setFormAlignment(Qt::AlignHCenter | Qt::AlignTop);
+    formLayout->setLabelAlignment(Qt::AlignLeft);
+
+
+    //dichiarazione campi
+    name=new QLineEdit(aiw.name->text());
+
+
+    //Dichiarazione qcombobox stanza e popolamento
+    room = new QComboBox(this);
+    for (int i=0; i<aiw.room->count(); ++i) {
+        room->addItem(aiw.room->itemText(i), aiw.room->itemData(i));
+    }
+    room->setCurrentIndex(aiw.room->currentIndex());
+
+
+    //Dichiarazione qcombobox dispositivo e popolamento
+    device=new QComboBox(this);
+    device->addItem("inserire dispositivo");
+    device->addItem(tr("Lampadina"), DeviceType::BULB);
+    device->addItem(tr("TV"), DeviceType::TV);
+    device->addItem(tr("Termostato"), DeviceType::THERMOSTAT);
+
+    device->setCurrentIndex(aiw.device->currentIndex());
+
+    //inserimento campi in formlayout
+    formLayout->addRow("Smart Device Name",name);
+    formLayout->addRow("Device",device);
+    formLayout->addRow("Room",room);
+
+
+    /***********************************************************************************/
+    //aggiunta feature inserimento nuova stanza
+    addRoom=new QPushButton(aiw.addRoom->text());
+    racchiudiStanza=new QHBoxLayout();
+    aggiungiStanza=new QLineEdit(aiw.aggiungiStanza->text());
+
+    addRoom->setEnabled(aiw.addRoom->isEnabled());
+    formLayout->addRow(addRoom,aggiungiStanza);
+    /***********************************************************************************/
+
+
+    //inserimento corretto layout
+    Vlayout->removeWidget(buttonBox);
+    Vlayout->addLayout(formLayout);
+    //da modificare
+    Vlayout->addLayout(racchiudiStanza);
+    Vlayout->addWidget(buttonBox);
+
+    //Connessioni segnali e slot
+    connect(name, SIGNAL(textEdited(const QString&)), this, SLOT(getChanges(const QString&)));
+    connect(addRoom,SIGNAL(clicked()),this,SLOT(addNewRoomClicked()));
+    connect(aggiungiStanza,SIGNAL(textChanged(const QString&)),this,SLOT(addRoomTextChanged(const QString&)));
+}
+
+AddItemWindow& AddItemWindow::operator=(const AddItemWindow &aiw){
+    if(this != &aiw){
+        delete name;
+        delete room;
+        delete device;
+        delete aggiungiStanza;
+        delete addRoom;
+
+        //dichiarazione campi
+        name=new QLineEdit(aiw.name->text());
+
+
+        //Dichiarazione qcombobox stanza e popolamento
+        room = new QComboBox(this);
+        for (int i=0; i<aiw.room->count(); ++i) {
+            room->addItem(aiw.room->itemText(i), aiw.room->itemData(i));
+        }
+        room->setCurrentIndex(aiw.room->currentIndex());
+
+
+        //Dichiarazione qcombobox dispositivo e popolamento
+        device=new QComboBox(this);
+        device->addItem("inserire dispositivo");
+        device->addItem(tr("Lampadina"), DeviceType::BULB);
+        device->addItem(tr("TV"), DeviceType::TV);
+        device->addItem(tr("Termostato"), DeviceType::THERMOSTAT);
+
+        device->setCurrentIndex(aiw.device->currentIndex());
+
+        //inserimento campi in formlayout
+        formLayout->addRow("Smart Device Name",name);
+        formLayout->addRow("Device",device);
+        formLayout->addRow("Room",room);
+
+
+        /***********************************************************************************/
+        //aggiunta feature inserimento nuova stanza
+        addRoom=new QPushButton(aiw.addRoom->text());
+        aggiungiStanza=new QLineEdit(aiw.aggiungiStanza->text());
+
+        addRoom->setEnabled(aiw.addRoom->isEnabled());
+        formLayout->addRow(addRoom,aggiungiStanza);
+        /***********************************************************************************/
+
+
+        //inserimento corretto layout
+        Vlayout->removeWidget(buttonBox);
+        Vlayout->addLayout(formLayout);
+        //da modificare
+        Vlayout->addLayout(racchiudiStanza);
+
+        //Connessioni segnali e slot
+        connect(name, SIGNAL(textEdited(const QString&)), this, SLOT(getChanges(const QString&)));
+        connect(addRoom,SIGNAL(clicked()),this,SLOT(addNewRoomClicked()));
+        connect(aggiungiStanza,SIGNAL(textChanged(const QString&)),this,SLOT(addRoomTextChanged(const QString&)));
+    }
+    return *this;
+}
+
+AddItemWindow::AddItemWindow(){
 
     //dichiarazione dei layout
     Vlayout=new QVBoxLayout(this);
@@ -37,7 +152,6 @@ AddItemWindow::AddItemWindow(){
 
     //dichiarazione campi
     name=new QLineEdit("Device name");
-    description =new QTextEdit("Device description");
 
 
     //Dichiarazione qcombobox stanza e popolamento
@@ -57,7 +171,6 @@ AddItemWindow::AddItemWindow(){
 
     //inserimento campi in formlayout
     formLayout->addRow("Smart Device Name",name);
-    formLayout->addRow("Description",description);
     formLayout->addRow("Device",device);
     formLayout->addRow("Room",room);
 
@@ -76,7 +189,7 @@ AddItemWindow::AddItemWindow(){
 
 
     //inserimento bottoni conferma e cancella + connessioni
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     //inserimento corretto layout
     Vlayout->addLayout(formLayout);
     //da modificare
@@ -84,14 +197,16 @@ AddItemWindow::AddItemWindow(){
     Vlayout->addWidget(buttonBox);
 
     //Connessioni segnali e slot
-    connect(name, SIGNAL(textEdited(const QString&)), this, SIGNAL(onDeviceNameChanged(const QString&)));
-    connect(description, SIGNAL(textChanged()), this, SLOT(getChanges()));
+    connect(name, SIGNAL(textEdited(const QString&)), this, SLOT(getChanges(const QString&)));
     connect(buttonBox,SIGNAL(accepted()),this,SLOT(accept()));
     connect(buttonBox,SIGNAL(rejected()),this,SLOT(cancel()));
     connect(addRoom,SIGNAL(clicked()),this,SLOT(addNewRoomClicked()));
     connect(aggiungiStanza,SIGNAL(textChanged(const QString&)),this,SLOT(addRoomTextChanged(const QString&)));
+}
 
-
+void AddItemWindow::closeEvent(QCloseEvent *ev){
+    QDialog::closeEvent(ev);
+    emit closeAddItemW();
 }
 
 void AddItemWindow::addRoomTextChanged(const QString& text){
@@ -103,14 +218,14 @@ void AddItemWindow::populateRoomsComboBox(QList<const QString *> *list){
     for (int i=0; i<list->count(); ++i){
         room->addItem(*(*list)[i], RoomType::EXIST);
     }
-
 }
 
 //slot accetta: return dati solo se modificati dall'utente
 void AddItemWindow::accept(){
 
     //se i campi non sono midificati -> "errore"
-    if(room->currentText()=="inserire stanza" || name->displayText()=="Device name" || description->toPlainText()=="Device description" || device->currentText()=="inserire dispositivo")
+    if(name->displayText().isEmpty()){ raiseProblemDialog("Inserire un nome al device"); }
+    else if(room->currentText()=="inserire stanza" || name->displayText()=="Device name" || device->currentText()=="inserire dispositivo")
     {
         raiseProblemDialog(tr("E' necessario modificare i campi di default"));
     }
@@ -125,8 +240,9 @@ void AddItemWindow::accept(){
 }
 
 void AddItemWindow::raiseProblemDialog(const QString &labText){
-    labelText->setText(labText);
-    Problem->exec();
+    QErrorMessage mb;
+    mb.showMessage(labText);
+    mb.exec();
 }
 
 // slot cancel: distruzione widget
@@ -149,6 +265,6 @@ void AddItemWindow::addNewRoomClicked(){
     }
 }
 
-void AddItemWindow::getChanges(){
-    emit onFriendlyNameChanged(description->toPlainText());
+void AddItemWindow::getChanges(const QString& text){
+    emit onFriendlyNameChanged(text);
 }

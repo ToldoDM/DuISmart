@@ -21,6 +21,17 @@ public:
      */
     virtual ~CustomButton() override;
 
+    /**
+     * @brief OnOffButton: Costruttore di copia
+     */
+    CustomButton(const CustomButton&);
+
+    /**
+     * @brief operator=: Operatore di assegnazione
+     * @return
+     */
+    CustomButton& operator=(const CustomButton&);
+
 signals:
     /**
      * @brief onClicked: Evento genegato alla pressione del pulsante

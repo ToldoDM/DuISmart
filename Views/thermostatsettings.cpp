@@ -36,6 +36,73 @@ ThermostatSettings::ThermostatSettings(int ID){
 
 }
 
+ThermostatSettings::ThermostatSettings(const ThermostatSettings& bs) : DeviceSettings(bs){
+    idDevice = bs.idDevice;
+
+    hlay=new QHBoxLayout();
+    gLayout->addLayout(hlay,1,1);
+
+    // xreazione bottoni aumento e decremento + layout
+    vlay = new QVBoxLayout();
+    increase = new QPushButton();
+    increase->setIcon(bs.increase->icon());
+    increase->setMinimumSize(bs.increase->size());
+
+    decrease = new QPushButton();
+    decrease->setIcon(bs.decrease->icon());
+    decrease->setMinimumSize(bs.decrease->size());
+
+    //inserimento bottoni in layout
+    vlay->addWidget(increase);
+    vlay->addWidget(decrease);
+
+    //inserimento layout verticale in quello orizzontale
+    hlay->addLayout(vlay);
+
+    //creazione display ed inserimento nel layout orizzontale
+    num = new QLCDNumber(2,this);
+    hlay->addWidget(num);
+
+    connect(increase,SIGNAL(clicked()),this,SLOT(increse()));
+    connect(decrease,SIGNAL(clicked()),this,SLOT(decrese()));
+
+    setFixedSize(400,250);
+}
+
+ThermostatSettings& ThermostatSettings::operator=(const ThermostatSettings& bs){
+    DeviceSettings::operator=(bs);
+    if(this != &bs){
+        delete increase;
+        delete decrease;
+        delete num ;
+
+        idDevice = bs.idDevice;
+
+        // xreazione bottoni aumento e decremento + layout
+        increase = new QPushButton();
+        increase->setIcon(bs.increase->icon());
+        increase->setMinimumSize(bs.increase->size());
+
+        decrease = new QPushButton();
+        decrease->setIcon(bs.decrease->icon());
+        decrease->setMinimumSize(bs.decrease->size());
+
+        //inserimento bottoni in layout
+        vlay->addWidget(increase);
+        vlay->addWidget(decrease);
+
+        //creazione display ed inserimento nel layout orizzontale
+        num = new QLCDNumber(2,this);
+        hlay->addWidget(num);
+
+        connect(increase,SIGNAL(clicked()),this,SLOT(increse()));
+        connect(decrease,SIGNAL(clicked()),this,SLOT(decrese()));
+
+        setFixedSize(400,250);
+    }
+    return *this;
+}
+
 void ThermostatSettings::setCurrentSettings(const SettingData &data){
     num->display(data.temp);
 }

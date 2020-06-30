@@ -23,11 +23,6 @@ public:
     void insert(const QString& s);
 
     /**
-     * @brief setDName: utilizzato per aggiornare il valore di deviceName
-     */
-    void setDName(const QString& s);
-
-    /**
      * @brief setFName: utilizzato per aggiornare il valore friendlyName
      */
     void setFName(const QString& s);
@@ -42,11 +37,6 @@ private:
      * @brief camere: Lista camere presenti
      */
     QList<const QString*>* camere;
-
-    /**
-     * @brief deviceName: Nome device
-     */
-    QString deviceName;
 
     /**
      * @brief friendlyName: Nome friendly

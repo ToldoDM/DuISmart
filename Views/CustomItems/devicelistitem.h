@@ -26,6 +26,10 @@ public:
      */
     DeviceListItem(const DeviceListItem& dli);
 
+    /**
+     * @brief operator =: Operatore di assegnazione
+     * @return
+     */
     DeviceListItem& operator=(const DeviceListItem&);
 
     /**

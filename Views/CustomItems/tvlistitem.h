@@ -23,6 +23,17 @@ public:
     virtual ~TvListItem();
 
     /**
+     * @brief BulbListItem: Costruttore di copia
+     */
+    TvListItem(const TvListItem&);
+
+    /**
+     * @brief operator=: Operatore di assegnazione
+     * @return
+     */
+    TvListItem& operator=(const TvListItem&);
+
+    /**
      * @brief getSettingDialog: Ritorna l'oggetto QDialog appartenente ap proprio tipo
      * @return
      */
