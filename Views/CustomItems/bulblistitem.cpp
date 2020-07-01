@@ -7,6 +7,7 @@ BulbListItem::BulbListItem(int devId, const QString& fName, QWidget *parent) : D
 
     interr = new OnOffButton();
     interr->setOnOffIcons(tr(":Images/on.png"), tr(":Images/off.png"), tr(":Images/on_clicked.png"), tr(":Images/off_clicked.png"));
+    connect(interr, SIGNAL(onChangeState(DeviceState)), this, SLOT(onOffButtonPressed(DeviceState)));
 
     //Inserimento dello switch acceso/spento
     hlay->addWidget(interr);
@@ -14,6 +15,7 @@ BulbListItem::BulbListItem(int devId, const QString& fName, QWidget *parent) : D
 
 BulbListItem::BulbListItem(const BulbListItem& bli) : DeviceListItem(bli){
     interr = new OnOffButton(*bli.interr);
+    connect(interr, SIGNAL(onChangeState(DeviceState)), this, SLOT(onOffButtonPressed(DeviceState)));
 }
 
 BulbListItem& BulbListItem::operator=(const BulbListItem &bli){
@@ -21,6 +23,7 @@ BulbListItem& BulbListItem::operator=(const BulbListItem &bli){
     if(this != &bli){
         delete interr;
         interr = new OnOffButton(*bli.interr);
+        connect(interr, SIGNAL(onChangeState(DeviceState)), this, SLOT(onOffButtonPressed(DeviceState)));
     }
     return *this;
 }

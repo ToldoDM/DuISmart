@@ -8,6 +8,7 @@ OnOffButton::OnOffButton(DeviceState actualState, QWidget *parent) : CustomButto
 OnOffButton::~OnOffButton() = default;
 
 void OnOffButton::mousePressEvent(QMouseEvent *mEvent){
+    CustomButton::mousePressEvent(mEvent);
     if(mEvent->buttons() == Qt::LeftButton){
         //se e' stato premuto il bottone sx allora cambio icona e lancio l'evento
         state = (state == DeviceState::Off ? DeviceState::On : DeviceState::Off);

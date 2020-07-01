@@ -38,6 +38,10 @@ DeviceListItem::DeviceListItem(int devId, const QString& fName, QWidget *parent)
     connect(closeButton,SIGNAL(onClicked()),this,SLOT(onDeleteRequest()));
 }
 
+void DeviceListItem::onOffButtonPressed(DeviceState state){
+    emit setDeviceOn(state == DeviceState::On);
+}
+
 DeviceListItem::DeviceListItem(const DeviceListItem& dli){
     deviceId = dli.deviceId;
 

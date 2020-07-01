@@ -8,6 +8,7 @@
 #include "Enums/devicetype.h"
 #include <QListWidgetItem>
 #include "Entities/settingdata.h"
+#include "Enums/devicestate.h"
 
 class DeviceListItem : public QWidget
 {
@@ -80,7 +81,18 @@ signals:
      */
     void deleteRequest(QListWidgetItem*, int);
 
+    /**
+     * @brief setDeviceOn: Segnale emesso quando viene detto al device di accendersi
+     */
+    void setDeviceOn(bool);
+
 protected slots:
+
+    /**
+     * @brief onOffButtonPressed: Slot utilizzato per gestire l'accensione/spegnimento del device
+     */
+    virtual void onOffButtonPressed(DeviceState);
+
     /**
      * @brief onSettingClicked: Cattura evento setting cliecked
      */

@@ -11,6 +11,7 @@ ThermoListItem::ThermoListItem(int devId, const QString& fName, QWidget *parent)
     interr = new OnOffButton(DeviceState::On);
     interr->setOnOffIcons(tr(":Images/day.png"), tr(":Images/night.png"), tr(":Images/day_over.png"), tr(":Images/night_over.png"));
     interr->setIconSize(QSize(100,70));
+    connect(interr, SIGNAL(onChangeState(DeviceState)), this, SLOT(onOffButtonPressed(DeviceState)));
 
     //Aggiunta scritta con riferimento allo stato attuale del device
     changeTemp=new QLabel("");
@@ -26,6 +27,7 @@ ThermoListItem::ThermoListItem(int devId, const QString& fName, QWidget *parent)
 
 ThermoListItem::ThermoListItem(const ThermoListItem& tli) : DeviceListItem(tli){
     interr = new OnOffButton(*tli.interr);
+    connect(interr, SIGNAL(onChangeState(DeviceState)), this, SLOT(onOffButtonPressed(DeviceState)));
 
     //Aggiunta scritta con riferimento allo stato attuale del device
     changeTemp=new QLabel(tli.changeTemp->text());
@@ -45,6 +47,7 @@ ThermoListItem& ThermoListItem::operator=(const ThermoListItem &tli){
         delete changeTemp;
 
         interr = new OnOffButton(*tli.interr);
+        connect(interr, SIGNAL(onChangeState(DeviceState)), this, SLOT(onOffButtonPressed(DeviceState)));
 
         //Aggiunta scritta con riferimento allo stato attuale del device
         changeTemp=new QLabel(tli.changeTemp->text());

@@ -9,3 +9,7 @@ const SmartDevice* SmartDevice::isThisDevice(int id) const{ return deviceId == i
 void SmartDevice::switchOnDevice() const {}
 
 void SmartDevice::switchOffDevice() const {}
+
+void SmartDevice::onSetDeviceState(bool turnOn){
+    turnOn ? switchOnDevice() : switchOffDevice();
+}

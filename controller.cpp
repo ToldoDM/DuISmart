@@ -25,6 +25,9 @@ DeviceListItem* Controller::addSmartDeviceToList(SmartDevice *device, const QStr
     //connessione bottone delete
     connect(dli, SIGNAL(deleteRequest(QListWidgetItem*, int)), this, SLOT(removeSmartDeviceFromList(QListWidgetItem*, int)));
 
+    //connessione bottone on/off
+    connect(dli, SIGNAL(setDeviceOn(bool)), device, SLOT(onSetDeviceState(bool)));
+
     return dli;
 }
 

@@ -8,6 +8,7 @@ TvListItem::TvListItem(int devId, const QString& fName, QWidget *parent) : Devic
 
     interr = new OnOffButton();
     interr->setOnOffIcons(tr(":Images/on.png"), tr(":Images/off.png"), tr(":Images/on_clicked.png"), tr(":Images/off_clicked.png"));
+    connect(interr, SIGNAL(onChangeState(DeviceState)), this, SLOT(onOffButtonPressed(DeviceState)));
 
     //Aggiunta scritta con riferimento allo stato attuale del device
     changeChan=new QLabel("");
@@ -24,6 +25,7 @@ TvListItem::TvListItem(int devId, const QString& fName, QWidget *parent) : Devic
 TvListItem::TvListItem(const TvListItem& tvli) : DeviceListItem(tvli){
 
     interr = new OnOffButton(*tvli.interr);
+    connect(interr, SIGNAL(onChangeState(DeviceState)), this, SLOT(onOffButtonPressed(DeviceState)));
 
     //Aggiunta scritta con riferimento allo stato attuale del device
     changeChan=new QLabel(tvli.changeChan->text());
@@ -43,6 +45,7 @@ TvListItem& TvListItem::operator=(const TvListItem &tvli){
         delete changeChan;
 
         interr = new OnOffButton(*tvli.interr);
+        connect(interr, SIGNAL(onChangeState(DeviceState)), this, SLOT(onOffButtonPressed(DeviceState)));
 
         //Aggiunta scritta con riferimento allo stato attuale del device
         changeChan=new QLabel(tvli.changeChan->text());

@@ -2,10 +2,11 @@
 #define SMARTDEVICE_H
 
 #include <QString>
+#include <QObject>
 #include "settingdata.h"
 
-class SmartDevice{
-
+class SmartDevice : public QObject{
+Q_OBJECT
 public:
     /**
      * @brief SmartDevice: Costruttore di default
@@ -45,6 +46,13 @@ public:
      * @brief getSettings: Ottiene le impostazioni correnti del device
      */
     virtual SettingData* getSettings() const = 0;
+
+public slots:
+
+    /**
+     * @brief onSetDeviceState: Imposta cosa deve
+     */
+    virtual void onSetDeviceState(bool);
 
 protected:
 
