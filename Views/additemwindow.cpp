@@ -240,7 +240,7 @@ void AddItemWindow::accept(){
 }
 
 void AddItemWindow::raiseProblemDialog(const QString &labText){
-    QErrorMessage mb;
+    QErrorMessage mb(this);
     mb.showMessage(labText);
     mb.exec();
 }
