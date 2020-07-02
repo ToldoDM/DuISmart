@@ -46,12 +46,6 @@ public slots:
      */
     virtual void setSettings(const SettingData& data) override;
 
-protected slots:
-    /**
-     * @brief onSettingClicked: Cattura evento setting cliecked
-     */
-    virtual void onSettingClicked() override;
-
 private:
     /**
      * @brief interr: Bottone con funzione di interruttore per la lampadina

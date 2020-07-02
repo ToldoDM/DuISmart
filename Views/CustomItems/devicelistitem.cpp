@@ -42,6 +42,10 @@ void DeviceListItem::onOffButtonPressed(DeviceState state){
     emit setDeviceOn(state == DeviceState::On);
 }
 
+void DeviceListItem::onSettingClicked(){
+    emit SettingPressed(this);
+}
+
 DeviceListItem::DeviceListItem(const DeviceListItem& dli){
     deviceId = dli.deviceId;
 

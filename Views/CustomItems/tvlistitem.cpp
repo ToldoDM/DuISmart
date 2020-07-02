@@ -64,10 +64,6 @@ TvListItem::~TvListItem(){
     delete changeChan;
 }
 
-void TvListItem::onSettingClicked(){
-    emit SettingPressed(this);
-}
-
 TvSettings* TvListItem::getSettingDialog(const SettingData& data){
     TvSettings* ts = new TvSettings(deviceId);
     ts->setCurrentSettings(data);

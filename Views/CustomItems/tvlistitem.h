@@ -47,14 +47,6 @@ public slots:
      */
     virtual void setSettings(const SettingData& data) override;
 
-protected slots:
-
-    /**
-     * @brief onSettingClicked: Cattura evento setting cliecked
-     */
-    virtual void onSettingClicked() override;
-
-
 private:
 
     /**

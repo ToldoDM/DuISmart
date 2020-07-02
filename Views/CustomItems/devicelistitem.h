@@ -96,7 +96,7 @@ protected slots:
     /**
      * @brief onSettingClicked: Cattura evento setting cliecked
      */
-    virtual void onSettingClicked()=0;
+    virtual void onSettingClicked();
 
     /**
      * @brief onDeleteRequest: Slot utilizzato  per rilanciare il segnale deleteRequest con i campi necessari

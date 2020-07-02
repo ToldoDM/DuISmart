@@ -32,10 +32,6 @@ BulbListItem::~BulbListItem(){
     delete(interr);
 }
 
-void BulbListItem::onSettingClicked(){
-    emit SettingPressed(this);
-}
-
 BulbSettings* BulbListItem::getSettingDialog(const SettingData& data){
     BulbSettings* bs = new BulbSettings(deviceId);
     bs->setCurrentSettings(data);

@@ -66,11 +66,6 @@ ThermoListItem::~ThermoListItem(){
     delete changeTemp;
 }
 
-
-void ThermoListItem::onSettingClicked(){
-    emit SettingPressed(this);
-}
-
 ThermostatSettings* ThermoListItem::getSettingDialog(const SettingData& data){
     ThermostatSettings* ts = new ThermostatSettings(deviceId);
     ts->setCurrentSettings(data);
