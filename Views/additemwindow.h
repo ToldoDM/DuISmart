@@ -57,7 +57,7 @@ protected:
 signals:
 
     /**
-     * @brief onFriendlyNameChanged: Evento generato quandoil testo del friendly name viene cambiatoS
+     * @brief onFriendlyNameChanged: Evento generato quandoil testo del friendly name viene cambiato
      */
     void onFriendlyNameChanged(const QString& text);
 

@@ -11,8 +11,6 @@ TvSettings::TvSettings(int ID){
     gLayout->addLayout(vlay,1,1);
     vlay->addLayout(setDisplay);
 
-
-
     // contrasto
     lcdCont= new QLCDNumber(3);
     lcdCont->setSegmentStyle(QLCDNumber::Filled);
@@ -36,7 +34,6 @@ TvSettings::TvSettings(int ID){
     setDisplay->addWidget(new QLabel("Brightness"),1,3);
     setDisplay->addWidget(lcdBright,2,3);
     setDisplay->addWidget(sliderBright,2,4);
-
 
     //creazione bottone e spinbox(range numeri)
     chHLay=new QHBoxLayout();
@@ -97,7 +94,6 @@ TvSettings::TvSettings(const TvSettings& bs) : DeviceSettings(bs){
     setDisplay->addWidget(new QLabel("Brightness"),1,3);
     setDisplay->addWidget(lcdBright,2,3);
     setDisplay->addWidget(sliderBright,2,4);
-
 
     //creazione bottone e spinbox(range numeri)
     chHLay=new QHBoxLayout();
@@ -160,7 +156,6 @@ TvSettings& TvSettings::operator=(const TvSettings& bs){
 
         setDisplay->addWidget(lcdBright,2,3);
         setDisplay->addWidget(sliderBright,2,4);
-
 
         //creazione bottone e spinbox(range numeri)
         spinBox=new QSpinBox();

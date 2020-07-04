@@ -10,10 +10,8 @@ Controller::Controller(QObject* parent) : QObject(parent){
     connect(MainW,SIGNAL(onRemoveRoom(const QString&)),this,SLOT(removeRoomFromModel(const QString&)));
 }
 
-//PUBLIC METHODS
 void Controller::ShowMainWindow() const { MainW->show(); MainW->setFixedSize(640,480); }
 
-//PRIVATE METHODS
 // metodo che permette l'aggiunta di un nuovo device in un tab
 DeviceListItem* Controller::addSmartDeviceToList(SmartDevice *device, const QString& targetTab) const{
     DeviceListItem* dli = MainVM->addDevice(device);
@@ -31,7 +29,6 @@ DeviceListItem* Controller::addSmartDeviceToList(SmartDevice *device, const QStr
     return dli;
 }
 
-//PRIVATE SLOTS
 void Controller::removeRoomFromModel(const QString& roomName){ MainVM->removeRoom(roomName); }
 
 void Controller::riseAddWindow(){
@@ -70,10 +67,9 @@ void Controller::addNewDeviceToMainW(DeviceType dType, const QString& roomName){
     }
 
 
-    //Alle volte per ragioni a noi sconosciute, lancia un seg-fault alla addItemW->Close();
     try {
         dli = addSmartDeviceToList(device, roomName);
-        if(!AddItemW) throw new std::exception(); //SEGFAULT non viene catturato dai try-catch
+        if(!AddItemW) throw new std::exception();
         AddItemW->close();
     } catch (...) {
         QErrorMessage mb(MainW);

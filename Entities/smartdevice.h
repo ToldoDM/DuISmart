@@ -50,7 +50,7 @@ public:
 public slots:
 
     /**
-     * @brief onSetDeviceState: Imposta cosa deve
+     * @brief onSetDeviceState: Imposta stato
      */
     virtual void onSetDeviceState(bool);
 

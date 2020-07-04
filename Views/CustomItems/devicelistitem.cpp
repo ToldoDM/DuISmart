@@ -72,13 +72,11 @@ DeviceListItem::DeviceListItem(const DeviceListItem& dli){
     vlay->addWidget(deviceName);
     vlay->addWidget(friendlyName);
 
-    //prova posizione bottone chiusura
     hlay->addWidget(closeButton);
 
     hlay->addWidget(ico);
     hlay->addWidget(center);
     hlay->addWidget(settButton);
-
 
     //connessione segnali e slot
     connect(settButton,SIGNAL(onClicked()),this,SLOT(onSettingClicked()));
@@ -107,7 +105,6 @@ DeviceListItem& DeviceListItem::operator=(const DeviceListItem& dli){
         vlay->addWidget(deviceName);
         vlay->addWidget(friendlyName);
 
-        //prova posizione bottone chiusura
         hlay->addWidget(closeButton);
 
         hlay->addWidget(ico);

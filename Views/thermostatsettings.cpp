@@ -6,7 +6,7 @@ ThermostatSettings::ThermostatSettings(int ID){
     hlay=new QHBoxLayout();
     gLayout->addLayout(hlay,1,1);
 
-    // xreazione bottoni aumento e decremento + layout
+    // creazione bottoni aumento e decremento + layout
     vlay = new QVBoxLayout();
     increase = new QPushButton();
     QIcon up(":/Images/Up.png");
@@ -42,7 +42,7 @@ ThermostatSettings::ThermostatSettings(const ThermostatSettings& bs) : DeviceSet
     hlay=new QHBoxLayout();
     gLayout->addLayout(hlay,1,1);
 
-    // xreazione bottoni aumento e decremento + layout
+    // creazione bottoni aumento e decremento + layout
     vlay = new QVBoxLayout();
     increase = new QPushButton();
     increase->setIcon(bs.increase->icon());
@@ -78,7 +78,7 @@ ThermostatSettings& ThermostatSettings::operator=(const ThermostatSettings& bs){
 
         idDevice = bs.idDevice;
 
-        // xreazione bottoni aumento e decremento + layout
+        // creazione bottoni aumento e decremento + layout
         increase = new QPushButton();
         increase->setIcon(bs.increase->icon());
         increase->setMinimumSize(bs.increase->size());

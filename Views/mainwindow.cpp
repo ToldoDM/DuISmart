@@ -4,7 +4,6 @@
 
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent){
     setWindowTitle ("DuISmartMainWindow");
-    //setFixedSize(640,480);
 
     //Creazione della visualizzazione di default
     tab = new QTabWidget(this);
